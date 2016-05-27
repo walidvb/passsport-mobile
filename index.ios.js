@@ -12,14 +12,14 @@ import {
   View,
 } from 'react-native';
 
-var styles = require('./styles')
+var baseStyles = require('./styles')
 var PartnersList = require('./components/PartnersList');
 
 class PassSport extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <PartnersList style={[styles.container]}></PartnersList>
+      <View style={baseStyles.container}>
+        <PartnersList style={[baseStyles.container]}></PartnersList>
       </View>
     );
   }

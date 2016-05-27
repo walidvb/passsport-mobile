@@ -2,7 +2,12 @@ const PARTNER_LIST = [
   {
     name: 'Dirt King',
     category: 'bike',
-    image: 'http://placehold.it/500',
+    thumbnail: 'http://placehold.it/100',
+  },
+  {
+    name: 'Dirt King',
+    category: 'bike',
+    thumbnail: 'http://placehold.it/100',
   },
 ];
 
@@ -13,6 +18,7 @@ import {
   ListView,
   Text,
   View,
+  Image,
 } from 'react-native';
 var baseStyles = require('../styles')
 
@@ -50,7 +56,7 @@ class PartnersList extends Component{
     }
     return (
       <ListView
-        style={[styles.partnersList, {flex: 1, backgroundColor: 'red'}]}
+        style={[styles.partnersList]}
         dataSource={this.state.dataSource}
         renderRow={this.renderPartnerCell}
       />
@@ -59,6 +65,10 @@ class PartnersList extends Component{
   renderPartnerCell(partner){
     return (
       <View style={styles.partnerCell}>
+        <Image
+          source={{uri: partner.thumbnail}}
+          style={styles.thumbnail}
+        />
         <Text>{partner.name}</Text>
       </View>
     )
@@ -73,10 +83,14 @@ const styles = StyleSheet.create({
   partnerCell: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    height: 300,
     backgroundColor: '#0074D9',
+  },
+  thumbnail: {
+    width: 80,
+    height: 80,
+    margin: 10,
   }
 })
 module.exports = PartnersList
