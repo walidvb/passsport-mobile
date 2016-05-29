@@ -1,12 +1,28 @@
-import { createStore } from 'redux';
-import rootReducer from './components/rootReducer'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import devTools from 'remote-redux-devtools';
 
-const defaultState = {
+import partners from './data/partners';
+
+import rootReducer from './components/rootReducer';
+
+const initialState = {
+  partners,
   auth: {
-    loggedIn: false
+    loggedIn: false,
+    displaySignUpForm: true,
   }
 }
 
-const store = createStore(rootReducer, defaultState);
+export default function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(thunk),
+    devTools()
+  );
+  // Note: passing enhancer as last argument requires redux@>=3.1.0
+  return createStore(rootReducer, initialState, enhancer);
+}
+
+const store = configureStore(initialState);
 
 export default store;

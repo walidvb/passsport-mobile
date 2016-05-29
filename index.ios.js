@@ -15,14 +15,17 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 var baseStyles = require('./styles')
-var PartnersList = require('./components/PartnersList');
-var UserForm = require('./components/UserForm');
+import App from './components/App';
+console.log('App', App);
+
 class PassSport extends Component {
   render() {
     return (
-      <View style={[baseStyles.container, {paddingTop:20}]}>
-        <UserForm/>
-      </View>
+      <Provider store={store}>
+        <View style={[baseStyles.container, {paddingTop:20}]}>
+          <App/>
+        </View>
+      </Provider>
     )
   }
 }
