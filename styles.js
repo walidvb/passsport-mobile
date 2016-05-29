@@ -9,7 +9,6 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: "stretch",
-    backgroundColor: 'red',
   },
 });
 

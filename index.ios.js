@@ -11,17 +11,19 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store';
 
 var baseStyles = require('./styles')
 var PartnersList = require('./components/PartnersList');
-
+var UserForm = require('./components/UserForm');
 class PassSport extends Component {
   render() {
     return (
-      <View style={baseStyles.container}>
-        <PartnersList style={[baseStyles.container]}></PartnersList>
+      <View style={[baseStyles.container, {paddingTop:20}]}>
+        <UserForm/>
       </View>
-    );
+    )
   }
 }
 
