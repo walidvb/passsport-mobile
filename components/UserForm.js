@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   View,
+  TouchableHighlight,
 } from 'react-native';
 var baseStyles = require('../styles')
 
@@ -18,6 +19,13 @@ class UserForm extends Component{
     };
   }
   render() {
+    if(this.props.auth.loggedIn){
+      return (
+        <View style={baseStyles.container}>
+          <Text>You're logged in!</Text>
+        </View>
+      )
+    }
     return this.state.newUser ? this.renderSignIn() : this.renderSignUp();
   }
   renderSignIn(){
@@ -25,6 +33,11 @@ class UserForm extends Component{
       <View style={[{flex: 1, paddingLeft: 5, paddingRight: 5, flexDirection: 'column'}]}>
         <TextInput autoFocus keyboardType='email-address' placeholder='Email' style={styles.input} onChangeText={(emaail) => this.setState({emaail})}></TextInput>
         <TextInput placeholder='Password' secureTextEntry={true} style={styles.input} onChangeText={(password) => this.setState({password})}></TextInput>
+        <TouchableHighlight>
+          <Text>
+            LOG IN
+          </Text>
+        </TouchableHighlight>
         <Text onPress={() => this.setState({newUser: false})}>Already a member? Sign in</Text>
       </View>
     );
@@ -35,7 +48,11 @@ class UserForm extends Component{
         <TextInput autoFocus keyboardType='email-address' placeholder='Email' style={styles.input} onChangeText={(email) => this.setState({email})}></TextInput>
         <TextInput placeholder='Password' secureTextEntry={true} style={styles.input} onChangeText={(password) => this.setState({password})}></TextInput>
         <TextInput placeholder='Password Confirmation' secureTextEntry={true} style={styles.input} onChangeText={(passwordConfirmation) => this.setState({passwordConfirmation})}></TextInput>
-
+        <TouchableHighlight>
+          <Text>
+            SIGN UP
+          </Text>
+        </TouchableHighlight>
         <Text onPress={() => this.setState({newUser: true})}>New member? Sign up</Text>
       </View>
     );
