@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import * as authActionCreators from './auth/authActionCreators';
 
-import UserForm from './UserForm'
+import Main from './Main'
 
 function mapStateToProps(state){
   return {
@@ -16,7 +16,6 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators(authActionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(UserForm);
-console.log('connect',connect(mapStateToProps, mapDispatchToProps)(UserForm));
+const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
 export default App;

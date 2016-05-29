@@ -1,16 +1,3 @@
-const PARTNER_LIST = [
-  {
-    name: 'Dirt King',
-    category: 'bike',
-    thumbnail: 'http://placehold.it/100',
-  },
-  {
-    name: 'Dirt King',
-    category: 'bike',
-    thumbnail: 'http://placehold.it/100',
-  },
-];
-
 'use strict';
 import React, { Component } from 'react';
 import {
@@ -38,7 +25,7 @@ class PartnersList extends Component{
   fetchData() {
     this.setState({
       loaded: true,
-      dataSource: this.state.dataSource.cloneWithRows(PARTNER_LIST)
+      dataSource: this.state.dataSource.cloneWithRows(this.props.partners)
     });
   }
   componentDidMount() {
@@ -77,8 +64,6 @@ class PartnersList extends Component{
 
 const styles = StyleSheet.create({
   partnersList: {
-    paddingTop: 20,
-    flex: 1,
   },
   partnerCell: {
     flex: 1,
@@ -88,8 +73,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#0074D9',
   },
   thumbnail: {
-    width: 80,
-    height: 80,
+    width: 30,
+    height: 30,
     margin: 10,
   }
 })

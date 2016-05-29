@@ -14,17 +14,18 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-var baseStyles = require('./styles')
 import App from './components/App';
-console.log('App', App);
+import Main from './components/Main';
+import PartnersList from './components/partners/PartnersList';
 
 class PassSport extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={[baseStyles.container, {paddingTop:20}]}>
-          <App/>
-        </View>
+        <App>
+          <Main>
+          </Main>
+        </App>
       </Provider>
     )
   }
