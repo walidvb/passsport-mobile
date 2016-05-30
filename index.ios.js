@@ -23,8 +23,7 @@ class PassSport extends Component {
     return (
       <Provider store={store}>
         <App>
-          <Main>
-          </Main>
+          <Main/>
         </App>
       </Provider>
     )

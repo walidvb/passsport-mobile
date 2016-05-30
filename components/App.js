@@ -2,6 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as authActionCreators from './auth/authActionCreators';
+import * as partnersActionCreators from './partners/partnersActionCreators';
 
 import Main from './Main'
 
@@ -13,7 +14,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators(authActionCreators, dispatch);
+  return bindActionCreators({...authActionCreators, ...partnersActionCreators}, dispatch);
 }
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -5,15 +5,20 @@ import {
 } from 'react-native';
 
 import PartnersList from './partners/PartnersList';
+import UserForm from './auth/UserForm';
 var baseStyles = require('./styles')
 
 
 class Main extends Component{
   render() {
-    return (
-      <View style={[{paddingTop: 20}]}>
-        <PartnersList {...this.props}></PartnersList>
+    const route = 'auth';
 
+    const partners = route != 'partners' ? null : <PartnersList {...this.props}></PartnersList>
+    const auth = route != 'auth' ? null : <UserForm {...this.props}/>
+    return (
+      <View style={[baseStyles.container,{paddingTop: 20}]}>
+        {auth}
+        {partners}
       </View>
     )
   }

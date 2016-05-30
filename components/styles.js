@@ -10,6 +10,20 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: "stretch",
   },
+  button: {
+    height: 30,
+    flex: 1,
+    borderWidth: 1,
+    backgroundColor: 'cornflowerblue',
+    borderColor: 'darkblue',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  buttonInner: {
+    color: 'white',
+    textAlign: 'center',
+  }
 });
 
 module.exports = Styles;

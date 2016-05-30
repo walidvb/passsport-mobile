@@ -7,11 +7,9 @@ export function signIn(user){
   }
 }
 // Sign up
-export function signUp(email, password, passwordConfirmation){
+export function signUp(user){
   return {
     type: 'SIGN_UP',
-    email,
-    password,
-    passwordConfirmation
+    user
   }
 }
