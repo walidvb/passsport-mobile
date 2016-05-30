@@ -3,14 +3,13 @@
 export default function auth(state = [], action){
 
   console.log('state from auth', state, action);
+  console.log('action', action);
   switch(action.type){
     case 'SIGN_IN':
       return {
         ...state,
-        auth: {
-          ...state.auth,
-          loggedIn: true
-        }
+        loggedIn: true,
+        user: action.user
       }
     default:
       return state;

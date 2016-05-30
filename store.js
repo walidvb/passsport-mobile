@@ -10,14 +10,13 @@ const initialState = {
   partners,
   auth: {
     loggedIn: false,
-    displaySignUpForm: true,
   }
 }
 
 export default function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(thunk),
-    devTools()
+    devTools(),
   );
   // Note: passing enhancer as last argument requires redux@>=3.1.0
   return createStore(rootReducer, initialState, enhancer);
