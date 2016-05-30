@@ -14,9 +14,9 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-import App from './components/App';
-import Main from './components/Main';
-import PartnersList from './components/partners/PartnersList';
+import App from './app/App';
+import Main from './app/Main';
+import PartnersList from './app/partners/PartnersList';
 
 class PassSport extends Component {
   render() {

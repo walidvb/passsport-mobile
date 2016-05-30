@@ -4,7 +4,7 @@ import devTools from 'remote-redux-devtools';
 
 import partners from './data/partners';
 
-import rootReducer from './components/rootReducer';
+import rootReducer from './app/rootReducer';
 
 const initialState = {
   partners,
