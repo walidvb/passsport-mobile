@@ -5,6 +5,9 @@
  */
 
 import React, { Component } from 'react';
+import { Router, Scene } from 'react-native-router-flux';
+
+
 import {
   AppRegistry,
   StyleSheet,
@@ -14,22 +17,16 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-import App from './app/App';
-import Main from './app/Main';
-import PartnersList from './app/partners/PartnersList';
+import App from './app/App'
 
 class PassSport extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App>
-          <Main/>
-        </App>
+        <App/>
       </Provider>
     )
   }
 }
-
-
 
 AppRegistry.registerComponent('PassSport', () => PassSport);

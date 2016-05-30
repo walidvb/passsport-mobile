@@ -1,11 +1,14 @@
 'use strict';
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
+
 import {
   StyleSheet,
   ListView,
   Text,
   View,
   Image,
+  TouchableHighlight,
 } from 'react-native';
 var baseStyles = require('../styles')
 
@@ -41,29 +44,38 @@ class PartnersList extends Component{
         </View>
       );
     }
+    const test = () => console.log('test');
     return (
       <ListView
+        automaticallyAdjustContentInsets={true}
         style={[styles.partnersList]}
         dataSource={this.state.dataSource}
         renderRow={this.renderPartnerCell}
+        onPress={test}
       />
     );
   }
   renderPartnerCell(partner){
+    const goToPartner = () => {
+      Actions.partnerShow({id: partner.id})
+    }
     return (
-      <View style={styles.partnerCell}>
-        <Image
-          source={{uri: partner.thumbnail}}
-          style={styles.thumbnail}
-        />
-        <Text>{partner.name}</Text>
-      </View>
+      <TouchableHighlight style={styles.partnerCell} onPress={goToPartner}>
+        <View>
+          <Image
+            source={{uri: partner.thumbnail}}
+            style={styles.thumbnail}
+          />
+          <Text>{partner.name}</Text>
+          </View>
+      </TouchableHighlight>
     )
   }
 };
 
 const styles = StyleSheet.create({
   partnersList: {
+    flex: 1,
   },
   partnerCell: {
     flex: 1,

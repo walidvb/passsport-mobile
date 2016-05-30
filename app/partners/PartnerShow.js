@@ -1,5 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import {
   StyleSheet,
   Text,
@@ -14,19 +16,25 @@ class PartnerShow extends Component{
     super(props);
   }
   componentWillMount() {
+    console.log(this.props);
+    const partner = _.find(this.props.partners, (p) => p.id === this.props.id)
     this.state = {
-      partner: {
-        name: 'test'
-      },
+      partner,
     }
   }
-  componentDidMount() {
+  largeImgUrl(partner){
+    partner.logo
   }
   render() {
+    const { partner } = this.state;
     return(
       <View style={baseStyles.container}>
+        <Image source={this.largeImgUrl(partner)}/>
         <Text>
-          {this.state.partner.name}
+          {partner.name}
+        </Text>
+        <Text>
+          {partner.description}
         </Text>
       </View>
     )
