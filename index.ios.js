@@ -17,13 +17,13 @@ import {
 import { Provider } from 'react-redux';
 import store from './store';
 
-import App from './app/App'
+import Main from './app/Main'
 
 class PassSport extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App/>
+        <Main/>
       </Provider>
     )
   }

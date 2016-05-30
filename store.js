@@ -10,7 +10,8 @@ const initialState = {
   partners,
   auth: {
     loggedIn: false,
-  }
+  },
+  counter: 0
 }
 
 export default function configureStore(initialState) {

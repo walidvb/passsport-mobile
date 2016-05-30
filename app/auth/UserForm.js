@@ -1,5 +1,11 @@
 'use strict';
 import React, { Component } from 'react';
+
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as authActionCreators from './authActionCreators';
+
 import {
   StyleSheet,
   ListView,
@@ -90,5 +96,18 @@ const styles = StyleSheet.create({
     //borderBottomWidth: 1, borderBottomColor: 'grey'
   }
 })
+
+function mapStateToProps(state){
+  return {
+    auth: state.auth,
+    partners: state.partners
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({...authActionCreators}, dispatch);
+}
+
+UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
 
 export default UserForm

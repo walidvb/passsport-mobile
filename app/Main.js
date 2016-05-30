@@ -15,6 +15,9 @@ var baseStyles = require('./styles')
 
 
 class Main extends Component{
+  componentWillMount() {
+    console.log('App started');
+  }
   render() {
     return (
       <Router>
@@ -64,6 +67,5 @@ class TabIcon extends React.Component {
     );
   }
 }
-
 
 export default Main;

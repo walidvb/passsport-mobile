@@ -18,6 +18,7 @@ class PartnersList extends Component{
     super(props);
   }
   componentWillMount() {
+    console.log('partlistprorp', this.props);
     this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
@@ -90,4 +91,8 @@ const styles = StyleSheet.create({
     margin: 10,
   }
 })
+
+import myConnector from '../utils/myConnector'
+PartnersList = myConnector(PartnersList, [], ['partners']);
+
 module.exports = PartnersList

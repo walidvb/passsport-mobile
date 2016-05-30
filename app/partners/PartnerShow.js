@@ -35,6 +35,7 @@ class PartnerShow extends Component{
         </Text>
         <Text>
           {partner.description}
+          {this.props.counter}
         </Text>
       </View>
     )
@@ -57,4 +58,9 @@ const styles = StyleSheet.create({
     margin: 10,
   }
 })
+
+import myConnector from '../utils/myConnector'
+import * as partnersActionCreators from './partnersActionCreators';
+PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners']);
+
 module.exports = PartnerShow
