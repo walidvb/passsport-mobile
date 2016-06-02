@@ -24,13 +24,23 @@ class PartnersList extends Component{
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      loaded: false,
+      loaded: this.props.loaded,
     }
     this.props.getPartners();
+
   }
 
+  componentDidMount() {
+    console.log('redoing this', this.props);
+     this.setState({
+       ...this.state,
+       dataSource: this.state.dataSource.cloneWithRows(this.props.partners)
+     })
+  }
   render() {
-    if(!this.state.loaded || !this.state.dataSource.length){
+    const dataSource = this.state.dataSource.cloneWithRows(this.props.partners)
+    console.log('rendering list', dataSource, this.state, this.props.partners);
+    if(!dataSource.getRowCount()){
       return (
         <View style={baseStyles.container}>
           <Text>
@@ -43,7 +53,7 @@ class PartnersList extends Component{
       <ListView
         automaticallyAdjustContentInsets={true}
         style={[styles.partnersList]}
-        dataSource={this.state.dataSource}
+        dataSource={dataSource}
         renderRow={this.renderPartnerCell}
       />
     );
@@ -85,7 +95,7 @@ const styles = StyleSheet.create({
 })
 
 import myConnector from '../utils/myConnector'
-import * as partnersActionCreators from './partnersActionCreators';
-PartnersList = myConnector(PartnersList, partnersActionCreators, ['partners']);
+import * as partnerActions from './partnersActionCreators';
+PartnersList = myConnector(PartnersList, partnerActions, ['partners']);
 
 module.exports = PartnersList

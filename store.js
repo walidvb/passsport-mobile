@@ -11,7 +11,6 @@ const initialState = {
   auth: {
     loggedIn: false,
   },
-  counter: 0
 }
 
 const sagaMiddleware = createSagaMiddleware()
@@ -30,6 +29,6 @@ export default function configureStore(initialState) {
 }
 
 const store = configureStore(initialState);
-sagaMiddleware.run(rootSaga)
+store.runSaga = sagaMiddleware.run(rootSaga)
 
 export default store;

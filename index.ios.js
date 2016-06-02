@@ -30,3 +30,6 @@ class PassSport extends Component {
 }
 
 AppRegistry.registerComponent('PassSport', () => PassSport);
+store.dispatch({
+  type: 'STORE_INIT'
+});

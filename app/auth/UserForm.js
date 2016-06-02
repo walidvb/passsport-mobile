@@ -1,11 +1,5 @@
 'use strict';
 import React, { Component } from 'react';
-
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import * as authActionCreators from './authActionCreators';
-
 import {
   StyleSheet,
   ListView,
@@ -97,6 +91,8 @@ const styles = StyleSheet.create({
   }
 })
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 function mapStateToProps(state){
   return {
     auth: state.auth,
@@ -107,6 +103,9 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
   return bindActionCreators({...authActionCreators}, dispatch);
 }
+
+
+import * as authActionCreators from './authActionCreators';
 
 UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
 
