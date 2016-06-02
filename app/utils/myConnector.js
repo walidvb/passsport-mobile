@@ -6,7 +6,6 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
   function mapStateToProps(state){
     let mapping = {};
     stateKeys.forEach((key) => mapping[key] = state[key]);
-    console.log(mapping);
     return mapping;
   }
 

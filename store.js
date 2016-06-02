@@ -1,28 +1,32 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
+import createSagaMiddleware from 'redux-saga'
 
-import partners from './data/partners';
-
+import rootSaga from './app/utils/sagas'
 import rootReducer from './app/rootReducer';
 
 const initialState = {
-  partners,
+  partners: [],
   auth: {
     loggedIn: false,
   },
   counter: 0
 }
 
+const sagaMiddleware = createSagaMiddleware([rootSaga])
+
 export default function configureStore(initialState) {
   const enhancer = compose(
+    applyMiddleware(sagaMiddleware),
     applyMiddleware(thunk),
     devTools(),
   );
-  // Note: passing enhancer as last argument requires redux@>=3.1.0
-  return createStore(rootReducer, initialState, enhancer);
+  const _store = createStore(rootReducer, initialState, enhancer);
+  return _store;
 }
 
 const store = configureStore(initialState);
+sagaMiddleware.run(rootSaga)
 
 export default store;

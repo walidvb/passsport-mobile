@@ -20,39 +20,31 @@ class PartnersList extends Component{
   componentWillMount() {
     console.log('partlistprorp', this.props);
     this.state = {
+      ...this.props,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: false,
     }
+    this.props.getPartners();
   }
-  fetchData() {
-    this.setState({
-      loaded: true,
-      dataSource: this.state.dataSource.cloneWithRows(this.props.partners)
-    });
-  }
-  componentDidMount() {
-    this.fetchData();
-  }
+
   render() {
-    if(!this.state.loaded){
+    if(!this.state.loaded || !this.state.dataSource.length){
       return (
         <View style={baseStyles.container}>
           <Text>
-            Loading movies...
+            Loading partners...
           </Text>
         </View>
       );
     }
-    const test = () => console.log('test');
     return (
       <ListView
         automaticallyAdjustContentInsets={true}
         style={[styles.partnersList]}
         dataSource={this.state.dataSource}
         renderRow={this.renderPartnerCell}
-        onPress={test}
       />
     );
   }
@@ -61,8 +53,8 @@ class PartnersList extends Component{
       Actions.partnerShow({id: partner.id})
     }
     return (
-      <TouchableHighlight style={styles.partnerCell} onPress={goToPartner}>
-        <View>
+      <TouchableHighlight style={{flexDirection: 'row'}} onPress={goToPartner}>
+        <View style={styles.partnerCell}>
           <Image
             source={{uri: partner.thumbnail}}
             style={styles.thumbnail}
@@ -93,6 +85,7 @@ const styles = StyleSheet.create({
 })
 
 import myConnector from '../utils/myConnector'
-PartnersList = myConnector(PartnersList, [], ['partners']);
+import * as partnerActions from './partnersActionCreators';
+PartnersList = myConnector(PartnersList, partnerActions, ['partners']);
 
 module.exports = PartnersList
