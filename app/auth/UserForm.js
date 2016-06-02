@@ -26,7 +26,6 @@ class UserForm extends Component{
         </View>
       )
     }
-    console.log(this.state);
     return this.state.newUser ? this.renderSignIn() : this.renderSignUp();
   }
   _signIn(){

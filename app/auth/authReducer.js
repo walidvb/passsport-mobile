@@ -2,7 +2,7 @@
 
 export default function auth(state = [], action){
   switch(action.type){
-    case 'SIGN_IN':
+    case 'SIGNED_IN_SUCCESSFUL':
       return {
         ...state,
         loggedIn: true,

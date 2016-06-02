@@ -12,7 +12,6 @@ const Styles = StyleSheet.create({
   },
   button: {
     height: 30,
-    flex: 1,
     borderWidth: 1,
     backgroundColor: 'cornflowerblue',
     borderColor: 'darkblue',

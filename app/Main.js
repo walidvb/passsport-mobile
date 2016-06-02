@@ -9,7 +9,7 @@ import {
 
 import PartnersList from './partners/PartnersList';
 import PartnerShow from './partners/PartnerShow';
-import UserForm from './auth/UserForm';
+import Auth from './auth/Auth';
 
 var baseStyles = require('./styles')
 
@@ -23,11 +23,12 @@ class Main extends Component{
       <Router>
         <Scene key="root" tabs={true}>
           <Scene
-            component={UserForm}
+            component={Auth}
             icon={TabIcon}
             key="auth"
             title="Auth"
             initial={true}
+            style={{paddingTop: 70}}
             {...this.props}
           />
 
@@ -35,7 +36,6 @@ class Main extends Component{
             icon={TabIcon}
             title="List"
             key="partners"
-            initial={true}
           >
             <Scene
               initial={true}

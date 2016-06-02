@@ -19,9 +19,12 @@ export function* watchPartners(){
   yield* takeEvery('GET_PARTNERS', getPartners)
 }
 
+import watchAuth from '../auth/authSagas'
+
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
   yield [
-    watchPartners()
+    watchPartners(),
+    watchAuth()
   ]
 }
