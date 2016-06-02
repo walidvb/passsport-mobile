@@ -14,14 +14,17 @@ const initialState = {
   counter: 0
 }
 
-const sagaMiddleware = createSagaMiddleware([rootSaga])
+const sagaMiddleware = createSagaMiddleware()
 
 export default function configureStore(initialState) {
   const enhancer = compose(
-    applyMiddleware(sagaMiddleware),
-    applyMiddleware(thunk),
+    applyMiddleware(
+      sagaMiddleware,
+      thunk
+    ),
     devTools(),
   );
+
   const _store = createStore(rootReducer, initialState, enhancer);
   return _store;
 }

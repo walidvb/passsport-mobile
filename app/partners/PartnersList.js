@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 })
 
 import myConnector from '../utils/myConnector'
-import * as partnerActions from './partnersActionCreators';
-PartnersList = myConnector(PartnersList, partnerActions, ['partners']);
+import * as partnersActionCreators from './partnersActionCreators';
+PartnersList = myConnector(PartnersList, partnersActionCreators, ['partners']);
 
 module.exports = PartnersList
