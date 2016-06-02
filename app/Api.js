@@ -1,39 +1,53 @@
 import { delay } from 'redux-saga'
 
 
-
 const url = (endpoint) => {
   const host = 'http://localhost:3000/';
   return host+endpoint;
 }
 
-const params = {
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Origin': '',
-    'APP_TOKEN': 'sua-mae'
+function _prepBody(params = {}){
+  console.log('params', params);
+  return JSON.stringify({
+    ...params,
+    APP_TOKEN: 'sua-mae',
+  })
+}
+
+function params(){
+  return {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Origin': '',
+      'X-APP-TOKEN': 'sua-mae',
+      'X-AUTH-TOKEN': global.authToken
+    }
   }
 }
+
 class Api{
 
-  static getPartners() {
-    return fetch(url('partners.json')).then((res) => res.json());
+  static getPartners(store) {
+    console.log('global', global);
+    return fetch(url('partners.json'), {
+      ...params(),
+    }).then((res) => res.json());
   }
 
   static signIn(user){
     return fetch(url('users/sign_in'),{
-      ...params,
+      ...params(),
       method: 'POST',
-      body: JSON.stringify({user}),
+      body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});
   }
 
   static signUp(user){
     return fetch(url('users/sign_in'),{
-      ...params,
+      ...params(),
       method: 'POST',
-      body: JSON.stringify({user}),
+      body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});
   }
 }

@@ -32,12 +32,6 @@ class Auth extends Component{
       )
     }
   }
-  _signIn(){
-    const email = this.state.email;
-    const password = this.state.password;
-    this.props.signIn({email, password});
-  }
-
 };
 
 const styles = StyleSheet.create({

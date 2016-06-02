@@ -29,6 +29,7 @@ class UserForm extends Component{
     return this.state.newUser ? this.renderSignIn() : this.renderSignUp();
   }
   _signIn(){
+    console.log(this.state);
     const email = this.state.email;
     const password = this.state.password;
     this.props.signIn({email, password});
@@ -90,22 +91,22 @@ const styles = StyleSheet.create({
   }
 })
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-function mapStateToProps(state){
-  return {
-    auth: state.auth,
-    partners: state.partners
-  }
-}
-
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({...authActionCreators}, dispatch);
-}
-
-
-import * as authActionCreators from './authActionCreators';
-
-UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
-
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// function mapStateToProps(state){
+//   return {
+//     auth: state.auth,
+//     partners: state.partners
+//   }
+// }
+//
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators({...authActionCreators}, dispatch);
+// }
+//
+//
+// import * as authActionCreators from './authActionCreators';
+//
+// UserForm = connect(mapStateToProps, mapDispatchToProps)(UserForm);
+//
 export default UserForm

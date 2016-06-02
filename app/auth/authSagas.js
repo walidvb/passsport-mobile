@@ -1,11 +1,19 @@
-import { put, takeEvery} from 'redux-saga'
+import { takeEvery} from 'redux-saga'
+import { put, call } from 'redux-saga/effects'
+
+
 import Api from '../Api'
 
 function* signIn(action){
   let { user } = action;
-  console.log('user', user);
-  const userResponse = yield Api.signIn(user);
-  console.log(userResponse);
+  const userReturned = yield Api.signIn(user);
+  console.log(userReturned);
+  if(userReturned.error){
+    yield put({ type: 'SIGNED_IN_ERROR', user: userReturned})
+  }
+  else{
+    yield put({ type: 'SIGNED_IN_SUCCESSFUL', user: userReturned})
+  }
 }
 
 export default function* watchAuth(){
