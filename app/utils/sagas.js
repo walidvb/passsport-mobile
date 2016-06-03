@@ -12,7 +12,6 @@ export function* getPartners() {
     console.log('PARTNERS_FETCHED failed', e);
     yield put({ type: 'PARTNERS_FETCHED', status: 'failed'})
   }
-  console.log('getPartners finished');
 }
 
 export function* watchPartners(){

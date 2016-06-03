@@ -34,12 +34,13 @@ class PartnersList extends Component{
     console.log('redoing this', this.props);
      this.setState({
        ...this.state,
+       partners: this.props.partners,
        dataSource: this.state.dataSource.cloneWithRows(this.props.partners)
      })
   }
   render() {
+    // TODO: move this where it belongs
     const dataSource = this.state.dataSource.cloneWithRows(this.props.partners)
-    console.log('rendering list', dataSource, this.state, this.props.partners);
     if(!dataSource.getRowCount()){
       return (
         <View style={baseStyles.container}>

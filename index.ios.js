@@ -10,7 +10,6 @@ import { Router, Scene } from 'react-native-router-flux';
 var ReactNative = require('react-native');
 var { AsyncStorage } = ReactNative;
 AsyncStorage.getItem('authToken').then((token) => {
-  console.log(token);
   global.authToken = token
 })
 
