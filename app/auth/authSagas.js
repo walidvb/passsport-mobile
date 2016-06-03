@@ -16,6 +16,8 @@ function* signIn(action){
   }
 }
 
-export default function* watchAuth(){
+export function* watchAuth(){
   yield* takeEvery('SIGN_IN', signIn)
 }
+
+export default [watchAuth()]

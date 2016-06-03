@@ -10,34 +10,39 @@ function _prepBody(params = {}){
   console.log('params', params);
   return JSON.stringify({
     ...params,
-    APP_TOKEN: 'sua-mae',
   })
 }
 
-function params(){
-  return {
+
+class Api{
+  static params ={
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Origin': '',
       'X-APP-TOKEN': 'sua-mae',
-      'X-AUTH-TOKEN': global.authToken
+      'X-AUTH-TOKEN': Api.authToken
     }
   }
-}
 
-class Api{
+  static authKey = null
 
-  static getPartners(store) {
-    console.log('global', global);
+  static getPartners() {
+    console.log('authKey', Api.authKey);
     return fetch(url('partners.json'), {
-      ...params(),
+      ...Api.params,
     }).then((res) => res.json());
+  }
+
+  static validatePartner(partnerId){
+    return fetch(url(`partners/${partnerId}/validations`), {
+      ...Api.params,
+      method: 'POST',
+    })
   }
 
   static signIn(user){
     return fetch(url('users/sign_in'),{
-      ...params(),
+      ...Api.params,
       method: 'POST',
       body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});
@@ -45,7 +50,7 @@ class Api{
 
   static signUp(user){
     return fetch(url('users/sign_in'),{
-      ...params(),
+      ...Api.params,
       method: 'POST',
       body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});

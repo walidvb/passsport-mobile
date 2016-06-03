@@ -7,12 +7,6 @@
 import React, { Component } from 'react';
 import { Router, Scene } from 'react-native-router-flux';
 
-var ReactNative = require('react-native');
-var { AsyncStorage } = ReactNative;
-AsyncStorage.getItem('authToken').then((token) => {
-  global.authToken = token
-})
-
 import {
   AppRegistry,
   StyleSheet,
@@ -35,6 +29,3 @@ class PassSport extends Component {
 }
 
 AppRegistry.registerComponent('PassSport', () => PassSport);
-store.dispatch({
-  type: 'STORE_INIT'
-});

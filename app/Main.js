@@ -9,6 +9,7 @@ import {
 
 import PartnersList from './partners/PartnersList';
 import PartnerShow from './partners/PartnerShow';
+import PartnerValidate from './partners/PartnerValidate';
 import Auth from './auth/Auth';
 
 var baseStyles = require('./styles')
@@ -27,7 +28,6 @@ class Main extends Component{
             icon={TabIcon}
             key="auth"
             title="Auth"
-            initial={true}
             style={{paddingTop: 70}}
             {...this.props}
           />
@@ -36,10 +36,10 @@ class Main extends Component{
             icon={TabIcon}
             title="List"
             key="partners"
+            initial={true}
           >
             <Scene
               initial={true}
-
               component={PartnersList}
               key="partnersList"
               hideNavBar={true}
@@ -47,9 +47,15 @@ class Main extends Component{
             />
             <Scene
               component={PartnerShow}
-              icon={TabIcon}
               key="partnerShow"
               title="Show"
+              hideNavBar={false}
+              {...this.props}
+            />
+            <Modal
+              component={PartnerValidate}
+              key="partnerValidate"
+              title="Validate"
               hideNavBar={false}
               {...this.props}
             />
@@ -63,7 +69,7 @@ class Main extends Component{
 class TabIcon extends React.Component {
   render(){
     return (
-      <Text style={{color: this.props.selected ? 'red' :'black'}}>{this.props.title}</Text>
+      <Text style={{color: this.props.selected ? 'blue' :'black'}}>{this.props.title}</Text>
     );
   }
 }

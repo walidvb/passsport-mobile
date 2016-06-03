@@ -1,6 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { Actions } from 'react-native-router-flux';
+
 
 import {
   StyleSheet,
@@ -9,6 +11,7 @@ import {
   Image,
 } from 'react-native';
 var baseStyles = require('../styles')
+var Button = require('react-native-button');
 
 
 class PartnerShow extends Component{
@@ -23,13 +26,20 @@ class PartnerShow extends Component{
     }
   }
   largeImgUrl(partner){
+    console.log('largeImgUrl', partner);
     partner.logo
   }
   render() {
     const { partner } = this.state;
+
+    function openValidate(){
+      console.log('openingValidate for ', partner);
+      Actions.partnerValidate({partner: partner, id: partner.id})
+    }
+    console.log('partnerShow', this.state);
     return(
-      <View style={baseStyles.container}>
-        <Image source={this.largeImgUrl(partner)}/>
+      <View style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, alignItems: 'center'}}>
+        <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
         <Text>
           {partner.name}
         </Text>
@@ -37,6 +47,9 @@ class PartnerShow extends Component{
           {partner.description}
           {this.props.counter}
         </Text>
+        <Button style={baseStyles.button} onPress={openValidate}>
+          Validate
+        </Button>
       </View>
     )
   }
@@ -44,13 +57,6 @@ class PartnerShow extends Component{
 
 const styles = StyleSheet.create({
   partnersList: {
-  },
-  partnerCell: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#0074D9',
   },
   thumbnail: {
     width: 30,
