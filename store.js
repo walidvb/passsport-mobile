@@ -12,6 +12,7 @@ import rootReducer from './app/rootReducer';
 const initialState = {
   partners: [],
   auth: {
+    user: null,
     loggedIn: false,
   },
 }

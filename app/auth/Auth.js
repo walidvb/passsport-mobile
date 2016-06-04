@@ -26,9 +26,12 @@ class Auth extends Component{
     }
     else{
       return(
-        <Text>
-          Logged in
-        </Text>
+        <View style={baseStyles.container, {flexDirection: 'column'}}>
+          <Text>You're logged in!</Text>
+          <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
+            <Text>LOG OUT</Text>
+          </TouchableHighlight>
+        </View>
       )
     }
   }

@@ -23,6 +23,9 @@ class UserForm extends Component{
       return (
         <View style={baseStyles.container}>
           <Text>You're logged in!</Text>
+          <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
+            <Text>LOG OUT</Text>
+          </TouchableHighlight>
         </View>
       )
     }

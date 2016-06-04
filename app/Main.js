@@ -14,7 +14,6 @@ import Auth from './auth/Auth';
 
 var baseStyles = require('./styles')
 
-
 class Main extends Component{
   componentWillMount() {
     console.log('App started');

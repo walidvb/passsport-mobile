@@ -13,36 +13,42 @@ function _prepBody(params = {}){
   })
 }
 
+let _auth_token = null
+import store from '../store';
 
 class Api{
-  static params ={
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-APP-TOKEN': 'sua-mae',
-      'X-AUTH-TOKEN': Api.authToken
+  static params() {
+    const state = store.getState();
+    var auth_token = state.auth.user ? state.auth.user.auth_token : null;
+    console.log(state);
+    return {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-APP-TOKEN': 'sua-mae',
+        'X-AUTH-TOKEN': auth_token,
+      }
     }
   }
 
-  static authKey = null
 
   static getPartners() {
-    console.log('authKey', Api.authKey);
     return fetch(url('partners.json'), {
-      ...Api.params,
+      ...Api.params(),
     }).then((res) => res.json());
   }
 
   static validatePartner(partnerId){
+    console.log('auth_token', Api.params());
     return fetch(url(`partners/${partnerId}/validations`), {
-      ...Api.params,
+      ...Api.params(),
       method: 'POST',
     })
   }
 
   static signIn(user){
     return fetch(url('users/sign_in'),{
-      ...Api.params,
+      ...Api.params(),
       method: 'POST',
       body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});
@@ -50,7 +56,7 @@ class Api{
 
   static signUp(user){
     return fetch(url('users/sign_in'),{
-      ...Api.params,
+      ...Api.params(),
       method: 'POST',
       body: _prepBody({user}),
     }).then((res) => res.json()).catch(() => {status: 'error'});

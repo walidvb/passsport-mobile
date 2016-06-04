@@ -13,3 +13,9 @@ export function signUp(user){
     user
   }
 }
+
+export function signOut(){
+  return {
+    type: 'SIGN_OUT',
+  }
+}

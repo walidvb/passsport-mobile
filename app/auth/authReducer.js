@@ -15,6 +15,13 @@ export default function auth(state = [], action){
         loggedIn: true,
         user: action.user
       }
+    case 'SIGNED_OUT':
+      Api.authToken =  null
+      return {
+        ...state,
+        loggedIn: false,
+        user: null
+      }
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import Api from '../Api'
 function* signIn(action){
   let { user } = action;
   const userReturned = yield Api.signIn(user);
+  global._authToken = () => userReturned.auth_token
   console.log(userReturned);
   if(userReturned.error){
     yield put({ type: 'SIGNED_IN_ERROR', user: userReturned})
@@ -16,8 +17,17 @@ function* signIn(action){
   }
 }
 
-export function* watchAuth(){
+export function* watchSignIn(){
   yield* takeEvery('SIGN_IN', signIn)
 }
 
-export default [watchAuth()]
+function* signOut(action){
+  yield put({ type: 'SIGNED_OUT'})
+}
+
+export function* watchSignOut(){
+  yield* takeEvery('SIGN_OUT', signOut)
+}
+
+
+export default [watchSignIn(), watchSignOut()]

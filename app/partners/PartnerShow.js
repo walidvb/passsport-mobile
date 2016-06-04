@@ -8,8 +8,10 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   Image,
-} from 'react-native';
+  MapView,
+} from 'react-native'
 var baseStyles = require('../styles')
 var Button = require('react-native-button');
 
@@ -38,19 +40,18 @@ class PartnerShow extends Component{
     }
     console.log('partnerShow', this.state);
     return(
-      <View style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, alignItems: 'center'}}>
+      <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80}}>
         <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
-        <Text>
+        <Text style={{flex:1}}>
           {partner.name}
         </Text>
-        <Text>
+        <Text style={{flex:1}}>
           {partner.description}
-          {this.props.counter}
         </Text>
         <Button style={baseStyles.button} onPress={openValidate}>
           Validate
         </Button>
-      </View>
+      </ScrollView>
     )
   }
 };

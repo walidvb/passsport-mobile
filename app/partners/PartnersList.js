@@ -9,7 +9,7 @@ import {
   View,
   Image,
   TouchableHighlight,
-} from 'react-native';
+} from 'react-native'
 var baseStyles = require('../styles')
 
 
@@ -59,6 +59,18 @@ class PartnersList extends Component{
       />
     );
   }
+  renderSectionHeader(sectionData, sectionID){
+    return (
+      <Text
+        style={{
+          color: 'black',
+          fontSize: 16,
+        }}>
+        {sectionID}
+      </Text>
+    )
+  } 
+
   renderPartnerCell(partner){
     const goToPartner = () => {
       Actions.partnerShow({id: partner.id})
