@@ -9,7 +9,6 @@ export default function ui(state = {}, action){
       }
     case 'SIGNED_IN_ERROR':
     case 'SIGNED_UP_ERROR':
-      console.log('AUTH_ ERROR', action);
       return {
         ...state,
         errors: action.errors,

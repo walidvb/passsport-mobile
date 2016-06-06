@@ -33,12 +33,13 @@ class PartnerShow extends Component{
   }
   render() {
     const { partner } = this.state;
-
+    console.log(this.props);
     function openValidate(){
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
 
-    const validationTrigger = this.props.auth.subscription ? (<Button style={baseStyles.button} onPress={openValidate}>Validate</Button>) : (<Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>)
+    console.log(this.props.auth.subscriptionValid(), this.props.auth);
+    const validationTrigger = this.props.auth.subscriptionValid() ? (<Button style={baseStyles.button} onPress={openValidate}>Validate</Button>) : (<Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>)
     console.log('partnerShow', this.state);
     return(
       <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80}}>

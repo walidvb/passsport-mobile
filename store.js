@@ -15,6 +15,9 @@ const initialState = {
     user: null,
     loggedIn: false,
   },
+  subscription: {
+    isValid: () => false,
+  },
   ui: { auth: {}, partners: {} }
 }
 
@@ -34,6 +37,10 @@ export default function configureStore(initialState) {
   persistStore(_store, {
     storage: AsyncStorage,
     blacklist: ['ui'],
+  }, () => {
+    console.log(_store);
+    store.dispatch({type: 'GET_PARTNERS'});
+    store.dispatch({type: 'GET_SUBSCRIPTION'})
   });
 
   return _store;

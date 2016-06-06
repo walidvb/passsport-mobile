@@ -8,11 +8,11 @@ export default function auth(state = [], action){
   switch(action.type){
     case 'SIGNED_IN_SUCCESSFUL':
     case 'SIGNED_UP_SUCCESSFUL':
-      Api.authToken =  action.user.auth_token;
+      console.log(action.user);
       return {
         ...state,
         loggedIn: true,
-        user: action.user
+        user: action.user,
       }
     case 'SIGNED_OUT':
       Api.authToken =  null

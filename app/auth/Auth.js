@@ -18,6 +18,19 @@ class Auth extends Component{
       newUser: true
     };
   }
+  renderSubscriptionStatus(){
+    if(this.props.subscription){
+      if(this.props.subscription.isValid()){
+        return (<Text>Expires at {this.props.subscription.expires_at}</Text>)
+      }
+      else{
+        return (<Text>Subscription Expired!</Text>)
+      }
+    }
+    else{
+      return (<Text>No Subscription</Text>)
+    }
+  }
   render() {
     if(!this.props.auth.loggedIn){
       return (
@@ -28,6 +41,7 @@ class Auth extends Component{
       return(
         <View style={baseStyles.container, {flexDirection: 'column'}}>
           <Text>You're logged in!</Text>
+          {this.renderSubscriptionStatus()}
           <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
             <Text>LOG OUT</Text>
           </TouchableHighlight>
@@ -50,6 +64,6 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as authActions from './authActionCreators';
-Auth = myConnector(Auth, authActions, ['auth']);
+Auth = myConnector(Auth, authActions, ['auth', 'subscription']);
 
 export default Auth;

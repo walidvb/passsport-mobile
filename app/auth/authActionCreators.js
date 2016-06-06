@@ -7,10 +7,11 @@ export function signIn(user){
   }
 }
 // Sign up
-export function signUp(user){
+export function signUp(user, options = {}){
   return {
     type: 'SIGN_UP',
-    user
+    user,
+    options
   }
 }
 

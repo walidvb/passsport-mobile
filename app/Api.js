@@ -29,7 +29,7 @@ class Api{
     }
   }
 
-
+  // PARTNERS
   static getPartners() {
     return fetch(url('partners.json'), {
       ...Api.params(),
@@ -37,13 +37,20 @@ class Api{
   }
 
   static validatePartner(partnerId){
-    console.log('auth_token', Api.params());
     return fetch(url(`partners/${partnerId}/validations`), {
       ...Api.params(),
       method: 'POST',
     })
   }
 
+  // SUBSCRIPTION
+  static getSubscriptionDetails(){
+    return fetch(url('subscription.json'), {
+      ...Api.params(),
+    }).then((res) => res.json());
+  }
+
+  // AUTH
   static signIn(user){
     return fetch(url('users/sign_in'),{
       ...Api.params(),
@@ -52,12 +59,12 @@ class Api{
     }).then((res) => res.json()).catch(() => {status: 'error'});
   }
 
-  static signUp(user){
-    console.log(user);
+  static signUp(user, options){
+    const { discount_token } = options;
     return fetch(url('users'),{
       ...Api.params(),
       method: 'POST',
-      body: _prepBody({user}),
+      body: _prepBody({user, discount_token}),
     }).then((res) => res.json()).catch(() => {status: 'error'});
   }
 

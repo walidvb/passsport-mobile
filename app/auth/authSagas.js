@@ -13,6 +13,8 @@ function* signIn(action){
   }
   else{
     yield put({ type: 'SIGNED_IN_SUCCESSFUL', user: userReturned})
+    const subs = yield Api.getSubscriptionDetails();
+    yield put({ type: 'GET_SUBSCRIPTION' })
   }
 }
 export function* watchSignIn(){
@@ -22,7 +24,6 @@ export function* watchSignIn(){
 function* signUp(action){
   let { user, options } = action;
   const userReturned = yield Api.signUp(user, options);
-  console.log(userReturned);
   if(userReturned.errors){
     yield put({ type: 'SIGNED_UP_ERROR', errors: userReturned.errors})
   }

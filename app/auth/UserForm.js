@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ListView, Text, TextInput, View, TouchableHighlight } from 'react-native';
 var baseStyles = require('../styles');
-import FormErrors from '../utils/ResponseErrors';
+import FormErrors from '../utils/FormErrors';
 
 const t = require('tcomb-form-native');
 const Form = t.form.Form;
@@ -17,6 +17,7 @@ let newUser = t.struct({
   email: tEmail,
   password: t.String,
   password_confirmation: t.String,
+  discount_token: t.maybe(t.String),
 });
 let options = {
   auto: 'placeholders',
@@ -44,13 +45,15 @@ class UserForm extends Component{
     };
     this.props.clearErrors();
   }
+
   render() {
     if(this.props.auth.loggedIn){
       return (
         <View style={baseStyles.container}>
           <Text>You're logged in!</Text>
+          {this.renderSubscriptionStatus()}
           <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
-            <Text>LOG OUT</Text>
+            <Text>LOG aOUT</Text>
           </TouchableHighlight>
         </View>
       )
@@ -62,6 +65,7 @@ class UserForm extends Component{
       </View>
     );
   }
+
   _signIn(){
     this.props.clearErrors()
     var value = this.refs.form.getValue();
@@ -73,7 +77,9 @@ class UserForm extends Component{
     this.props.clearErrors()
     var value = this.refs.formUp.getValue();
     if(value){
-      this.props.signUp(value);
+      this.props.signUp(value, {
+        discount_token: value.discount_token
+      });
     }
   }
   renderSignIn(){
