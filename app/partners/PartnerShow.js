@@ -35,9 +35,10 @@ class PartnerShow extends Component{
     const { partner } = this.state;
 
     function openValidate(){
-      console.log('openingValidate for ', partner);
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
+
+    const validationTrigger = this.props.auth.subscription ? (<Button style={baseStyles.button} onPress={openValidate}>Validate</Button>) : (<Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>)
     console.log('partnerShow', this.state);
     return(
       <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80}}>
@@ -48,9 +49,7 @@ class PartnerShow extends Component{
         <Text style={{flex:1}}>
           {partner.description}
         </Text>
-        <Button style={baseStyles.button} onPress={openValidate}>
-          Validate
-        </Button>
+        {validationTrigger}
       </ScrollView>
     )
   }
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
-PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners']);
+
+PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners', 'auth']);
 
 module.exports = PartnerShow

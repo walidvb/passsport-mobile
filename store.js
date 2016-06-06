@@ -15,6 +15,7 @@ const initialState = {
     user: null,
     loggedIn: false,
   },
+  ui: { auth: {}, partners: {} }
 }
 
 const sagaMiddleware = createSagaMiddleware()
@@ -22,15 +23,18 @@ const sagaMiddleware = createSagaMiddleware()
 export default function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(
-      sagaMiddleware,
       thunk,
+      sagaMiddleware,
     ),
     autoRehydrate(),
     devTools(),
   );
 
   const _store = createStore(rootReducer, initialState, enhancer);
-  persistStore(_store, {storage: AsyncStorage});
+  persistStore(_store, {
+    storage: AsyncStorage,
+    blacklist: ['ui'],
+  });
 
   return _store;
 }

@@ -1,0 +1,35 @@
+{
+	"liveValues": [
+		{
+			"range": {
+				"from": {
+					"line": 65,
+					"ch": 17
+				},
+				"to": {
+					"line": 65,
+					"ch": 24
+				}
+			},
+			"editWith": "colorPicker",
+			"type": "string",
+			"name": "Color",
+			"group": "TEXT"
+		},
+		{
+			"range": {
+				"from": {
+					"line": 66,
+					"ch": 20
+				},
+				"to": {
+					"line": 66,
+					"ch": 22
+				}
+			},
+			"type": "number",
+			"name": "FontSize",
+			"group": "TEXT"
+		}
+	]
+}

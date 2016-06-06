@@ -7,7 +7,6 @@ const url = (endpoint) => {
 }
 
 function _prepBody(params = {}){
-  console.log('params', params);
   return JSON.stringify({
     ...params,
   })
@@ -20,7 +19,6 @@ class Api{
   static params() {
     const state = store.getState();
     var auth_token = state.auth.user ? state.auth.user.auth_token : null;
-    console.log(state);
     return {
       headers: {
         'Accept': 'application/json',
@@ -55,10 +53,18 @@ class Api{
   }
 
   static signUp(user){
-    return fetch(url('users/sign_in'),{
+    console.log(user);
+    return fetch(url('users'),{
       ...Api.params(),
       method: 'POST',
       body: _prepBody({user}),
+    }).then((res) => res.json()).catch(() => {status: 'error'});
+  }
+
+  static signOut(user){
+    return fetch(url('users/sign_out'),{
+      ...Api.params(),
+      method: 'DELETE',
     }).then((res) => res.json()).catch(() => {status: 'error'});
   }
 }

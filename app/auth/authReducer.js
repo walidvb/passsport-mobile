@@ -7,9 +7,8 @@ import Api from '../Api'
 export default function auth(state = [], action){
   switch(action.type){
     case 'SIGNED_IN_SUCCESSFUL':
-      console.log('SIGNED_IN_SUCCESSFUL', action);
+    case 'SIGNED_UP_SUCCESSFUL':
       Api.authToken =  action.user.auth_token;
-      console.log('SIGNED_IN_SUCCESSFUL', Api.authToken);
       return {
         ...state,
         loggedIn: true,

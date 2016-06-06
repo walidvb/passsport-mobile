@@ -29,16 +29,16 @@ class Main extends Component{
             title="Auth"
             style={{paddingTop: 70}}
             {...this.props}
+            initial={true}
           />
 
           <Scene
             icon={TabIcon}
             title="List"
             key="partners"
-            initial={true}
           >
             <Scene
-              initial={true}
+            initial={true}
               component={PartnersList}
               key="partnersList"
               hideNavBar={true}

@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "lodash": "^4.13.1",
-    "react": "^15.0.2",
+    "react": "15.0.2",
     "react-native": "^0.26.2",
     "react-native-button": "^1.6.0",
     "react-native-router-flux": "^3.26.5",
@@ -16,6 +16,7 @@
     "redux-persist": "^3.2.2",
     "redux-saga": "^0.10.4",
     "redux-thunk": "^2.1.0",
-    "remote-redux-devtools": "^0.3.3"
+    "remote-redux-devtools": "^0.3.3",
+    "tcomb-form-native": "^0.5.1"
   }
 }
