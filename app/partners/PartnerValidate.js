@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 var baseStyles = require('../styles')
 var Button = require('react-native-button');
-
+import FormErrors from '../utils/FormErrors';
 
 class PartnerValidate extends Component{
   constructor(props) {
@@ -28,8 +28,10 @@ class PartnerValidate extends Component{
     function validatePartner(){
       this.props.validatePartner(partner)
     }
+    console.log(this.props.ui.errors);
     return(
       <View style={baseStyles.container}>
+        <FormErrors errors={this.props.ui.errors}/>
         <Button style={baseStyles.button} onPress={validatePartner.bind(this)}>
           Validate {partner.name}?
         </Button>

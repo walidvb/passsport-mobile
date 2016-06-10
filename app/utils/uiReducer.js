@@ -9,6 +9,8 @@ export default function ui(state = {}, action){
       }
     case 'SIGNED_IN_ERROR':
     case 'SIGNED_UP_ERROR':
+    case 'PARTNER_VALIDATED_ERROR':
+      console.log(action);
       return {
         ...state,
         errors: action.errors,

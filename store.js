@@ -17,6 +17,7 @@ const initialState = {
   },
   subscription: {
     isValid: () => false,
+    isValidFor: (partner) => false,
   },
   ui: { auth: {}, partners: {} }
 }

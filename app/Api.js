@@ -40,7 +40,7 @@ class Api{
     return fetch(url(`partners/${partnerId}/validations`), {
       ...Api.params(),
       method: 'POST',
-    })
+    }).then(res => res.json()).then(b => b);
   }
 
   // SUBSCRIPTION

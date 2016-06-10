@@ -38,11 +38,20 @@ class PartnerShow extends Component{
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
 
-    console.log(this.props.auth.subscriptionValid(), this.props.auth);
-    const validationTrigger = this.props.auth.subscriptionValid() ? (<Button style={baseStyles.button} onPress={openValidate}>Validate</Button>) : (<Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>)
+    console.log(this.props.subscription.isValid(), this.props.auth);
+    let validationTrigger;
+    if(!this.props.subscription.isValid()){
+      validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>
+    }
+    else if(this.props.subscription.isValidFor(partner)){
+      validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validate</Button>
+    }
+    else{
+      validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validated!</Button>
+    }
     console.log('partnerShow', this.state);
     return(
-      <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80}}>
+      <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, marginBottom: 50}}>
         <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
         <Text style={{flex:1}}>
           {partner.name}
@@ -69,6 +78,6 @@ const styles = StyleSheet.create({
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
 
-PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners', 'auth']);
+PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners', 'subscription']);
 
 module.exports = PartnerShow
