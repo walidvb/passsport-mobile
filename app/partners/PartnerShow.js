@@ -51,7 +51,7 @@ class PartnerShow extends Component{
     }
     return(
       <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, marginBottom: 50}}>
-        <Map locations={partner.venues} style={{ flex: 1, height: 330 }}/>
+        <Map locations={partner.venues} style={{ flex: 1, height: 200 }}/>
         <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
         <Text style={{flex:1}}>
           {partner.name}

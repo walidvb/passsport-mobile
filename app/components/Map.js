@@ -8,10 +8,9 @@ import {
   StyleSheet,
   View,
   Text,
-  MapView,
 } from 'react-native'
 var baseStyles = require('../styles')
-var Button = require('react-native-button');
+import MapView from 'react-native-maps';
 
 class Map extends Component{
   getRegion(locations, center){
@@ -33,32 +32,25 @@ class Map extends Component{
   constructor(props) {
     super(props);
   }
-  componentWillMount() {
-    console.log(this.props);
-  }
   render() {
     const { locations } = this.props;
     if(!locations.length){ return null; }
-
-    console.log(this.getRegion(locations));
     return (
-      <View>
-      <MapView style={this.props.style} region={this.getRegion(locations)}>
-      {locations.map((marker, i) => {
-        const laglng = { latitude: parseFloat(marker.latitude),longitude: parseFloat(marker.longitude) };
-        console.log(laglng);
-        return (<MapView.Marker
-          key={i}
-          title={'test'}
-          description={'testa'}
-          coordinate={laglng}
-        />)
-      })}
+      <MapView
+        style={this.props.style}
+        region={this.getRegion(locations)}
+        showsUserLocation={true}
+      >
+        {locations.map((marker, i) => {
+          const laglng = { latitude: parseFloat(marker.latitude),longitude: parseFloat(marker.longitude) };
+          const { address } = marker;
+          return (<MapView.Marker
+            key={i}
+            description={address}
+            coordinate={laglng}
+          />)
+        })}
       </MapView>
-        <Text>
-          {this.getRegion(locations).latitude}, {this.getRegion(locations).longitude}
-        </Text>
-      </View>
     );
   }
 };
