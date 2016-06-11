@@ -10,8 +10,8 @@ import {
   View,
   ScrollView,
   Image,
-  MapView,
-} from 'react-native'
+} from 'react-native';
+const Map = require('../components/Map')
 var baseStyles = require('../styles')
 var Button = require('react-native-button');
 
@@ -49,9 +49,9 @@ class PartnerShow extends Component{
     else{
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validated!</Button>
     }
-    console.log('partnerShow', this.state);
     return(
       <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, marginBottom: 50}}>
+        <Map locations={partner.venues} style={{ flex: 1, height: 330 }}/>
         <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
         <Text style={{flex:1}}>
           {partner.name}
