@@ -29,8 +29,8 @@ class PartnerShow extends Component{
     }
   }
   largeImgUrl(partner){
-    console.log('largeImgUrl', partner);
-    { uri: partner.logo }
+    console.log('largeImgUrl', partner.logo);
+    return { uri: partner.logo }
   }
   render() {
     const { partner } = this.state;
