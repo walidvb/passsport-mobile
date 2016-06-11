@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
+const HTMLView = require('react-native-htmlview')
 
 
 import {
@@ -29,16 +30,13 @@ class PartnerShow extends Component{
   }
   largeImgUrl(partner){
     console.log('largeImgUrl', partner);
-    partner.logo
+    { uri: partner.logo }
   }
   render() {
     const { partner } = this.state;
-    console.log(this.props);
     function openValidate(){
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
-
-    console.log(this.props.subscription.isValid(), this.props.auth);
     let validationTrigger;
     if(!this.props.subscription.isValid()){
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>
@@ -52,13 +50,13 @@ class PartnerShow extends Component{
     return(
       <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, marginBottom: 50}}>
         <Map locations={partner.venues} style={{ flex: 1, height: 200 }}/>
-        <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}}source={this.largeImgUrl(partner)}/>
+        <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}} source={this.largeImgUrl(partner)}/>
         <Text style={{flex:1}}>
           {partner.name}
         </Text>
-        <Text style={{flex:1}}>
-          {partner.description}
-        </Text>
+        <HTMLView value={partner.description} style={{flex:1}}>
+
+        </HTMLView>
         {validationTrigger}
       </ScrollView>
     )

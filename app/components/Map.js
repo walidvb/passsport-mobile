@@ -34,7 +34,7 @@ class Map extends Component{
   }
   render() {
     const { locations } = this.props;
-    if(!locations.length){ return null; }
+    if(!locations || !locations.length){ return null; }
     return (
       <MapView
         style={this.props.style}
