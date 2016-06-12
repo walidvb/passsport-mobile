@@ -22,7 +22,7 @@ class PassSport extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Main/>
+        <Main style={{paddingTop: 20}}/>
       </Provider>
     )
   }

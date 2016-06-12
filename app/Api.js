@@ -2,7 +2,8 @@ import { delay } from 'redux-saga'
 
 
 const url = (endpoint) => {
-  const host = 'https://passsport.herokuapp.com/';
+  // const host = 'https://passsport.herokuapp.com/';
+  const host = 'http://localhost:3000/';
   return host+endpoint;
 }
 
@@ -51,28 +52,8 @@ class Api{
   }
 
   // AUTH
-  static signIn(user){
-    return fetch(url('users/sign_in'),{
-      ...Api.params(),
-      method: 'POST',
-      body: _prepBody({user}),
-    }).then((res) => res.json()).catch(() => {status: 'error'});
-  }
-
-  static signUp(user, options){
-    const { discount_token } = options;
-    return fetch(url('users'),{
-      ...Api.params(),
-      method: 'POST',
-      body: _prepBody({user, discount_token}),
-    }).then((res) => res.json()).catch(() => {status: 'error'});
-  }
-
-  static signOut(user){
-    return fetch(url('users/sign_out'),{
-      ...Api.params(),
-      method: 'DELETE',
-    }).then((res) => res.json()).catch(() => {status: 'error'});
+  static userUrl(){
+    return url('users/sign_in')
   }
 }
 

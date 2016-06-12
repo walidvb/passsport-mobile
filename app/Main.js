@@ -27,7 +27,7 @@ class Main extends Component{
             icon={TabIcon}
             key="auth"
             title="Auth"
-            style={{paddingTop: 70}}
+            hideNavBar={true}
             {...this.props}
             initial={true}
           />

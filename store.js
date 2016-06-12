@@ -39,7 +39,6 @@ export default function configureStore(initialState) {
     storage: AsyncStorage,
     blacklist: ['ui'],
   }, () => {
-    console.log(_store);
     store.dispatch({type: 'GET_PARTNERS'});
     store.dispatch({type: 'GET_SUBSCRIPTION'})
   });
