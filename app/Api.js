@@ -53,7 +53,7 @@ class Api{
 
   // AUTH
   static userUrl(){
-    return url('users/sign_in')
+    return url('users/sign_up?mobile=1')
   }
 }
 

@@ -6,6 +6,8 @@ import Api from '../Api'
 // a reducer takes in the action, and a copy of current state
 export default function auth(state = [], action){
   switch(action.type){
+    case 'TEST':
+      alert(action.type);
     case 'SIGNED_IN_SUCCESSFUL':
     case 'SIGNED_UP_SUCCESSFUL':
       console.log(action.user);

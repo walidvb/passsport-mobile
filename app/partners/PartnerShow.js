@@ -22,7 +22,6 @@ class PartnerShow extends Component{
     super(props);
   }
   componentWillMount() {
-    console.log(this.props);
     const partner = _.find(this.props.partners, (p) => p.id === this.props.id)
     this.state = {
       partner,

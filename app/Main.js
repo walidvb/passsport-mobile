@@ -15,9 +15,6 @@ import Auth from './auth/Auth';
 var baseStyles = require('./styles')
 
 class Main extends Component{
-  componentWillMount() {
-    console.log('App started');
-  }
   render() {
     return (
       <Router>
@@ -29,10 +26,10 @@ class Main extends Component{
             title="Auth"
             hideNavBar={true}
             {...this.props}
-            initial={true}
           />
 
           <Scene
+            initial={true}
             icon={TabIcon}
             title="List"
             key="partners"

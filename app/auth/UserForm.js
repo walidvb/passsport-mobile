@@ -3,19 +3,20 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 var baseStyles = require('../styles');
 import WebViewBridge from 'react-native-webview-bridge';
+import { Actions } from 'react-native-router-flux';
 import Api from '../Api'
+// import { dispatch } from 'react-redux';
+// console.log(dispatch);
 
 class UserForm extends Component{
   onBridgeMessage(message){
     const { webviewbridge } = this.refs;
-    switch (message) {
-      case "hello from webview":
-        webviewbridge.sendToBridge("hello from react-native");
-        break;
-      case "got the message inside webview":
-        console.log("we have got a message from webview! yeah");
-        break;
+    message = JSON.parse(message);
+    console.log('message', message);
+    if(message.status == 'success'){
+      Actions.pop();
     }
+    dispatch(message);
   }
   render() {
     return (
