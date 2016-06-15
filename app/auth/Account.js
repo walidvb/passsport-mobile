@@ -1,17 +1,15 @@
 'use strict';
 import React, { Component } from 'react';
-
 import {
   StyleSheet,
   ListView,
   Text,
   TextInput,
-  ScrollView,
+  View,
   TouchableHighlight,
 } from 'react-native';
 var baseStyles = require('../styles')
 
-import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
 class Auth extends Component{
   constructor(props) {
@@ -19,15 +17,11 @@ class Auth extends Component{
     this.state={
       newUser: true
     };
-    this.subscription = new Subscription(props.subscription)
-  }
-  componentWillReceiveProps(props){
-    this.subscription = new Subscription(props.subscription)
   }
   renderSubscriptionStatus(){
-    if(this.subscription.exists){
-      if(this.subscription.isValid()){
-        return (<Text>Expires at {this.subscription.expires_at}</Text>)
+    if(this.props.subscription){
+      if(this.props.subscription.isValid()){
+        return (<Text>Expires at {this.props.subscription.expires_at}</Text>)
       }
       else{
         return (<Text>Subscription Expired!</Text>)
@@ -45,13 +39,13 @@ class Auth extends Component{
     }
     else{
       return(
-        <ScrollView style={baseStyles.container, {flexDirection: 'column'}}>
+        <View style={baseStyles.container, {flexDirection: 'column'}}>
           <Text>You're logged in!</Text>
           {this.renderSubscriptionStatus()}
           <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
             <Text>LOG OUT</Text>
           </TouchableHighlight>
-        </ScrollView>
+        </View>
       )
     }
   }

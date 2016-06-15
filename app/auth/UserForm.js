@@ -5,18 +5,14 @@ var baseStyles = require('../styles');
 import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
 import Api from '../Api'
-// import { dispatch } from 'react-redux';
-// console.log(dispatch);
+
 
 class UserForm extends Component{
   onBridgeMessage(message){
     const { webviewbridge } = this.refs;
     message = JSON.parse(message);
-    console.log('message', message);
-    if(message.status == 'success'){
-      Actions.pop();
-    }
-    dispatch(message);
+    console.log('message', message, this.props);
+    this.props.signUp(message.data.user, { subscription: message.data.subscription })
   }
   render() {
     return (

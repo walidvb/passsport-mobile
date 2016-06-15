@@ -1,5 +1,6 @@
 import { takeEvery, delay } from 'redux-saga'
 import { put, call } from 'redux-saga/effects'
+import { Actions } from 'react-native-router-flux';
 
 import Api from '../Api'
 
@@ -34,6 +35,7 @@ export function* validatePartner(action){
   }catch(e){
     console.log('PARTNERS_VALIDATED failed', e);
     yield put({ type: 'PARTNERS_VALIDATED', status: 'failed'})
+    yield Actions.pop()
   }
 }
 

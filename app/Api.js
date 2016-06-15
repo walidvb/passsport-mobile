@@ -55,6 +55,13 @@ class Api{
   static userUrl(){
     return url('users/sign_up?mobile=1')
   }
+
+  static signOut(user){
+    return fetch(url('users/sign_out'),{
+      ...Api.params(),
+      method: 'DELETE',
+    }).then((res) => res.json()).catch(() => {status: 'error'});
+  }
 }
 
 module.exports = Api;

@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
+import Subscription from '../subscriptions/Subscription'
+
 const HTMLView = require('react-native-htmlview')
 
 
@@ -37,10 +39,11 @@ class PartnerShow extends Component{
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
     let validationTrigger;
-    if(!this.props.subscription.isValid()){
+    const sub = new Subscription(this.props.subscription);
+    if(!sub.exists){
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Get Pass</Button>
     }
-    else if(this.props.subscription.isValidFor(partner)){
+    else if(sub.isAvailableFor(partner)){
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validate</Button>
     }
     else{

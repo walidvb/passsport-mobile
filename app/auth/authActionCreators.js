@@ -1,17 +1,17 @@
 // Sign in
 
-export function signIn(user){
+export function signIn(data){
   return {
     type: 'SIGN_IN',
-    user
+    data
   }
 }
 // Sign up
-export function signUp(user, options = {}){
+export function signUp(user, subscription = {}){
   return {
-    type: 'SIGN_UP',
+    type: 'SIGNED_UP_SUCCESSFUL',
     user,
-    options
+    subscription
   }
 }
 
