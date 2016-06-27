@@ -45,7 +45,8 @@ class Main extends Component{
               component={PartnerShow}
               key="partnerShow"
               title="Show"
-              hideNavBar={false}
+              hideNavBar={true}
+              style={{paddingTop: 90}}
               {...this.props}
             />
             <Modal

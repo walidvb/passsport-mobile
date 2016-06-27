@@ -4,17 +4,16 @@ import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
 import Subscription from '../subscriptions/Subscription'
 
-const HTMLView = require('react-native-htmlview')
+const ScrollableTabView = require('react-native-scrollable-tab-view');
 
 
 import {
   StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
 } from 'react-native';
-const Map = require('../components/Map')
+
+const PartnerAbout = require('./_partnerAbout')
+const PartnerOffer = require('./_partnerOffer')
+
 var baseStyles = require('../styles')
 var Button = require('react-native-button');
 
@@ -50,17 +49,10 @@ class PartnerShow extends Component{
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validated!</Button>
     }
     return(
-      <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingTop: 80, marginBottom: 50}}>
-        <Map locations={partner.venues} style={{ flex: 1, height: 200 }}/>
-        <Image style={{width: 80, height: 80, borderWidth: 1, borderColor: 'black'}} source={this.largeImgUrl(partner)}/>
-        <Text style={{flex:1}}>
-          {partner.name}
-        </Text>
-        <HTMLView value={partner.description} style={{flex:1}}>
-
-        </HTMLView>
-        {validationTrigger}
-      </ScrollView>
+      <ScrollableTabView>
+        <PartnerAbout tabLabel="About" partner={partner}/>
+        <PartnerOffer tabLabel="Offer" partner={partner}/>
+      </ScrollableTabView>
     )
   }
 };
