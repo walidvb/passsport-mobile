@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 var baseStyles = require('../styles');
 const VbText = require('../helpers/vbText');
+const OverlayImage = require('../helpers/overlayImage');
 
 class PartnersList extends Component{
   constructor(props) {
@@ -70,45 +71,24 @@ class PartnersList extends Component{
     }
     return (
       <TouchableHighlight style={{flexDirection: 'row'}} onPress={goToPartner}>
-        <View style={styles.partnerCell}>
-          <Image
-            source={{uri: partner.tile_image}}
-            style={styles.thumbnail}
-            resizeMode="cover"
-          >
-            <View style={styles.overlay}>
-              <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
-              <View style={styles.partnerCategories}>
-                {partner.categories.map((cat) => {
-                  return (<VbText style={{marginRight: 5, }} light small lowercase key={cat} text={cat}/>)
-                })}
-                </View>
-            </View>
-          </Image>
-        </View>
+        <OverlayImage source={{uri: partner.tile_image}} style={styles.partnerCell}>
+          <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
+          <View style={styles.partnerCategories}>
+            {partner.categories.map((cat) => {
+              return (<VbText style={{marginRight: 5, }} light small lowercase key={cat} text={cat}/>)
+            })}
+          </View>
+        </OverlayImage>
       </TouchableHighlight>
     )
   }
 };
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.2)',
-    justifyContent: 'flex-end',
-    paddingLeft: 15,
-    paddingBottom: 25,
-  },
   partnersList: {
     flex: 1,
   },
-  partnerName: {
-
-  },
   partnerCell: {
-    alignItems: 'stretch',
-    flex: 1,
-    //flexDirection: 'column',
     marginTop: 18,
     marginLeft: 18,
     marginRight: 18,
@@ -117,13 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 9,
-    //flex: 1,
   },
-  thumbnail: {
-    height: 200,
-    flex: 1,
-
-  }
 })
 
 import myConnector from '../utils/myConnector'
