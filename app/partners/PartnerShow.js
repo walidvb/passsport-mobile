@@ -5,17 +5,20 @@ import { Actions } from 'react-native-router-flux';
 import Subscription from '../subscriptions/Subscription'
 
 const ScrollableTabView = require('react-native-scrollable-tab-view');
-
+const VbText = require('../helpers/vbText')
 
 import {
+  View,
+  Image,
   StyleSheet,
 } from 'react-native';
 
 const PartnerAbout = require('./_partnerAbout')
 const PartnerOffer = require('./_partnerOffer')
 
-var baseStyles = require('../styles')
-var Button = require('react-native-button');
+const baseStyles = require('../styles')
+import colors from '../colors'
+const Button = require('react-native-button');
 
 
 class PartnerShow extends Component{
@@ -48,11 +51,26 @@ class PartnerShow extends Component{
     else{
       validationTrigger = <Button style={baseStyles.button} onPress={openValidate}>Validated!</Button>
     }
+    console.log(colors);
     return(
-      <ScrollableTabView>
-        <PartnerAbout tabLabel="About" partner={partner}/>
-        <PartnerOffer tabLabel="Offer" partner={partner}/>
-      </ScrollableTabView>
+      <View style={{flex:1, alignItems: 'stretch'}}>
+        <Image
+          source={{uri: partner.tile_image}}
+          style={styles.thumbnail}
+          resizeMode="cover"
+        >
+          <VbText uppercase title text={partner.name} />
+        </Image>
+        <ScrollableTabView
+          style={{marginTop: 50}}
+          tabBarUnderlineColor={colors.brand}
+          tabBarActiveTextColor={colors.brand}
+          tabBarTextStyle={{fontWeight: 'bold'}}
+          >
+          <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
+          <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
+        </ScrollableTabView>
+      </View>
     )
   }
 };
@@ -61,9 +79,11 @@ const styles = StyleSheet.create({
   partnersList: {
   },
   thumbnail: {
-    width: 30,
-    height: 30,
-    margin: 10,
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 200,
   }
 })
 
