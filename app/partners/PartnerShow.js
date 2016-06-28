@@ -6,6 +6,7 @@ import Subscription from '../subscriptions/Subscription'
 
 const ScrollableTabView = require('react-native-scrollable-tab-view');
 const VbText = require('../helpers/vbText')
+const OverlayImage = require('../helpers/overlayImage');
 
 import {
   View,
@@ -32,7 +33,6 @@ class PartnerShow extends Component{
     }
   }
   largeImgUrl(partner){
-    console.log('largeImgUrl', partner.logo);
     return { uri: partner.logo }
   }
   render() {
@@ -54,15 +54,10 @@ class PartnerShow extends Component{
     console.log(colors);
     return(
       <View style={{flex:1, alignItems: 'stretch'}}>
-        <Image
-          source={{uri: partner.tile_image}}
-          style={styles.thumbnail}
-          resizeMode="cover"
-        >
-          <VbText uppercase title text={partner.name} />
-        </Image>
+        <OverlayImage source={{uri: partner.tile_image}} style={{}}>
+          <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
+        </OverlayImage>
         <ScrollableTabView
-          style={{marginTop: 50}}
           tabBarUnderlineColor={colors.brand}
           tabBarActiveTextColor={colors.brand}
           tabBarTextStyle={{fontWeight: 'bold'}}

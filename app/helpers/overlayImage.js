@@ -6,6 +6,7 @@ class OverlayImage extends Component{
     this._root.setNativeProps(nativeProps);
   }
   render() {
+    const alignItems = this.props.alignItems ? this.props.alignItems : 'center'
     return (
       <View
         ref={(component) => this._root = component}
@@ -15,7 +16,7 @@ class OverlayImage extends Component{
           style={{flex: 1}}
           resizeMode="cover"
         >
-          <View style={styles.overlay}>
+          <View style={[styles.overlay, this.props.overlayStyle]}>
             {this.props.children}
           </View>
         </Image>
@@ -33,9 +34,9 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.2)',
-    justifyContent: 'flex-end',
-    paddingLeft: 15,
-    paddingBottom: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
 })
 

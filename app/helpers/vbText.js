@@ -13,9 +13,10 @@ class VbText extends Component{
     if(p.lowercase){
       text = text.toLowerCase()
     }
-    const fontWeight = p.bold ? 'bold' : 'normal'
+    const fontWeight = p.bold ? 'bold' : 'normal';
+
     return (
-    	<Text style={[styles.base], {color: color, fontWeight: fontWeight}}>
+    	<Text style={[styles.base, this.props.style], {color: color, fontWeight: fontWeight}}>
         {text}
       </Text>
     );
@@ -24,7 +25,6 @@ class VbText extends Component{
 
 const styles = StyleSheet.create({
   base: {
-
   }
 })
 

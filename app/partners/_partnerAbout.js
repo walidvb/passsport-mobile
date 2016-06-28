@@ -3,6 +3,7 @@ import { View, ScrollView, Text, StyleSheet } from 'react-native';
 var baseStyles = require('../styles')
 const HTMLView = require('react-native-htmlview')
 const Map = require('../components/Map')
+const VbLink = require('../helpers/vbLink')
 
 class PartnerAbout extends Component{
   render() {
@@ -10,10 +11,10 @@ class PartnerAbout extends Component{
     return (
     	<ScrollView style={{flex: 1, flexDirection: 'column', flexWrap: 'wrap'}}>
         <View style={styles.contact}>
-          <Text>{partner.contact}</Text>
-          <Text>{partner.website}</Text>
-          <Text>{partner.phone}</Text>
-          <Text>{partner.email}</Text>
+          <VbLink url="asd">{partner.contact}</VbLink>
+          <VbLink url={partner.website}>{partner.website}</VbLink>
+          <VbLink url={"tel:"+partner.phone}>{partner.phone}</VbLink>
+          <VbLink url={"mailto:"+partner.email}>{partner.email}</VbLink>
         </View>
         <View style={styles.findUs}>
           <Text>Find us on:</Text>
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingLeft: 15,
     paddingRight: 15,
+    flexDirection: 'column',
   },
   findUs: {
     flex: 1,

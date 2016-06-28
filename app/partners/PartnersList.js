@@ -71,11 +71,14 @@ class PartnersList extends Component{
     }
     return (
       <TouchableHighlight style={{flexDirection: 'row'}} onPress={goToPartner}>
-        <OverlayImage source={{uri: partner.tile_image}} style={styles.partnerCell}>
+        <OverlayImage
+          source={{uri: partner.tile_image}}
+          style={styles.partnerCell}
+          overlayStyle={styles.overlay}>
           <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
           <View style={styles.partnerCategories}>
             {partner.categories.map((cat) => {
-              return (<VbText style={{marginRight: 5, }} light small lowercase key={cat} text={cat}/>)
+              return (<VbText style={{marginRight: 5}} light small lowercase key={cat} text={cat}/>)
             })}
           </View>
         </OverlayImage>
@@ -85,6 +88,12 @@ class PartnersList extends Component{
 };
 
 const styles = StyleSheet.create({
+  overlay: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    paddingLeft: 15,
+    paddingBottom: 25,
+  },
   partnersList: {
     flex: 1,
   },
