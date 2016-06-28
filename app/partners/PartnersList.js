@@ -5,13 +5,12 @@ import { Actions } from 'react-native-router-flux';
 import {
   StyleSheet,
   ListView,
-  Text,
   View,
   Image,
   TouchableHighlight,
 } from 'react-native'
-var baseStyles = require('../styles')
-
+var baseStyles = require('../styles');
+const VbText = require('../helpers/vbText');
 
 class PartnersList extends Component{
   constructor(props) {
@@ -22,7 +21,6 @@ class PartnersList extends Component{
       ...this.props,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-        sectionHeaderHasChanged: (s1, s2) => s1 !== s2
       }),
       loaded: this.props.loaded,
     }
@@ -49,9 +47,7 @@ class PartnersList extends Component{
   render() {
     const List = !this.state.partners.length ? (
         <View style={baseStyles.container}>
-          <Text>
-            Loading partners...
-          </Text>
+          <VbText text="Loading partners..."/>
         </View>
       ) : (
         <ListView
@@ -63,7 +59,6 @@ class PartnersList extends Component{
       )
       return (
         <View style={{flex:1}}>
-
           {List}
         </View>
       );
@@ -77,33 +72,57 @@ class PartnersList extends Component{
       <TouchableHighlight style={{flexDirection: 'row'}} onPress={goToPartner}>
         <View style={styles.partnerCell}>
           <Image
-            source={{uri: partner.thumbnail}}
+            source={{uri: partner.tile_image}}
             style={styles.thumbnail}
-          />
-          <Text>{partner.name}</Text>
-          {partner.categories.map((cat) => {
-            return (<Text>{cat}</Text>)
-          })}
-          </View>
+            resizeMode="cover"
+          >
+            <View style={styles.overlay}>
+              <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
+              <View style={styles.partnerCategories}>
+                {partner.categories.map((cat) => {
+                  return (<VbText style={{marginRight: 5, }} light small lowercase key={cat} text={cat}/>)
+                })}
+                </View>
+            </View>
+          </Image>
+        </View>
       </TouchableHighlight>
     )
   }
 };
 
 const styles = StyleSheet.create({
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    justifyContent: 'flex-end',
+    paddingLeft: 15,
+    paddingBottom: 25,
+  },
   partnersList: {
     flex: 1,
   },
+  partnerName: {
+
+  },
   partnerCell: {
+    alignItems: 'stretch',
     flex: 1,
+    //flexDirection: 'column',
+    marginTop: 18,
+    marginLeft: 18,
+    marginRight: 18,
+  },
+  partnerCategories: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginTop: 9,
+    //flex: 1,
   },
   thumbnail: {
-    width: 30,
-    height: 30,
-    margin: 10,
+    height: 200,
+    flex: 1,
+
   }
 })
 

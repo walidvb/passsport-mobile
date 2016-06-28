@@ -8,7 +8,7 @@ class PartnerAbout extends Component{
   render() {
     const { partner } = this.props;
     return (
-    	<ScrollView style={{}}>
+    	<ScrollView style={{flex: 1, flexDirection: 'column', flexWrap: 'wrap'}}>
         <View style={styles.contact}>
           <Text>{partner.contact}</Text>
           <Text>{partner.website}</Text>
@@ -30,7 +30,6 @@ class PartnerAbout extends Component{
 const styles = StyleSheet.create({
   contact: {
     flex: 1,
-    width: 100,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
     paddingLeft: 15,
