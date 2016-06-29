@@ -5,12 +5,18 @@ var VbText = require('./vbText')
 import colors from '../colors'
 
 class VbButton extends Component{
-
+  setNativeProps(nativeProps) {
+    this._root.setNativeProps(nativeProps);
+  }
   render() {
     return (
-      <View style={[styles.button, styles[this.props.type]]}>
-        <VbText text={this.props.children} light bold uppercase centered/>
-      </View>
+      <TouchableHighlight
+        onPress={this.props.onPress}
+        style={[styles.button, styles[this.props.type]]}>
+        <View ref={(component) => this._root = component}>
+          <VbText text={this.props.children} light bold uppercase centered/>
+          </View>
+      </TouchableHighlight>
     );
   }
 };

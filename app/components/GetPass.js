@@ -6,11 +6,15 @@ var VbButton = require('../helpers/vbButton')
 
 class GetPass extends Component{
 
-
+  onPress(){
+    alert()
+  }
   render() {
     return (
     	<View style={baseStyles.floatButton}>
-        <VbButton style={baseStyles.button}>Get Pass</VbButton>
+        <VbButton
+        onPress={this.onPress}
+        style={baseStyles.button}>Get Pass</VbButton>
     	</View>
     );
   }
