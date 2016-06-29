@@ -13,6 +13,8 @@ var baseStyles = require('../styles');
 const VbText = require('../helpers/vbText');
 const OverlayImage = require('../helpers/overlayImage');
 
+const GetPass = require('../components/GetPass')
+
 class PartnersList extends Component{
   constructor(props) {
     super(props);
@@ -61,6 +63,7 @@ class PartnersList extends Component{
       return (
         <View style={{flex:1}}>
           {List}
+          <GetPass />
         </View>
       );
   }

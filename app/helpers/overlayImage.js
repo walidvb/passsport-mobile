@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   base: {
     alignItems: 'stretch',
     flex: 1,
-    height: 200
+    height: 150
   },
   overlay: {
     flex: 1,

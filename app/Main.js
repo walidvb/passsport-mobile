@@ -18,20 +18,16 @@ class Main extends Component{
   render() {
     return (
       <Router>
-        <Scene key="root" tabs={true}>
+        <Scene key="root" tabs={false}>
           <Scene
             component={Auth}
-            icon={TabIcon}
             key="auth"
-            title="Auth"
             hideNavBar={true}
             {...this.props}
           />
 
           <Scene
             initial={true}
-            icon={TabIcon}
-            title="List"
             key="partners"
           >
             <Scene

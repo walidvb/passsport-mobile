@@ -16,7 +16,11 @@ class VbText extends Component{
     const fontWeight = p.bold ? 'bold' : 'normal';
 
     return (
-    	<Text style={[styles.base, this.props.style], {color: color, fontWeight: fontWeight}}>
+    	<Text style={[styles.base, p.style, {
+        color: color,
+        fontWeight: p.bold ? 'bold' : 'normal',
+        textAlign: p.centered ? 'center' : 'left'
+      }]}>
         {text}
       </Text>
     );
@@ -25,6 +29,7 @@ class VbText extends Component{
 
 const styles = StyleSheet.create({
   base: {
+
   }
 })
 
