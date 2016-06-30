@@ -58,12 +58,13 @@ class PartnersList extends Component{
           style={[styles.partnersList]}
           dataSource={this.state.dataSource}
           renderRow={this.renderPartnerCell}
+          enableEmptySections={true}
         />
       )
       return (
         <View style={{flex:1}}>
           {List}
-          <GetPass />
+          <GetPass float/>
         </View>
       );
   }

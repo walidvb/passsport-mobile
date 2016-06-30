@@ -4,8 +4,7 @@ import { Actions } from 'react-native-router-flux';
 
 import Api from '../Api'
 
-export function* getPartners(asd) {
-  console.log('as', asd);
+export function* getPartners() {
   yield put({ type: 'FETCHING_PARTNERS' })
   try{
     const partners = yield call(Api.getPartners)

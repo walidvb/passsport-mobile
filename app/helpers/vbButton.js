@@ -9,10 +9,15 @@ class VbButton extends Component{
     this._root.setNativeProps(nativeProps);
   }
   render() {
+    const _styles = [styles.button, styles[this.props.type]];
+    if(this.props.float){
+      _styles.push(styles.floatButton)
+    }
+
     return (
       <TouchableHighlight
         onPress={this.props.onPress}
-        style={[styles.button, styles[this.props.type]]}>
+        style={_styles}>
         <View ref={(component) => this._root = component}>
           <VbText text={this.props.children} light bold uppercase centered/>
           </View>

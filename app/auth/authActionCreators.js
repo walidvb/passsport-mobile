@@ -7,11 +7,11 @@ export function signIn(data){
   }
 }
 // Sign up
-export function signUp(user, subscription = {}){
+export function signUp(user, options = {}){
   return {
     type: 'SIGNED_UP_SUCCESSFUL',
     user,
-    subscription
+    options
   }
 }
 

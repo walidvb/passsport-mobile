@@ -6,21 +6,46 @@ import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
 import Api from '../Api'
 
+const injectScript = ``
 
 class UserForm extends Component{
-  onBridgeMessage(message){
-    const { webviewbridge } = this.refs;
-    message = JSON.parse(message);
-    console.log('message', message, this.props);
-    this.props.signUp(message.data.user, { subscription: message.data.subscription })
+  constructor(props) {
+    super(props);
+    const { auth } = this.props
+    const url = auth.loggedIn ? Api.newSubscriptionUrl(auth.user.auth_token) : Api.userUrl();
+    this.state = {
+      url: url
+    }
   }
   render() {
     return (
       <WebViewBridge
         ref="webviewbridge"
         onBridgeMessage={this.onBridgeMessage.bind(this)}
-        source={{uri: Api.userUrl()}}/>
+        injectedJavaScript={injectScript}
+        source={{uri: this.state.url}}/>
     )
+  }
+
+  onBridgeMessage(message){
+    const { webviewbridge } = this.refs;
+    message = JSON.parse(message);
+    console.log('message', message, this.props);
+    switch(message.type){
+      case 'POP':
+        Actions.pop();
+        break;
+      case 'SIGNED_UP_SUCCESSFUL':
+        this.props.signUp(message.data.user, {
+          subscription: message.data.subscription,
+        })
+        break;
+      case 'SUBSCRIPTION_FETCHED':
+        this.props.subscriptionFetched(message.data.subscription)
+        break;
+      default:
+        break;
+    }
   }
 };
 

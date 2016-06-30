@@ -10,14 +10,17 @@ import {
   TouchableHighlight,
 } from 'react-native';
 var baseStyles = require('../styles')
+const GetPass = require('../components/GetPass')
 
 import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
+
 class Auth extends Component{
   constructor(props) {
     super(props);
     this.state={
-      newUser: true
+      newUser: true,
+      showUserForm: this.props.action == 'get-pass',
     };
     this.subscription = new Subscription(props.subscription)
   }
@@ -38,7 +41,8 @@ class Auth extends Component{
     }
   }
   render() {
-    if(!this.props.auth.loggedIn){
+    console.log("this.props", this.props);
+    if(!this.props.auth.loggedIn || this.state.showUserForm){
       return (
         <UserForm {...this.props}/>
       )
@@ -48,6 +52,7 @@ class Auth extends Component{
         <ScrollView style={baseStyles.container, {flexDirection: 'column'}}>
           <Text>You're logged in!</Text>
           {this.renderSubscriptionStatus()}
+          <GetPass />
           <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
             <Text>LOG OUT</Text>
           </TouchableHighlight>
@@ -70,6 +75,7 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as authActions from './authActionCreators';
-Auth = myConnector(Auth, authActions, ['auth', 'subscription']);
+import * as subscriptionsActions from '../subscriptions/subscriptionsActionCreators';
+Auth = myConnector(Auth, {...authActions, ...subscriptionsActions}, ['auth', 'subscription']);
 
 export default Auth;

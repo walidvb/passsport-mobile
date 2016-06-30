@@ -55,7 +55,9 @@ class Api{
   static userUrl(){
     return url('users/sign_up?mobile=1')
   }
-
+  static newSubscriptionUrl(token){
+    return url('subscriptions/new?mobile=1&authentication_token='+token)
+  }
   static signOut(user){
     return fetch(url('users/sign_out'),{
       ...Api.params(),
