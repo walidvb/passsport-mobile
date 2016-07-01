@@ -41,7 +41,7 @@ class UserForm extends Component{
         })
         break;
       case 'SUBSCRIPTION_FETCHED':
-        this.props.subscriptionFetched(message.data.subscription)
+        this.props.subscriptionFetched(message.data)
         break;
       default:
         break;

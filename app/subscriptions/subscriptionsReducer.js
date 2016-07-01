@@ -3,9 +3,10 @@ export default function subscription(state = {}, action){
     case 'SUBSCRIPTION_FETCHED':
     case 'SIGNED_UP_SUCCESSFUL':
       let { subscription } = action;
+      console.log('subscription', subscription);
+      console.log(state);
       return {
-        ...state,
-        subscription
+        ...subscription
       }
     case 'PARTNER_VALIDATED':
       validated_partner_ids = state.validated_partner_ids

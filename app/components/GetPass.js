@@ -15,11 +15,12 @@ class GetPass extends Component{
   render() {
     // If user has subscription and it's valid
     if(this.props.auth.loggedIn){
+      console.log(this);
       const sub = new Subscription(this.props.subscription)
-      if(sub.exists && sub.isValid()){
+      console.log('sub', sub);
+      if(sub.expires_at && sub.isValid()){
         return (
-          <VbButton
-              {...this.props}>hav pass</VbButton>
+          null
         );
       }
     }
