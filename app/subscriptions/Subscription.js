@@ -10,7 +10,6 @@ export default class Subscription{
     return (now <= expires)
   }
   isAvailableFor(partner){
-
     return this.validated_partner_ids.indexOf(partner.id) < 0
   }
   hasValidated(partner){

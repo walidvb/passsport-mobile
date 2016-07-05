@@ -9,10 +9,11 @@ import {
   Image,
   TouchableHighlight,
 } from 'react-native'
-var baseStyles = require('../styles');
-const VbText = require('../helpers/vbText');
-const OverlayImage = require('../helpers/overlayImage');
 
+const VbText = require('../helpers/vbText')
+
+var baseStyles = require('../styles');
+const PartnerCell = require('../partners/_partnerCell')
 const GetPass = require('../components/GetPass')
 import partnerValidBanner from './_partnerValidBanner'
 import Subscription from '../subscriptions/Subscription'
@@ -22,7 +23,6 @@ class PartnersList extends Component{
     super(props);
   }
   componentWillMount() {
-    console.log('partnersList props', this.props);
     this.state = {
       ...this.props,
       dataSource: new ListView.DataSource({
@@ -31,7 +31,6 @@ class PartnersList extends Component{
       loaded: this.props.loaded,
       subscription: new Subscription(this.props.subscription),
     }
-    this.props.getPartners();
   }
 
   componentDidMount() {
@@ -59,12 +58,12 @@ class PartnersList extends Component{
       ) : (
         <ListView
           automaticallyAdjustContentInsets={true}
-          style={[styles.partnersList]}
+          style={[this.props.style, styles.partnersList]}
           dataSource={this.state.dataSource}
           renderRow={this.renderPartnerCell.bind(this)}
           enableEmptySections={true}
-        />  
-      )  
+        />
+      )
       return (
         <View style={{flex:1}}>
           {List}
@@ -72,55 +71,16 @@ class PartnersList extends Component{
         </View>
       );
   }
-
   renderPartnerCell(partner){
-    const validatedBanner = this.state.subscription.hasValidated(partner) ? partnerValidBanner : null
-    const goToPartner = () => {
-      Actions.partnerShow({id: partner.id})
-    }
-    return (
-      <TouchableHighlight style={{flexDirection: 'row'}} onPress={goToPartner}>
-        <OverlayImage
-          source={{uri: partner.tile_image}}
-          style={styles.partnerCell}
-          overlayStyle={styles.overlay}>
-          {validatedBanner}
-          <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
-          <View style={styles.partnerCategories}>
-            {partner.categories.map((cat) => {
-              return (<VbText style={{marginRight: 5}} light small lowercase key={cat} text={cat}/>)
-            })}
-          </View>
-        </OverlayImage>
-      </TouchableHighlight>
-    )
+    return (<PartnerCell {...this.props} style={styles.overlay} partner={partner}/>)
   }
 };
 
 const styles = StyleSheet.create({
-  overlay: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    paddingLeft: 15,
-    paddingBottom: 25,
-  },
   partnersList: {
     flex: 1,
   },
-  partnerCell: {
-    marginTop: 18,
-    marginLeft: 18,
-    marginRight: 18,
-  },
-  partnerCategories: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 9,
-  },
-})
 
-import myConnector from '../utils/myConnector'
-import * as partnerActions from './partnersActionCreators';
-PartnersList = myConnector(PartnersList, partnerActions, ['partners', 'subscription']);
+})
 
 module.exports = PartnersList

@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native';
 
-import PartnersList from './partners/PartnersList';
+import Home from './Home';
 import PartnerShow from './partners/PartnerShow';
 import PartnerValidate from './partners/PartnerValidate';
 import Auth from './auth/Auth';
@@ -32,7 +32,7 @@ class Main extends Component{
           >
             <Scene
             initial={true}
-              component={PartnersList}
+              component={Home}
               key="partnersList"
               hideNavBar={true}
               {...this.props}
@@ -57,13 +57,5 @@ class Main extends Component{
     )
   }
 };
-
-class TabIcon extends React.Component {
-  render(){
-    return (
-      <Text style={{color: this.props.selected ? 'blue' :'black'}}>{this.props.title}</Text>
-    );
-  }
-}
 
 export default Main;

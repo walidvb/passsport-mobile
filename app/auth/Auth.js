@@ -14,7 +14,7 @@ var baseStyles = require('../styles')
 const GetPass = require('../components/GetPass')
 const VbText = require('../helpers/vbText')
 const VbButton = require('../helpers/vbButton')
-
+const PartnerList = require('../partners/PartnersList')
 import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
 
@@ -64,14 +64,20 @@ class Auth extends Component{
     }
     else{
       const { user } = this.props.auth;
+      const sub =  new Subscription(this.props.subscription);
+      const validatedPartners = _.filter(this.props.partners || [], (p) => sub.hasValidated(p))
+
+      const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList}/> : null
       return(
-        <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15,}}>
-          {row('Name:', user.name)}
-          {row('Token:', user.token)}
-          {row('Email:', user.email)}
-          {this.renderSubscriptionStatus()}
-          {row('Validated Partners: ', this.state.subscription.validated_partner_ids.length)}
-          {this.validatedPartnerList}
+        <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15}}>
+          <View style={styles.details}>
+            {row('Name:', user.name)}
+            {row('Token:', user.token)}
+            {row('Email:', user.email)}
+            {this.renderSubscriptionStatus()}
+            {row('Validated Partners:', this.state.subscription.validated_partner_ids.length)}
+          </View>
+          {list}
         </ScrollView>
       )
     }
@@ -86,12 +92,15 @@ const styles = StyleSheet.create({
   },
   tableCell: {
     flex: 1,
+  },
+  validatedList: {
+    flex: 1,
   }
 })
 
 import myConnector from '../utils/myConnector'
 import * as authActions from './authActionCreators';
 import * as subscriptionsActions from '../subscriptions/subscriptionsActionCreators';
-Auth = myConnector(Auth, {...authActions, ...subscriptionsActions}, ['auth', 'subscription']);
+Auth = myConnector(Auth, {...authActions, ...subscriptionsActions}, ['auth', 'partners', 'subscription']);
 
 export default Auth;
