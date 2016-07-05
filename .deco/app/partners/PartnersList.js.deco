@@ -4,11 +4,11 @@
 			"range": {
 				"from": {
 					"line": 65,
-					"ch": 17
+					"ch": 12
 				},
 				"to": {
 					"line": 65,
-					"ch": 24
+					"ch": 10
 				}
 			},
 			"editWith": "colorPicker",
@@ -20,11 +20,11 @@
 			"range": {
 				"from": {
 					"line": 66,
-					"ch": 20
+					"ch": 9
 				},
 				"to": {
 					"line": 66,
-					"ch": 22
+					"ch": 7
 				}
 			},
 			"type": "number",

@@ -1,6 +1,7 @@
 export default function subscription(state = {}, action){
   switch(action.type){
     case 'SUBSCRIPTION_FETCHED':
+    case 'SUBSCRIPTION_CREATED':
     case 'SIGNED_UP_SUCCESSFUL':
       let { subscription } = action;
       console.log('subscription', subscription);
@@ -12,7 +13,8 @@ export default function subscription(state = {}, action){
       validated_partner_ids = state.validated_partner_ids
       validated_partner_ids.push(action.validation.partner_id)
       return {
-        ...state
+        ...state,
+        validated_partner_ids: validated_partner_ids
       };
     default:
       return state;

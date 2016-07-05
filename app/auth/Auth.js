@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ListView,
+  View,
   Text,
   TextInput,
   ScrollView,
@@ -11,9 +12,20 @@ import {
 } from 'react-native';
 var baseStyles = require('../styles')
 const GetPass = require('../components/GetPass')
+const VbText = require('../helpers/vbText')
+const VbButton = require('../helpers/vbButton')
 
 import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
+
+const row = (header, cell) => {
+  return(
+    <View style={styles.tableRow}>
+      <VbText style={styles.tableCell} uppercase bold text={header}/>
+      <VbText style={styles.tableCell} text={cell}/>
+    </View>
+  )
+}
 
 class Auth extends Component{
   constructor(props) {
@@ -22,40 +34,44 @@ class Auth extends Component{
       newUser: true,
       showUserForm: this.props.action == 'get-pass',
     };
-    this.subscription = new Subscription(props.subscription)
+    this.setState({
+      subscription: props.subscription
+    })
   }
   componentWillReceiveProps(props){
     this.subscription = new Subscription(props.subscription)
+    this.setState({
+      subscription: props.subscription
+    })
   }
   renderSubscriptionStatus(){
-    if(this.subscription.exists){
-      if(this.subscription.isValid()){
-        return (<Text>Expires at {this.subscription.expires_at}</Text>)
-      }
-      else{
-        return (<Text>Subscription Expired!</Text>)
-      }
+    let sub =  new Subscription(this.state.subscription);
+    if(sub.isValid()){
+      return row('Exipration Date:', sub.expires_at.toDateString())
+    }
+    else if(sub.expires_at){
+      return row('Exipration Date:', user.name)
     }
     else{
-      return (<Text>No Subscription</Text>)
+      return (<GetPass/>)
     }
   }
   render() {
-    console.log("this.props", this.props);
     if(!this.props.auth.loggedIn || this.state.showUserForm){
       return (
         <UserForm {...this.props}/>
       )
     }
     else{
+      const { user } = this.props.auth;
       return(
-        <ScrollView style={baseStyles.container, {flexDirection: 'column'}}>
-          <Text>You're logged in!</Text>
+        <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15,}}>
+          {row('Name:', user.name)}
+          {row('Token:', user.token)}
+          {row('Email:', user.email)}
           {this.renderSubscriptionStatus()}
-          <GetPass />
-          <TouchableHighlight style={baseStyles.button} onPress={this.props.signOut}>
-            <Text>LOG OUT</Text>
-          </TouchableHighlight>
+          {row('Validated Partners: ', this.state.subscription.validated_partner_ids.length)}
+          {this.validatedPartnerList}
         </ScrollView>
       )
     }
@@ -63,13 +79,13 @@ class Auth extends Component{
 };
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: 'grey',
-    paddingLeft: 5,
-    marginBottom: 5,
-    //borderBottomWidth: 1, borderBottomColor: 'grey'
+  tableRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 25,
+  },
+  tableCell: {
+    flex: 1,
   }
 })
 

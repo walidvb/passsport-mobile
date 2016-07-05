@@ -14,18 +14,22 @@ const VbText = require('../helpers/vbText');
 const OverlayImage = require('../helpers/overlayImage');
 
 const GetPass = require('../components/GetPass')
+import partnerValidBanner from './_partnerValidBanner'
+import Subscription from '../subscriptions/Subscription'
 
 class PartnersList extends Component{
   constructor(props) {
     super(props);
   }
   componentWillMount() {
+    console.log('partnersList props', this.props);
     this.state = {
       ...this.props,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
       loaded: this.props.loaded,
+      subscription: new Subscription(this.props.subscription),
     }
     this.props.getPartners();
   }
@@ -38,7 +42,7 @@ class PartnersList extends Component{
      })
   }
   componentWillReceiveProps(props){
-    if(this.state.parnters !== props.partners){
+    if(this.state.partners !== props.partners){
       this.setState({
         ...this.state,
         partners: props.partners,
@@ -57,10 +61,10 @@ class PartnersList extends Component{
           automaticallyAdjustContentInsets={true}
           style={[styles.partnersList]}
           dataSource={this.state.dataSource}
-          renderRow={this.renderPartnerCell}
+          renderRow={this.renderPartnerCell.bind(this)}
           enableEmptySections={true}
-        />
-      )
+        />  
+      )  
       return (
         <View style={{flex:1}}>
           {List}
@@ -70,6 +74,7 @@ class PartnersList extends Component{
   }
 
   renderPartnerCell(partner){
+    const validatedBanner = this.state.subscription.hasValidated(partner) ? partnerValidBanner : null
     const goToPartner = () => {
       Actions.partnerShow({id: partner.id})
     }
@@ -79,6 +84,7 @@ class PartnersList extends Component{
           source={{uri: partner.tile_image}}
           style={styles.partnerCell}
           overlayStyle={styles.overlay}>
+          {validatedBanner}
           <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
           <View style={styles.partnerCategories}>
             {partner.categories.map((cat) => {
@@ -115,6 +121,6 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as partnerActions from './partnersActionCreators';
-PartnersList = myConnector(PartnersList, partnerActions, ['partners']);
+PartnersList = myConnector(PartnersList, partnerActions, ['partners', 'subscription']);
 
 module.exports = PartnersList

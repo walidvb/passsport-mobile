@@ -22,12 +22,12 @@ class Main extends Component{
           <Scene
             component={Auth}
             key="auth"
-            hideNavBar={true}
+            hideNavBar={false}
             {...this.props}
+            initial={true}
           />
 
           <Scene
-            initial={true}
             key="partners"
           >
             <Scene
