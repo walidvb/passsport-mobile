@@ -1,0 +1,27 @@
+{
+  "name": "PassSport",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "react": "15.0.2",
+    "react-native": "^0.26.2",
+    "react-native-button": "^1.6.0",
+    "react-native-htmlview": "^0.5.0",
+    "react-native-maps": "^0.4.2",
+    "react-native-router-flux": "^3.26.5",
+    "react-native-vector-icons": "^2.0.3",
+    "react-native-webview-bridge": "git+https://github.com/alinz/react-native-webview-bridge.git",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-persist": "^3.2.2",
+    "redux-saga": "^0.10.4",
+    "redux-thunk": "^2.1.0",
+    "remote-redux-devtools": "^0.3.3",
+    "tcomb-form-native": "^0.5.1"
+  }
+}
