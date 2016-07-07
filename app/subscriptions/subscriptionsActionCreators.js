@@ -4,8 +4,9 @@ export function getSubscriptionDetails(){
   }
 }
 
-export function subscriptionFetched(){
+export function subscriptionFetched(sub){
   return {
-    type: 'GET_SUBSCRIPTION',
+    type: 'SUBSCRIPTION_FETCHED',
+    subscription: sub
   }
 }

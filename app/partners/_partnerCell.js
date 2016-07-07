@@ -10,7 +10,6 @@ const VbText = require('../helpers/vbText')
 
 class PartnerCell extends Component{
   render() {
-    console.log(this.props)
     const { partner } = this.props;
     const goToPartner = () => {
       Actions.partnerShow({id: partner.id})

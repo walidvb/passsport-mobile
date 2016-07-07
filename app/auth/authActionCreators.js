@@ -1,3 +1,10 @@
+export function getUserDetails(){
+  return {
+    type: 'GET_USER_DETAILS',
+  }
+}
+
+
 // Sign in
 
 export function signIn(data){
@@ -14,6 +21,16 @@ export function signUp(user, options = {}){
     options
   }
 }
+
+// Sign up
+export function userFetched(user, options = {}){
+  return {
+    type: 'SIGNED_IN_SUCCESSFUL',
+    user,
+    options,
+  }
+}
+
 
 export function signOut(){
   return {

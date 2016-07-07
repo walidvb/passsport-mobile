@@ -5,25 +5,27 @@ import { Actions } from 'react-native-router-flux';
 const baseStyles = require('../styles')
 const VbText = require('../helpers/vbText')
 const VbButton = require('../helpers/vbButton')
+const GetPass = require('./GetPass')
 import Subscription  from '../subscriptions/Subscription';
 
-class GetPass extends Component{
+class ValidateButton extends Component{
 
   onPress(){
-    Actions.auth({action: 'get-pass'});
+    const { partner } = this.props
+    Actions.partnerValidate({partner: partner, id: partner.id})
   }
   render() {
     // If user has subscription and it's valid
     if(this.props.auth.loggedIn){
       const sub = new Subscription(this.props.subscription)
-      if(sub.expires_at && sub.isValid()){
-        return ( null );
+      if(!sub.isValid()){
+        return ( <GetPass {...this.props}/> );
       }
     }
     return (
       <VbButton
-      onPress={this.onPress}
-      {...this.props}>Get Pass</VbButton>
+      onPress={this.onPress.bind(this)}
+      {...this.props}>Validate</VbButton>
     );
   }
 };
@@ -36,6 +38,6 @@ const styles = StyleSheet.create({
 import myConnector from '../utils/myConnector'
 import * as subscriptionsActionCreators from '../subscriptions/subscriptionsActionCreators';
 
-GetPass = myConnector(GetPass, subscriptionsActionCreators, ['auth', 'subscription']);
+ValidateButton = myConnector(ValidateButton, subscriptionsActionCreators, ['auth', 'subscription']);
 
-module.exports = GetPass
+module.exports = ValidateButton

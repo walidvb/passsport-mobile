@@ -24,16 +24,16 @@ class Main extends Component{
             key="auth"
             hideNavBar={false}
             {...this.props}
-            initial={true}
           />
 
           <Scene
             key="partners"
+            initial={true}
           >
             <Scene
             initial={true}
               component={Home}
-              key="partnersList"
+              key="home"
               hideNavBar={true}
               {...this.props}
             />

@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import createSagaMiddleware from 'redux-saga'
+import createLogger from 'redux-logger';
 
 var {persistStore, autoRehydrate} = require('redux-persist');
 var {AsyncStorage} = require('react-native');
@@ -23,12 +24,16 @@ const initialState = {
 }
 
 const sagaMiddleware = createSagaMiddleware()
+const logger = createLogger({
+  collapsed: true
+});
 
 export default function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(
       thunk,
       sagaMiddleware,
+      logger,
     ),
     autoRehydrate(),
     devTools(),

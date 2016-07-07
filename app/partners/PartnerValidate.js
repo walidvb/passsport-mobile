@@ -9,34 +9,30 @@ import {
   Image,
 } from 'react-native';
 var baseStyles = require('../styles')
-var Button = require('react-native-button');
-import FormErrors from '../utils/FormErrors';
+const VbText = require('../helpers/vbText')
+const VbButton = require('../helpers/vbButton')
 
 class PartnerValidate extends Component{
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
-    console.log(this.props);
-    const partner = _.find(this.props.partners, (p) => p.id === this.props.id)
-    this.state = {
-      partner,
-    }
+  }
+  renderOffline(){
+    return (
+      <View>
+        <VbText text="Please give this code to the partner"/>
+        <VbText uppercase text="Your Code"/>
+        <VbText uppercase text={this.props.auth.user.token}/>
+        <VbButton
+          style={baseStyles.button}
+          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
+          {"OK"}
+        </VbButton>
+      </View>
+    )
   }
   render() {
     const { partner } = this.props;
-    function validatePartner(){
-      this.props.validatePartner(partner)
-    }
-    console.log(this.props.ui.errors);
-    return(
-      <View style={baseStyles.container}>
-        <FormErrors errors={this.props.ui.errors}/>
-        <Button style={baseStyles.button} onPress={validatePartner.bind(this)}>
-          Validate {partner.name}?
-        </Button>
-      </View>
-    )
+    return this.renderOffline()
+
   }
 };
 
@@ -59,6 +55,6 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
-PartnerValidate = myConnector(PartnerValidate, partnersActionCreators, ['partners']);
+PartnerValidate = myConnector(PartnerValidate, partnersActionCreators, ['partners', 'auth']);
 
 module.exports = PartnerValidate

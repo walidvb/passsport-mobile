@@ -25,6 +25,8 @@ class Home extends Component{
       partners: this.props.partners
     }
     this.props.getPartners();
+    this.props.getSubscriptionDetails();
+    this.props.getUserDetails();
   }
   componentWillReceiveProps(props){
     this.setState({
@@ -34,7 +36,7 @@ class Home extends Component{
   }
   render() {
     return(
-      <PartnerList partners={this.state.partners} />
+      <PartnerList partners={this.state.partners} style={{paddingLeft: 15, paddingRight: 15,}}/>
     )
   }
 };

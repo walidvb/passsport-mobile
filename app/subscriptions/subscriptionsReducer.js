@@ -4,8 +4,6 @@ export default function subscription(state = {}, action){
     case 'SUBSCRIPTION_CREATED':
     case 'SIGNED_UP_SUCCESSFUL':
       let { subscription } = action;
-      console.log('subscription', subscription);
-      console.log(state);
       return {
         ...subscription
       }
