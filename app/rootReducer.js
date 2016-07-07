@@ -4,8 +4,8 @@ import auth from './auth/authReducer.js'
 import partners from './partners/partnersReducer.js'
 import subscription from './subscriptions/subscriptionsReducer.js'
 
-import ui from './utils/uiReducer.js'
+import { reducer as uiReducer } from 'redux-ui'
 
-const rootReducer = combineReducers({ ui, auth, subscription, partners })
+const rootReducer = combineReducers({ uiReducer, auth, subscription, partners })
 
 module.exports = rootReducer;
