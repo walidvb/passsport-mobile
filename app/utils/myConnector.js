@@ -1,10 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as uiActionCreators from './uiActionCreators'
 export default function(component, actionCreators, stateKeys = ['partners', 'auth']){
-
-  // add UI if not present
-  stateKeys.indexOf('ui') < 0 ? stateKeys.push('ui') : null;
 
   function mapStateToProps(state){
     let mapping = {};
@@ -23,7 +19,7 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
     else{
       actions = actionCreators;
     }
-    return bindActionCreators({...actions, clearErrors: uiActionCreators.clearErrors}, dispatch);
+    return bindActionCreators({...actions}, dispatch);
   }
 
   component = connect(mapStateToProps, mapDispatchToProps)(component);

@@ -7,6 +7,12 @@ import {
   StyleSheet,
   Image,
 } from 'react-native';
+import ui from 'redux-ui';
+ui({
+  state: {
+    openFilters: 'test',
+  }
+})
 const VbIcon = require('../helpers/vbIcon')
 
 import colors from '../colors';
@@ -15,7 +21,10 @@ class MenuBar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <VbIcon size={32} style={[styles.icon, {color: colors.white}]} name='bars'/>
+        <VbIcon 
+          size={32} 
+          style={[styles.icon, {color: colors.white}]} name='bars'/>
+        <Text> {this.props.openFilters}</Text>
         <Image
           resizeMode='contain'
           style={{height: 60, flex: 1,}}
