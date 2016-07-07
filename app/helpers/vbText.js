@@ -7,6 +7,7 @@ class VbText extends Component{
     const p = this.props;
     const color = p.light ? 'white' : 'black';
     let { text } = this.props;
+    text = text || '';
     if(p.uppercase){
       text = text.toUpperCase()
     }

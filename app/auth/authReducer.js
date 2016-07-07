@@ -6,6 +6,12 @@ import Api from '../Api'
 // a reducer takes in the action, and a copy of current state
 export default function auth(state = [], action){
   switch(action.type){
+    case 'USER_FETCHED':
+      return {
+        ...state,
+        loggedIn: true,
+        user: action.user,
+      }
     case 'SIGNED_IN_SUCCESSFUL':
     case 'SIGNED_UP_SUCCESSFUL':
       return {

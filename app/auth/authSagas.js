@@ -4,14 +4,28 @@ import { put, call } from 'redux-saga/effects'
 
 import Api from '../Api'
 
+function* getUserDetails(action){
+  let { user } = action;
+  const response = yield Api.getUser()
+  console.log(response);
+  if(response){
+    yield put({ type: 'USER_FETCHED', ...response })
+  }else{
+    yield put({ type: 'USER_FETCHED_FAILED'})
+  }
+}
+export function* watchGetUserDetails(){
+  yield* takeEvery('GET_USER_DETAILS', getUserDetails)
+}
+
+
 function* signOut(action){
   let { user } = action;
   const response = yield Api.signOut(user)
-  console.log(response);
   if(response){
-    yield put({ type: 'SIGNED_OUT_FAILED'})
-  }else{
     yield put({ type: 'SIGNED_OUT'})
+  }else{
+    yield put({ type: 'SIGNED_OUT_FAILED'})
   }
 }
 export function* watchSignOut(){
@@ -19,4 +33,4 @@ export function* watchSignOut(){
 }
 
 
-export default [watchSignOut()]
+export default [watchSignOut(), watchGetUserDetails()]

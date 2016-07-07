@@ -52,6 +52,12 @@ class Api{
   }
 
   // AUTH
+
+  static getUser(){
+    return fetch(url('user'),{
+      ...Api.params(),
+    }).then((res) => res.json()).catch(() => {status: 'error'});
+  }
   static userUrl(){
     return url('users/sign_up?mobile=1')
   }

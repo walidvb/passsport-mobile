@@ -46,6 +46,7 @@ export default function configureStore(initialState) {
   }, () => {
     store.dispatch({type: 'GET_PARTNERS'});
     store.dispatch({type: 'GET_SUBSCRIPTION'})
+    store.dispatch({type: 'GET_USER_DETAILS'})
   });
 
   return _store;

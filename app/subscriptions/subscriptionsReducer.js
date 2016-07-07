@@ -1,5 +1,6 @@
 export default function subscription(state = {}, action){
   switch(action.type){
+    case 'USER_FETCHED':
     case 'SUBSCRIPTION_FETCHED':
     case 'SUBSCRIPTION_CREATED':
     case 'SIGNED_UP_SUCCESSFUL':
