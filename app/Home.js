@@ -15,6 +15,7 @@ var baseStyles = require('./styles')
 const GetPass = require('./components/GetPass')
 const VbButton = require('./helpers/vbButton')
 const PartnerList = require('./partners/PartnersList')
+const MenuBar = require('./components/MenuBar')
 import Subscription from './subscriptions/Subscription'
 
 
@@ -36,7 +37,10 @@ class Home extends Component{
   }
   render() {
     return(
-      <PartnerList partners={this.state.partners} style={{paddingLeft: 15, paddingRight: 15,}}/>
+      <View style={{flex:1}}>
+        <MenuBar {...this.props} />
+        <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15,}}/>
+      </View>
     )
   }
 };
