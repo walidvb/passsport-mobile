@@ -16,6 +16,8 @@ const GetPass = require('./components/GetPass')
 const VbButton = require('./helpers/vbButton')
 const PartnerList = require('./partners/PartnersList')
 const MenuBar = require('./components/MenuBar')
+
+
 import Subscription from './subscriptions/Subscription'
 
 
@@ -39,7 +41,8 @@ class Home extends Component{
     return(
       <View style={{flex:1}}>
         <MenuBar {...this.props} />
-        <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15,}}/>
+        <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15, marginBottom: 60}}/>
+        <GetPass float/>
       </View>
     )
   }

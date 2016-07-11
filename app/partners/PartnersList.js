@@ -14,7 +14,6 @@ const VbText = require('../helpers/vbText')
 
 var baseStyles = require('../styles');
 const PartnerCell = require('../partners/_partnerCell')
-const GetPass = require('../components/GetPass')
 import partnerValidBanner from './_partnerValidBanner'
 import Subscription from '../subscriptions/Subscription'
 
@@ -67,7 +66,6 @@ class PartnersList extends Component{
       return (
         <View style={{flex:1}}>
           {List}
-          <GetPass float/>
         </View>
       );
   }
