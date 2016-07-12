@@ -63,7 +63,8 @@ import myConnector from './utils/myConnector'
 import * as authActions from './auth/authActionCreators';
 import * as subscriptionsActions from './subscriptions/subscriptionsActionCreators';
 import * as partnerActions from './partners/partnersActionCreators';
+import * as categoriesActions from './categories/categoriesActionCreators';
 
-Home = myConnector(Home, {...authActions, ...subscriptionsActions, ...partnerActions}, ['auth', 'partners', 'subscription']);
+Home = myConnector(Home, {...authActions, ...subscriptionsActions, ...partnerActions, ...categoriesActions}, ['auth', 'partners', 'subscription', 'categories']);
 
 export default Home;

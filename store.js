@@ -10,12 +10,14 @@ var {AsyncStorage} = require('react-native');
 import rootSaga from './app/utils/sagas'
 import rootReducer from './app/rootReducer';
 
+
 const initialState = {
   partners: [],
   auth: {
     user: null,
     loggedIn: false,
   },
+  categories: [],
   subscription: {
     isValid: () => false,
     isValidFor: (partner) => false,
