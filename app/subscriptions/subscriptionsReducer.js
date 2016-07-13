@@ -1,3 +1,5 @@
+import { Actions } from 'react-native-router-flux';
+
 export default function subscription(state = {}, action){
   switch(action.type){
     case 'USER_FETCHED':

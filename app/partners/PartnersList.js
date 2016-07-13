@@ -77,6 +77,7 @@ class PartnersList extends Component{
 const styles = StyleSheet.create({
   partnersList: {
     flex: 1,
+    paddingTop: 18,
   },
 
 })

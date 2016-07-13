@@ -33,10 +33,8 @@ class Auth extends Component{
     this.state={
       newUser: true,
       showUserForm: this.props.action == 'get-pass',
-    };
-    this.setState({
       subscription: props.subscription
-    })
+    };
   }
   componentWillReceiveProps(props){
     this.subscription = new Subscription(props.subscription)

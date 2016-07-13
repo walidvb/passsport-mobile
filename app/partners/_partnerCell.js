@@ -23,7 +23,7 @@ class PartnerCell extends Component{
           <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
           <View style={styles.partnerCategories}>
             {partner.categories.map((cat) => {
-              return (<VbText style={{marginRight: 5}} light small lowercase key={cat} text={cat}/>)
+              return (<VbText style={{marginRight: 5}} light small lowercase key={cat + partner.name} text={cat}/>)
             })}
           </View>
         </OverlayImage>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
   },
   partnerCell: {
-    marginTop: 18,
+    marginBottom: 18,
   },
   partnerCategories: {
     flexDirection: 'row',

@@ -43,6 +43,7 @@ class Home extends Component{
 
   }
   render() {
+    const sub = new Subscription(this.props.subscription)
     return(
       <Drawer
         type="overlay"
@@ -57,7 +58,7 @@ class Home extends Component{
         tweenHandler={Drawer.tweenPresets.parallax}
       >
         <MenuBar {...this.props} />
-        <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15, marginBottom: 60}}/>
+        <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15, marginBottom: sub.isValid() ? 0 : 60 }}/>
         <GetPass float/>
       </Drawer>
     )

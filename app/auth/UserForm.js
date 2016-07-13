@@ -40,8 +40,9 @@ class UserForm extends Component{
           subscription: message.data.subscription,
         })
         break;
-      case 'SUBSCRIPTION_FETCHED':
-        this.props.subscriptionFetched(message.data)
+      case 'SUBSCRIPTION_CREATED':
+        this.props.subscriptionFetched(message.data.subscription)
+        Actions.pop()
         break;
       default:
         break;

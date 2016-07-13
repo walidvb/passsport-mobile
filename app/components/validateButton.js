@@ -16,7 +16,7 @@ class ValidateButton extends Component{
   }
   render() {
     // If user has subscription and it's valid
-    if(this.props.auth.loggedIn){
+    if(!this.props.auth.loggedIn){
       const sub = new Subscription(this.props.subscription)
       if(!sub.isValid()){
         return ( <GetPass {...this.props}/> );
