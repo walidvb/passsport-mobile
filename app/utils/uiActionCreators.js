@@ -16,3 +16,10 @@ export function toggleCategory(category){
     category
   }
 }
+
+export function searchPartners(query){
+  return {
+    type: 'SEARCH',
+    query
+  }
+}

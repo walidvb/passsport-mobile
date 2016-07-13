@@ -78,7 +78,7 @@ export default class CategoriesList extends Component {
     )
   }
   search(query){
-    console.log(query);
+    this.props.searchPartners(query)
   }
 }
 

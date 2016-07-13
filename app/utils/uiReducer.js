@@ -26,6 +26,15 @@ export default function ui(state = {}, action){
           categories
         }
       }
+      case 'SEARCH':
+        const { query } = action
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            search: query
+          }
+        }
     default:
       return state;
   }
