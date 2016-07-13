@@ -23,7 +23,7 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
     else{
       actions = actionCreators;
     }
-    return bindActionCreators({...actions, clearErrors: uiActionCreators.clearErrors}, dispatch);
+    return bindActionCreators({...actions, ...uiActionCreators}, dispatch);
   }
 
   component = connect(mapStateToProps, mapDispatchToProps)(component);

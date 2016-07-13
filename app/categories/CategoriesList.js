@@ -5,7 +5,10 @@ import {
   ListView,
   Text,
   StyleSheet,
+  TextInput
 } from 'react-native';
+import colors from '../colors'
+const VbText = require('../helpers/vbText')
 
 export default class CategoriesList extends Component {
   componentWillMount() {
@@ -27,7 +30,6 @@ export default class CategoriesList extends Component {
   }
   componentWillReceiveProps(props){
     if(this.state.categories !== props.categories){
-      console.log('catsss', this.props);
       this.setState({
         ...this.state,
         categories: props.categories,
@@ -36,9 +38,8 @@ export default class CategoriesList extends Component {
     }
   }
   render() {
-    console.log(this.state.categories);
     if(!this.state.categories.length){
-      return <Text>LOADING</Text>
+      return <VbText>LOADING</VbText>
     }
     return (
       <ListView
@@ -46,20 +47,41 @@ export default class CategoriesList extends Component {
         automaticallyAdjustContentInsets={true}
         dataSource={this.state.dataSource}
         renderRow={this.renderCategoryCell.bind(this)}
+        renderHeader={this.renderHeader.bind(this)}
         enableEmptySections={true}
       />
     );
   }
   renderCategoryCell(category){
-    console.log('category', category);
     return (
-      <Text>{category}</Text>
+      <VbText uppercase style={styles.category} text={category}>{category}</VbText>
     )
+  }
+  renderHeader(){
+     return(
+       <TextInput style={styles.search} ref='search' onChangeText={this.search.bind(this)} placeholder='SEARCH'/>
+    )
+  }
+  search(query){
+    console.log(query);
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+
   },
+  category: {
+    paddingBottom: 10,
+    marginBottom: 10,
+  },
+  search: {
+    paddingBottom: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.gray,
+    height: 60,
+  }
 });

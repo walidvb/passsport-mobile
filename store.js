@@ -22,7 +22,11 @@ const initialState = {
     isValid: () => false,
     isValidFor: (partner) => false,
   },
-  ui: { auth: {}, partners: {} }
+  ui: { auth: {}, partners: {}, filters: {
+    search: '',
+    categories: [],
+    drawerOpen: false
+  } }
 }
 
 const sagaMiddleware = createSagaMiddleware()

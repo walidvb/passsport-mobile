@@ -1,6 +1,8 @@
 /* @flow */
 
 import React, { Component } from 'react';
+
+
 import {
   View,
   Text,
@@ -8,26 +10,23 @@ import {
   Image,
 } from 'react-native';
 const VbIcon = require('../helpers/vbIcon')
-import CategoriesList from '../categories/CategoriesList'
+
 import colors from '../colors';
 
 class MenuBar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <VbIcon size={32} style={[styles.icon, {color: colors.white}]} name='bars'/>
+        <VbIcon
+          size={32}
+          style={[styles.icon, {color: colors.white}]}
+          name='bars'
+          onPress={this.props.toggleFilters}/>
         <Image
           resizeMode='contain'
           style={{height: 60, flex: 1,}}
           source={require('../resources/images/logo.png')}></Image>
         <VbIcon size={32} style={[styles.icon, {color: colors.white}]} name='ellipsis-v'/>
-        <CategoriesList {...this.props}  style={{
-          position: 'absolute',
-          top: 50,
-          left: 0,
-          width: 300,
-        }} />
-
       </View>
     );
   }

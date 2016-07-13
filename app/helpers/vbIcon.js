@@ -6,7 +6,7 @@ class VbIcon extends Component{
 
   render() {
     return (
-    	<Icon style={this.props.style} name={this.props.name} size={this.props.size || 16} color={this.props.style.color || colors.lightGray} />
+    	<Icon {...this.props} size={this.props.size || 16} color={this.props.style.color || colors.lightGray} />
     );
   }
 };

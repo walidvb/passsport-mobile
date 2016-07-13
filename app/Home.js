@@ -10,13 +10,14 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
+import Drawer from 'react-native-drawer';
 
 var baseStyles = require('./styles')
 const GetPass = require('./components/GetPass')
 const VbButton = require('./helpers/vbButton')
 const PartnerList = require('./partners/PartnersList')
 const MenuBar = require('./components/MenuBar')
-
+import CategoriesList from './categories/CategoriesList'
 
 import Subscription from './subscriptions/Subscription'
 
@@ -38,12 +39,24 @@ class Home extends Component{
     })
   }
   render() {
+    console.log(this.props.ui.filters);
     return(
-      <View style={{flex:1}}>
+      <Drawer
+        type="overlay"
+        content={<CategoriesList {...this.props} />}
+        openDrawerOffset={140}
+        styles={{
+          drawer:{
+            backgroundColor: 'white',
+          }
+        }}
+        open={this.props.ui.filters.drawerOpen}
+        tweenHandler={Drawer.tweenPresets.parallax}
+      >
         <MenuBar {...this.props} />
         <PartnerList partners={this.state.partners} style={{flex: 1,paddingLeft: 15, paddingRight: 15, marginBottom: 60}}/>
         <GetPass float/>
-      </View>
+      </Drawer>
     )
   }
 };

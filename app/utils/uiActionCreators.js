@@ -3,3 +3,9 @@ export function clearErrors(){
     type: 'CLEAR_ERRORS',
   }
 }
+
+export function toggleFilters(){
+  return {
+    type: 'TOGGLE_FILTERS'
+  }
+}
