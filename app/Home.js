@@ -20,7 +20,7 @@ const MenuBar = require('./components/MenuBar')
 import CategoriesList from './categories/CategoriesList'
 
 import Subscription from './subscriptions/Subscription'
-
+import filterPartners from './partners/_partnersFilter'
 
 class Home extends Component{
   constructor(props){
@@ -33,13 +33,16 @@ class Home extends Component{
     this.props.getUserDetails();
   }
   componentWillReceiveProps(props){
+    const filteredPartners = filterPartners(props.partners, props.ui.filters)
+    console.log(filteredPartners);
+    if(filteredPartners !== this.state.partners)
     this.setState({
       ...this.state,
-      partners: this.props.partners,
+      partners: filteredPartners,
     })
+
   }
   render() {
-    console.log(this.props.ui.filters);
     return(
       <Drawer
         type="overlay"

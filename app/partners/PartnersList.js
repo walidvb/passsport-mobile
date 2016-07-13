@@ -31,7 +31,6 @@ class PartnersList extends Component{
       subscription: new Subscription(this.props.subscription),
     }
   }
-
   componentDidMount() {
      this.setState({
        ...this.state,
@@ -40,11 +39,12 @@ class PartnersList extends Component{
      })
   }
   componentWillReceiveProps(props){
+    console.log(props);
     if(this.state.partners !== props.partners){
       this.setState({
         ...this.state,
         partners: props.partners,
-        dataSource: this.state.dataSource.cloneWithRows(this.props.partners),
+        dataSource: this.state.dataSource.cloneWithRows(props.partners),
       });
     }
   }
