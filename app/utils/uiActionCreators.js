@@ -6,6 +6,13 @@ export function clearErrors(){
 
 export function toggleFilters(){
   return {
-    type: 'TOGGLE_FILTERS'
+    type: 'TOGGLE_FILTERS',
+  }
+}
+
+export function toggleCategory(category){
+  return {
+    type: 'TOGGLE_CATEGORY',
+    category
   }
 }

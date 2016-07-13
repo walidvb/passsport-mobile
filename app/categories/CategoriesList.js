@@ -20,20 +20,29 @@ export default class CategoriesList extends Component {
       ...this.props,
     }
   }
-
+  transformedCats(categories, selected){
+    return categories.map((cat) => {
+      return {
+        name: cat,
+        active: selected.includes(cat),
+      }
+    })
+  }
   componentDidMount() {
+    const cats = this.transformedCats(this.props.categories, this.props.ui.filters.categories)
      this.setState({
        ...this.state,
-       categories: this.props.categories,
-       dataSource: this.state.dataSource.cloneWithRows(this.props.categories),
+       categories: cats,
+       dataSource: this.state.dataSource.cloneWithRows(cats),
      })
   }
   componentWillReceiveProps(props){
-    if(this.state.categories !== props.categories){
+    const transformedCats = this.transformedCats(props.categories, props.ui.filters.categories)
+    if(this.state.categories !== transformedCats){
       this.setState({
         ...this.state,
-        categories: props.categories,
-        dataSource: this.state.dataSource.cloneWithRows(props.categories),
+        categories: transformedCats,
+        dataSource: this.state.dataSource.cloneWithRows(transformedCats),
       });
     }
   }
@@ -54,7 +63,13 @@ export default class CategoriesList extends Component {
   }
   renderCategoryCell(category){
     return (
-      <VbText uppercase style={styles.category} text={category}>{category}</VbText>
+      <VbText
+        onPress={() => this.props.toggleCategory(category.name)}
+        uppercase
+        brandColor={category.active}
+        bold={category.active}
+        style={styles.category}
+        text={category.name} />
     )
   }
   renderHeader(){

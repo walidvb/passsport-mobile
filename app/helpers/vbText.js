@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet } from 'react-native';
-
+import colors from '../colors'
 class VbText extends Component{
 
   render() {
     const p = this.props;
-    const color = p.light ? 'white' : 'black';
+    const color = p.brandColor ? colors.brand : (p.light ? 'white' : 'black');
     let { text } = this.props;
     text = text || '';
     if(p.uppercase){
@@ -17,11 +17,13 @@ class VbText extends Component{
     const fontWeight = p.bold ? 'bold' : 'normal';
 
     return (
-    	<Text style={[styles.base, p.style, {
-        color: color,
-        fontWeight: p.bold ? 'bold' : 'normal',
-        textAlign: p.centered ? 'center' : 'left'
-      }]}>
+    	<Text
+        {...this.props}
+        style={[styles.base, p.style, {
+          color: color,
+          fontWeight: p.bold ? 'bold' : 'normal',
+          textAlign: p.centered ? 'center' : 'left'
+        }]}>
         {text}
       </Text>
     );

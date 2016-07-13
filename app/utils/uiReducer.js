@@ -10,6 +10,22 @@ export default function ui(state = {}, action){
           drawerOpen: !state.filters.drawerOpen,
         },
       }
+    case 'TOGGLE_CATEGORY':
+      let { categories } = state.filters
+      const { category } = action
+      if(categories.includes(category)){
+        categories.splice(categories.indexOf(category), 1)
+      }
+      else{
+        categories.push(category)
+      }
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          categories
+        }
+      }
     default:
       return state;
   }
