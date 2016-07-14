@@ -4,9 +4,10 @@ export function clearErrors(){
   }
 }
 
-export function toggleFilters(){
+export function toggleFilters(toOpen){
   return {
     type: 'TOGGLE_FILTERS',
+    toOpen: toOpen,
   }
 }
 

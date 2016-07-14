@@ -2,12 +2,12 @@
 export default function ui(state = {}, action){
   switch(action.type){
     case 'TOGGLE_FILTERS':
-      console.log(state.filters);
+      const newState = action.toOpen || !state.filters.drawerOpen
       return {
         ...state,
         filters: {
           ...state.filters,
-          drawerOpen: !state.filters.drawerOpen,
+          drawerOpen: newState,
         },
       }
     case 'TOGGLE_CATEGORY':

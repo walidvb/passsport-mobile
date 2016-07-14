@@ -21,8 +21,8 @@ import Main from './app/Main'
 class PassSport extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Main style={{paddingTop: 20}}/>
+      <Provider store={store} style={{paddingTop: 20, backgroundColor: 'white'}}>
+        <Main />
       </Provider>
     )
   }

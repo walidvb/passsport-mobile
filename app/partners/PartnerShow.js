@@ -17,6 +17,7 @@ import {
 const PartnerAbout = require('./_partnerAbout')
 const PartnerOffer = require('./_partnerOffer')
 const ValidateButton = require('../components/validateButton')
+import ValidBanner from './_partnerValidBanner'
 
 const baseStyles = require('../styles')
 import colors from '../colors'
@@ -28,33 +29,42 @@ class PartnerShow extends Component{
   }
   componentWillMount() {
     const partner = _.find(this.props.partners, (p) => p.id === this.props.id)
+
     this.state = {
       partner,
     }
+
   }
   largeImgUrl(partner){
     return { uri: partner.logo }
   }
+
   render() {
     const { partner } = this.state;
+    const validBanner = partner.validated ? <ValidBanner/> : null
+
     function openValidate(){
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
 
+    const validator = <ValidateButton float partner={partner} />
+    const padding = partner.validated ? 0 : 50
     return(
-      <View style={{flex:1, alignItems: 'stretch'}}>
-        <OverlayImage source={{uri: partner.tile_image}} style={{}}>
+      <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding, marginTop: 60}}>
+        <OverlayImage source={{uri: partner.tile_image}} style={{height: 50, flex: .25}}>
+          { validBanner }
           <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
         </OverlayImage>
         <ScrollableTabView
           tabBarUnderlineColor={colors.brand}
           tabBarActiveTextColor={colors.brand}
           tabBarTextStyle={{fontWeight: 'bold'}}
+          style={{flex: .75}}
           >
           <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
           <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
         </ScrollableTabView>
-        <ValidateButton float partner={partner}/>
+        {validator}
       </View>
     )
   }

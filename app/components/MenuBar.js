@@ -16,17 +16,17 @@ import colors from '../colors';
 class MenuBar extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.style]}>
         <VbIcon
-          size={32}
+          size={27}
           style={[styles.icon, {color: colors.white}]}
           name='bars'
           onPress={this.props.toggleFilters}/>
         <Image
           resizeMode='contain'
-          style={{height: 60, flex: 1,}}
+          style={{height: 40, flex: 1,}}
           source={require('../resources/images/logo.png')}></Image>
-        <VbIcon size={32} style={[styles.icon, {color: colors.white}]} name='ellipsis-v'/>
+        <VbIcon size={27} style={[styles.icon, {color: colors.white, marginRight: 15}]} name='ellipsis-v'/>
       </View>
     );
   }

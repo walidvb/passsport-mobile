@@ -3,10 +3,10 @@ import { TouchableHighlight, View, Text, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 var baseStyles = require('../styles')
-
+import colors from '../colors'
 const OverlayImage = require('../helpers/overlayImage')
 const VbText = require('../helpers/vbText')
-
+import ValidBanner from './_partnerValidBanner'
 
 class PartnerCell extends Component{
   render() {
@@ -14,12 +14,18 @@ class PartnerCell extends Component{
     const goToPartner = () => {
       Actions.partnerShow({id: partner.id})
     }
+
+    const validBanner = partner.validated ? <ValidBanner/> : null
     return (
-      <TouchableHighlight style={[{flexDirection: 'row'}]} onPress={goToPartner}>
+      <TouchableHighlight
+      style={[styles.partnerCell, , {flexDirection: 'row'}]}
+      onPress={goToPartner}
+      underlayColor={colors.brand}>
         <OverlayImage
           source={{uri: partner.tile_image}}
-          style={[styles.partnerCell, this.props.style]}
+          style={[this.props.style]}
           overlayStyle={styles.overlay}>
+          {validBanner}
           <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
           <View style={styles.partnerCategories}>
             {partner.categories.map((cat) => {

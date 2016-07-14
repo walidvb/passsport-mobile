@@ -15,23 +15,28 @@ class ValidateButton extends Component{
     Actions.partnerValidate({partner: partner, id: partner.id})
   }
   render() {
+    const { partner } = this.props
+    const sub = new Subscription(this.props.subscription)
     // If user has subscription and it's valid
     if(!this.props.auth.loggedIn){
-      const sub = new Subscription(this.props.subscription)
       if(!sub.isValid()){
         return ( <GetPass {...this.props}/> );
       }
     }
-    return (
-      <VbButton
-      onPress={this.onPress.bind(this)}
-      {...this.props}>Validate</VbButton>
-    );
+    if(partner.validated){
+      return (
+        <VbButton
+        onPress={this.onPress.bind(this)}
+        {...this.props}>Validate</VbButton>
+      );
+    }
+    else{
+      return null
+    }
   }
 };
 
 const styles = StyleSheet.create({
-
 })
 
 

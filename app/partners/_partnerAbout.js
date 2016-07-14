@@ -41,10 +41,10 @@ class PartnerAbout extends Component{
             <VbIcon style={styles.icon} name="twitter"/>
           </VbLink>) : null}
         </View>
-        <View style={{flex: 1, paddingLeft: 15, paddingRight: 15 }}>
+        <View style={{paddingLeft: 15, paddingRight: 15}}>
           <HTMLView value={partner.description} stylesheet={{}}/>
         </View>
-        <Map locations={partner.venues} style={{ flex: 1, height: 200 }}/>
+        <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
     	</ScrollView>
     );
   }
@@ -52,7 +52,7 @@ class PartnerAbout extends Component{
 
 const styles = StyleSheet.create({
   contact: {
-    flex: 1,
+
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
     paddingLeft: 15,
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   findUs: {
-    flex: 1,
     flexDirection: 'row',
     marginTop: 10,
     marginBottom: 10,

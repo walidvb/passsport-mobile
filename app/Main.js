@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Scene, Router, TabBar, Modal, Schema, Actions, Reducer } from 'react-native-router-flux'
 
 import {
+  StyleSheet,
   View,
   Text,
 } from 'react-native';
@@ -11,13 +12,19 @@ import Home from './Home';
 import PartnerShow from './partners/PartnerShow';
 import PartnerValidate from './partners/PartnerValidate';
 import Auth from './auth/Auth';
+const MenuBar = require('./components/MenuBar')
 
+import colors from './colors'
 var baseStyles = require('./styles')
 
 class Main extends Component{
   render() {
     return (
-      <Router>
+      <Router
+        navigationBarStyle={styles.navBar}
+        sceneStyle={styles.routerScene}
+        >
+
         <Scene key="root" tabs={false}>
           <Scene
             component={Auth}
@@ -31,10 +38,10 @@ class Main extends Component{
             initial={true}
           >
             <Scene
-            initial={true}
+              initial={true}
+              hideNavBar={true}
               component={Home}
               key="home"
-              hideNavBar={true}
               {...this.props}
             />
             <Scene
@@ -58,4 +65,14 @@ class Main extends Component{
   }
 };
 
+const styles = StyleSheet.create({
+  navBar: {
+    backgroundColor: colors.brand,
+    top: 0
+  },
+  routerScene: {
+    //paddingTop: 20,
+    backgroundColor: colors.white
+  },
+})
 export default Main;
