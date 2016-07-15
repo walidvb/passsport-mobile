@@ -49,7 +49,7 @@ class PartnerShow extends Component{
     const validator = <ValidateButton float partner={partner} />
     const padding = partner.validated ? 0 : 50
     return(
-      <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding, marginTop: 60}}>
+      <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding}}>
         <OverlayImage source={{uri: partner.tile_image}} style={{height: 50, flex: .25}}>
           { validBanner }
           <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>

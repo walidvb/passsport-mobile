@@ -26,17 +26,19 @@ class Main extends Component{
         >
 
         <Scene key="root" tabs={false}>
-          <Scene
-            component={Auth}
-            key="auth"
-            hideNavBar={false}
-            {...this.props}
-          />
+
 
           <Scene
             key="partners"
             initial={true}
           >
+            <Scene
+              component={Auth}
+              key="auth"
+              hideNavBar={false}
+              title='My Pass'
+              {...this.props}
+            />
             <Scene
               initial={true}
               hideNavBar={true}
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     top: 0
   },
   routerScene: {
-    //paddingTop: 20,
+    marginTop: 60,
     backgroundColor: colors.white
   },
 })

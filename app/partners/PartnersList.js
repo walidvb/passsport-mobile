@@ -39,7 +39,6 @@ class PartnersList extends Component{
      })
   }
   componentWillReceiveProps(props){
-    console.log(props);
     if(this.state.partners !== props.partners){
       this.setState({
         ...this.state,

@@ -22,11 +22,12 @@ class VbLink extends Component{
   }
 
   render() {
+    if(!this.props.url){ return null }
     return (
       <TouchableOpacity
         onPress={this.handleClick.bind(this)}>
         <View>
-          <VbText link text={this.props.children}></VbText>
+          {this.props.children}
         </View>
       </TouchableOpacity>
     );

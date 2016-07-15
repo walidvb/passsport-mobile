@@ -14,7 +14,18 @@ const Styles = StyleSheet.create({
     alignSelf: "stretch",
     paddingLeft: 15,
     paddingRight: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
   },
+  element: {
+    marginBottom: 18,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  title: {
+    fontWeight: 'bold',
+    marginBottom: 18,
+  }
 });
 
 module.exports = Styles;

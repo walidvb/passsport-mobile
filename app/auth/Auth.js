@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 var baseStyles = require('../styles')
+import colors from '../colors'
 const GetPass = require('../components/GetPass')
 const VbText = require('../helpers/vbText')
 const VbButton = require('../helpers/vbButton')
@@ -21,7 +22,7 @@ import UserForm from './UserForm'
 const row = (header, cell) => {
   return(
     <View style={styles.tableRow}>
-      <VbText style={styles.tableCell} uppercase bold text={header}/>
+      <VbText style={styles.tableCell} uppercase styles={['bold']} text={header}/>
       <VbText style={styles.tableCell} text={cell}/>
     </View>
   )
@@ -45,10 +46,10 @@ class Auth extends Component{
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
     if(sub.isValid()){
-      return row('Exipration Date:', sub.expires_at.toDateString())
+      return row('Expiration Date:', sub.expires_at.toDateString())
     }
     else if(sub.expires_at){
-      return row('Exipration Date:', user.name)
+      return row('Expiration Date:', 'Expired!')
     }
     else{
       return (<GetPass/>)
@@ -63,14 +64,15 @@ class Auth extends Component{
     else{
       const { user } = this.props.auth;
       const sub =  new Subscription(this.props.subscription);
-      const validatedPartners = _.filter(this.props.partners || [], (p) => sub.hasValidated(p))
+      console.log('this.props.partners', this.props.partners);
+      const validatedPartners = _.filter(this.props.partners || [], (p) => !sub.isAvailableFor(p))
 
-      const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList}/> : null
+      const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noValidateBanner/> : null
       return(
         <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15}}>
           <View style={styles.details}>
             {row('Name:', user.name)}
-            {row('Token:', user.token)}
+            {user.token ? row('Token:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
             {row('Validated Partners:', this.state.subscription.validated_partner_ids.length)}
@@ -83,6 +85,12 @@ class Auth extends Component{
 };
 
 const styles = StyleSheet.create({
+  details: {
+    paddingBottom: 0,
+    marginBottom: 13.5,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
+  },
   tableRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

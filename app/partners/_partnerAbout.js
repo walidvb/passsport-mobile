@@ -9,40 +9,49 @@ const VbText = require('../helpers/vbText')
 const VbLink = require('../helpers/vbLink')
 const VbIcon = require('../helpers/vbIcon')
 
+function urlWithIcon(icon, text, url){
+  if(!text){return null}
+  return (
+    <View style={styles.contactRow}>
+      <VbIcon style={styles.icon} name={icon}/>
+      <VbLink url={url || text} style={{flex: 1}}>
+        <VbText text={text} />
+      </VbLink>
+    </View>
+  )
+}
 class PartnerAbout extends Component{
   render() {
     const { partner } = this.props;
+
+    const findUs = (!partner.facebook && !partner.twitter) ? null : (<View style={styles.findUs}>
+      <VbText text="Find us on:" style={{
+        marginRight: 18
+      }}></VbText>
+      {(<VbLink url={partner.facebook}>
+        <VbIcon style={[styles.icon, {color: colors.black}]} name="facebook"/>
+      </VbLink>)}
+      {(<VbLink url={partner.twitter}>
+        <VbIcon style={[styles.icon, {color: colors.black}]} name="twitter"/>
+      </VbLink>)}
+    </View>)
+
     return (
     	<ScrollView style={{flex: 1, flexDirection: 'column', flexWrap: 'wrap'}}>
         <View style={styles.contact}>
-          <VbLink url="asd">
-            <VbIcon style={styles.icon} name="map-marker"/>
-            {partner.contact}
-          </VbLink>
-          <VbLink url={partner.website}>
-            <VbIcon style={styles.icon} name="globe"/>
-            {partner.website}
-          </VbLink>
-          <VbLink url={"tel:"+partner.phone}>
-            <VbIcon style={styles.icon} name="phone"/>
-            {partner.phone}
-          </VbLink>
-          <VbLink url={"mailto:"+partner.email}>
-            <VbIcon style={styles.icon} name="envelope"/>
-            {partner.email}
-          </VbLink>
+          {urlWithIcon('map-marker', partner.contact)}
+          {urlWithIcon('globe', partner.website)}
+          {urlWithIcon('phone', partner.phone, "tel:"+partner.phone)}
+          {urlWithIcon('envelope', partner.email, "mailto:"+partner.email)}
+
         </View>
-        <View style={styles.findUs}>
-          <VbText text="Find us on:" style={{marginRight: 25}}></VbText>
-          {partner.facebook ? (<VbLink url={partner.facebook}>
-            <VbIcon style={styles.icon} name="facebook"/>
-          </VbLink>) : null}
-          {partner.facebook ? (<VbLink url={partner.twitter}>
-            <VbIcon style={styles.icon} name="twitter"/>
-          </VbLink>) : null}
-        </View>
-        <View style={{paddingLeft: 15, paddingRight: 15}}>
-          <HTMLView value={partner.description} stylesheet={{}}/>
+        {findUs}
+        <View style={baseStyles.element}>
+          <VbText text='Presentation' uppercase styles={['bold']} style={baseStyles.title}/>
+          <HTMLView
+            value={partner.description}
+            stylesheet={{}}
+          />
         </View>
         <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
     	</ScrollView>
@@ -52,23 +61,31 @@ class PartnerAbout extends Component{
 
 const styles = StyleSheet.create({
   contact: {
-
-    borderBottomColor: 'gray',
+    borderBottomColor: colors.lightGray,
     borderBottomWidth: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
+    marginLeft: 15,
+    marginRight: 15,
+    paddingTop: 13.5,
+    paddingBottom: 13.5,
+    marginBottom: 27,
     flexDirection: 'column',
+  },
+  contactRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 13.5,
   },
   findUs: {
     flexDirection: 'row',
-    marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 27,
     paddingLeft: 15,
     paddingRight: 15,
   },
   icon: {
     color: colors.lightGray,
-    marginRight: 10,
+    marginRight: 13.5,
+    width: 18,
+    textAlign: 'center'
   }
 })
 

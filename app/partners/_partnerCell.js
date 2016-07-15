@@ -10,12 +10,13 @@ import ValidBanner from './_partnerValidBanner'
 
 class PartnerCell extends Component{
   render() {
-    const { partner } = this.props;
+    const { partner, noValidateBanner, smallCell } = this.props;
     const goToPartner = () => {
       Actions.partnerShow({id: partner.id})
     }
 
-    const validBanner = partner.validated ? <ValidBanner/> : null
+    const validBanner = noValidateBanner ? null : partner.validated ? <ValidBanner/> : null
+    const customStyles = this.props.smallCell ? { height: 18*7 } : {}
     return (
       <TouchableHighlight
       style={[styles.partnerCell, , {flexDirection: 'row'}]}
@@ -24,8 +25,8 @@ class PartnerCell extends Component{
       activeOpacity={0.3}>
         <OverlayImage
           source={{uri: partner.tile_image}}
-          style={[this.props.style]}
-          overlayStyle={styles.overlay}>
+          style={[this.props.style, customStyles]}
+          overlayStyle={[styles.overlay]}>
           {validBanner}
           <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
           <View style={styles.partnerCategories}>
