@@ -5,52 +5,88 @@ import _ from 'lodash';
 import {
   StyleSheet,
   Text,
+  TextInput,
   View,
   Image,
 } from 'react-native';
 var baseStyles = require('../styles')
 const VbText = require('../helpers/vbText')
+const VbTextInput = require('../helpers/vbTextInput')
 const VbButton = require('../helpers/vbButton')
 
 class PartnerValidate extends Component{
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      partnerToken: ''
+    }
   }
   renderOffline(){
     return (
-      <View>
-        <VbText text="Please give this code to the partner"/>
-        <VbText uppercase text="Your Code"/>
-        <VbText uppercase text={this.props.auth.user.token}/>
+      <View style={styles.container}>
+        <VbText
+          text="Please give this code to the partner"
+          uppercase
+          styles={['bold']}
+          style={{
+            marginBottom: 18*4,
+          }}/>
+        <VbText uppercase styles={['bold']} text="Your Code:" style={{marginBottom: 18*2}}/>
+        <VbText uppercase text={this.props.auth.user.token} style={{marginBottom: 18*2}}/>
         <VbButton
-          style={baseStyles.button}
+          style={[baseStyles.button, {
+            flex: 1
+          }]}
           onPress={this.props.validatePartner.bind(this, this.props.partner)}>
-          {"OK"}
+          {"Validate"}
+        </VbButton>
+      </View>
+    )
+  }
+  renderOnline(){
+    return (
+      <View style={styles.container}>
+        <VbText
+          text="Please ask the partner to input his code"
+          uppercase
+          styles={['bold']}
+          style={{
+            marginBottom: 18*4,
+          }}/>
+        <VbText uppercase styles={['bold']} text="Partner's Code:" style={{marginBottom: 18*2}}/>
+        <VbTextInput
+          uppercase
+          autofocus
+          style={{
+            marginBottom: 18*2,
+            textAlign: 'center',
+          }} placeholder='XXXXX-XXXXX'
+          ref='partnerToken'
+          onChangeText={(val) => this.setState({ partnerToken: val})}
+        />
+        <VbButton
+          style={[baseStyles.button, {
+            flex: 1
+          }]}
+          disabled={this.state.partnerToken.length}
+          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
+          {"Validate"}
         </VbButton>
       </View>
     )
   }
   render() {
     const { partner } = this.props;
-    return this.renderOffline()
+    return this.renderOnline()
 
   }
 };
 
 const styles = StyleSheet.create({
-  partnersList: {
-  },
-  partnerCell: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
+  container: {
+    paddingTop: 18*3,
     alignItems: 'center',
-    backgroundColor: '#0074D9',
   },
-  thumbnail: {
-    width: 30,
-    height: 30,
-    margin: 10,
-  }
 })
 
 import myConnector from '../utils/myConnector'

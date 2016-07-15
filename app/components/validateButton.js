@@ -23,7 +23,7 @@ class ValidateButton extends Component{
         return ( <GetPass {...this.props}/> );
       }
     }
-    if(partner.validated){
+    if(!partner.validated){
       return (
         <VbButton
         onPress={this.onPress.bind(this)}

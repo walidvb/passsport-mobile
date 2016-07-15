@@ -7,6 +7,6 @@ import categories from './categories/categoriesReducer.js'
 
 import ui from './utils/uiReducer.js'
 
-const rootReducer = combineReducers({ ui, auth, subscription, partners, categories })
+const rootReducer = combineReducers({ ui, auth, partners, categories, subscription })
 
 module.exports = rootReducer;

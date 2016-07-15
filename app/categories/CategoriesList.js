@@ -5,10 +5,10 @@ import {
   ListView,
   Text,
   StyleSheet,
-  TextInput
 } from 'react-native';
 import colors from '../colors'
 const VbText = require('../helpers/vbText')
+const VbTextInput = require('../helpers/vbTextInput')
 
 export default class CategoriesList extends Component {
   componentWillMount() {
@@ -74,7 +74,7 @@ export default class CategoriesList extends Component {
   }
   renderHeader(){
      return(
-       <TextInput style={styles.search} ref='search' onChangeText={this.search.bind(this)} placeholder='SEARCH'/>
+       <VbTextInput style={styles.search} ref='search' onChangeText={this.search.bind(this)} placeholder='SEARCH'/>
     )
   }
   search(query){
@@ -93,10 +93,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginBottom: 10,
   },
-  search: {
-    paddingBottom: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.gray,
-    height: 60,
-  }
+
 });
