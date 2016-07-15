@@ -17,9 +17,11 @@ class VbButton extends Component{
     return (
       <TouchableHighlight
         onPress={this.props.onPress}
-        style={_styles}>
+        style={_styles}
+        underlayColor={colors.brand}
+        >
         <View ref={(component) => this._root = component}>
-          <VbText text={this.props.children} light bold uppercase centered/>
+          <VbText text={this.props.children} styles={['light', 'bold', 'centered']} uppercase/>
           </View>
       </TouchableHighlight>
     );

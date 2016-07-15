@@ -29,7 +29,6 @@ class PartnerShow extends Component{
   }
   componentWillMount() {
     const partner = _.find(this.props.partners, (p) => p.id === this.props.id)
-
     this.state = {
       partner,
     }
@@ -53,7 +52,7 @@ class PartnerShow extends Component{
       <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding, marginTop: 60}}>
         <OverlayImage source={{uri: partner.tile_image}} style={{height: 50, flex: .25}}>
           { validBanner }
-          <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
+          <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
         </OverlayImage>
         <ScrollableTabView
           tabBarUnderlineColor={colors.brand}

@@ -5,7 +5,6 @@ class VbText extends Component{
 
   render() {
     const p = this.props;
-    const color = p.brandColor ? colors.brand : (p.light ? 'white' : 'black');
     let { text } = this.props;
     text = text || '';
     if(p.uppercase){
@@ -15,15 +14,15 @@ class VbText extends Component{
       text = text.toLowerCase()
     }
     const fontWeight = p.bold ? 'bold' : 'normal';
-
+    let _styles = [styles.base, p.style]
+    if(p.styles){
+      for(let i = 0; i < p.styles.length; i++){
+        _styles.push(styles[p.styles[i]])
+      }
+    }
     return (
     	<Text
-        {...this.props}
-        style={[styles.base, p.style, {
-          color: color,
-          fontWeight: p.bold ? 'bold' : 'normal',
-          textAlign: p.centered ? 'center' : 'left'
-        }]}>
+        style={_styles}>
         {text}
       </Text>
     );
@@ -32,7 +31,26 @@ class VbText extends Component{
 
 const styles = StyleSheet.create({
   base: {
-
+    color: colors.black,
+    textAlign: 'left',
+  },
+  centered: {
+    textAlign: 'center',
+  },
+  light: {
+    color: colors.white
+  },
+  brand: {
+    color: colors.brand
+  },
+  bold:{
+    fontWeight: 'bold'
+  },
+  large: {
+    fontSize: 23,
+  },
+  xlarge: {
+    fontSize: 27,
   }
 })
 

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 const ValidBanner = ({}) => (
-  <VbIcon name="check" style={styles.container} size={24}/>
+  <VbIcon name="check" style={styles.container} size={27}/>
 );
 
 export default ValidBanner;
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     color: 'white',
     flex: 1,
     backgroundColor: colors.brand,
-    padding: 15,
+    padding: 20,
     position: 'absolute',
     top: 0,
-    right: 15,
+    right: 20,
     alignItems: 'center',
 
   },

@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 60,
     backgroundColor: colors.brand,
+    paddingBottom: 10,
+    paddingTop: 10,
   },
   icon: {
     paddingLeft: 25,

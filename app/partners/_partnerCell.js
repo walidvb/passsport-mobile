@@ -20,16 +20,17 @@ class PartnerCell extends Component{
       <TouchableHighlight
       style={[styles.partnerCell, , {flexDirection: 'row'}]}
       onPress={goToPartner}
-      underlayColor={colors.brand}>
+      underlayColor={colors.brand}
+      activeOpacity={0.3}>
         <OverlayImage
           source={{uri: partner.tile_image}}
           style={[this.props.style]}
           overlayStyle={styles.overlay}>
           {validBanner}
-          <VbText light large bold uppercase style={styles.partnerName} text={partner.name}/>
+          <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
           <View style={styles.partnerCategories}>
             {partner.categories.map((cat) => {
-              return (<VbText style={{marginRight: 5}} light small lowercase key={cat + partner.name} text={cat}/>)
+              return (<VbText style={{paddingRight: 15}} styles={['light','small']} lowercase key={cat + partner.name} text={'#'+cat}/>)
             })}
           </View>
         </OverlayImage>
