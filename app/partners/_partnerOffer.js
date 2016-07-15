@@ -1,41 +1,71 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-var baseStyles = require('../styles')
-const HTMLView = require('react-native-htmlview')
-const Map = require('../components/Map')
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 
+import colors from '../colors'
+var baseStyles = require('../styles')
+const VbHTMLView = require('../helpers/vbHTMLView')
+const Map = require('../components/Map')
+const VbText = require('../helpers/vbText')
 class PartnerOffer extends Component{
   render() {
     const { partner } = this.props;
     console.log(partner);
     return (
-    	<View>
-        <View style={styles.categories}>
+    	<ScrollView>
+        <View style={styles.discount}>
+          <VbHTMLView value={partner.discount} stylesheet={discountStyles}/>
+        </View>
+        <View style={[baseStyles.element, styles.categories]}>
           {partner.categories.map((cat) => {
             return (
-              <Text style={styles.cat} key={cat}>{cat}</Text>
+              <VbText style={styles.cat} key={cat} text={cat} uppercase styles={['bold']}></VbText>
             )
           })}
         </View>
-        <HTMLView value={partner.discount} style={{}}/>
-        <HTMLView value={partner.offer_details} style={{}}/>
-    	</View>
+        <View style={baseStyles.element}>
+          <VbText text='Discount' uppercase styles={['bold']} style={baseStyles.title}/>
+          <VbHTMLView value={partner.offer_details} />
+        </View>
+    	</ScrollView>
     );
   }
 };
 
 const styles = StyleSheet.create({
   categories: {
-    borderBottomColor: 'gray',
+    borderBottomColor: colors.lightGray,
     borderBottomWidth: 1,
-    paddingBottom: 18,
-    paddingTop: 18,
-    paddingLeft: 15,
-    paddingLeft: 15,
+    paddingBottom: 27,
+    paddingTop: 27,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   cat: {
-
+    marginRight: 9,
   },
+  discount: {
+    backgroundColor: colors.brand,
+    alignItems: 'center',
+    paddingTop: 18,
+    paddingBottom: 18,
+  }
+})
+
+const color = colors.white
+const discountStyles = StyleSheet.create({
+  p: {
+    color,
+  },
+  strong: {
+    color,
+    fontWeight: 'bold',
+    fontSize: 22.5
+  },
+  span: {
+    color,
+  },
+
 })
 
 module.exports = PartnerOffer

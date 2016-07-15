@@ -3,7 +3,7 @@ import { View, ScrollView, Text, StyleSheet } from 'react-native';
 var baseStyles = require('../styles')
 import colors from '../colors'
 
-const HTMLView = require('react-native-htmlview')
+const VbHTMLView = require('../helpers/vbHTMLView')
 const Map = require('../components/Map')
 const VbText = require('../helpers/vbText')
 const VbLink = require('../helpers/vbLink')
@@ -24,7 +24,7 @@ class PartnerAbout extends Component{
   render() {
     const { partner } = this.props;
 
-    const findUs = (!partner.facebook && !partner.twitter) ? null : (<View style={styles.findUs}>
+    const findUs = (!partner.facebook && !partner.twitter) ? null : (<View style={[baseStyles.element, styles.findUs]}>
       <VbText text="Find us on:" style={{
         marginRight: 18
       }}></VbText>
@@ -48,10 +48,7 @@ class PartnerAbout extends Component{
         {findUs}
         <View style={baseStyles.element}>
           <VbText text='Presentation' uppercase styles={['bold']} style={baseStyles.title}/>
-          <HTMLView
-            value={partner.description}
-            stylesheet={{}}
-          />
+          <VbHTMLView value={partner.description} />
         </View>
         <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
     	</ScrollView>
@@ -78,8 +75,6 @@ const styles = StyleSheet.create({
   findUs: {
     flexDirection: 'row',
     marginBottom: 27,
-    paddingLeft: 15,
-    paddingRight: 15,
   },
   icon: {
     color: colors.lightGray,
