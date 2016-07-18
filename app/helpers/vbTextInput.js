@@ -6,7 +6,7 @@ class VbTextInput extends Component{
   render() {
     return (
       <TextInput {...this.props}
-        style={[this.props.style]} autoCapitalize={'characters'} />
+        style={[styles.underline, this.props.style]} autoCapitalize={'characters'} />
     );
   }
 };

@@ -60,8 +60,8 @@ class PartnerShow extends Component{
           tabBarTextStyle={{fontWeight: 'bold'}}
           style={{flex: .75}}
           >
-          <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
           <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
+          <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
         </ScrollableTabView>
         {validator}
       </View>

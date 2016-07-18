@@ -11,7 +11,7 @@ function testPartner(partnerSearchables, search, filters){
   let truthSearch, truthFilters;
   if(search.length){
     for(var i = 0; i < partnerSearchables.length; i++){
-      if(fuzzysearch(search, partnerSearchables[i])){
+      if(fuzzysearch(search.toLowerCase(), partnerSearchables[i])){
         truthSearch = true;
         break;
       }

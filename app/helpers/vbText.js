@@ -4,7 +4,7 @@ import colors from '../colors'
 class VbText extends Component{
 
   render() {
-    const p = this.props;
+    let p = this.props;
     let { text } = this.props;
     text = text || '';
     if(p.uppercase){
@@ -22,6 +22,7 @@ class VbText extends Component{
     }
     return (
     	<Text
+        onPress={p.onPress}
         style={_styles}>
         {text}
       </Text>
@@ -51,6 +52,9 @@ const styles = StyleSheet.create({
   },
   xlarge: {
     fontSize: 27,
+  },
+  error: {
+    color: colors.error,
   }
 })
 

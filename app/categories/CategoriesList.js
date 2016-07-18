@@ -62,13 +62,13 @@ export default class CategoriesList extends Component {
     );
   }
   renderCategoryCell(category){
+    const activeStyle = category.active ? ['bold', 'brand'] : []
     return (
       <VbText
         onPress={() => this.props.toggleCategory(category.name)}
         uppercase
-        brandColor={category.active}
-        bold={category.active}
-        style={styles.category}
+        styles={activeStyle}
+        style={[styles.category]}
         text={category.name} />
     )
   }
@@ -78,7 +78,7 @@ export default class CategoriesList extends Component {
     )
   }
   search(query){
-    this.props.searchPartners(query)
+    this.props.searchPartners(query.toLowerCase())
   }
 }
 
