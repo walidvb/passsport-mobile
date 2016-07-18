@@ -4,9 +4,10 @@ export function getPartners(){
   }
 }
 
-export function validatePartner(partner){
+export function validatePartner(partner, partnerToken){
   return {
     type: 'VALIDATE_PARTNER',
-    partner
+    partner,
+    partnerToken,
   }
 }

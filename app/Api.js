@@ -17,7 +17,7 @@ let _auth_token = null
 import store from '../store';
 
 class Api{
-  static params() {
+  static params(data) {
     const state = store.getState();
     var auth_token = state.auth.user ? state.auth.user.auth_token : null;
     return {
@@ -26,7 +26,8 @@ class Api{
         'Content-Type': 'application/json',
         'X-APP-TOKEN': 'sua-mae',
         'X-AUTH-TOKEN': auth_token,
-      }
+      },
+      body: JSON.stringify(data),
     }
   }
 
@@ -37,9 +38,10 @@ class Api{
     }).then((res) => res.json());
   }
 
-  static validatePartner(partnerId){
+  static validatePartner(partnerId, partnerToken){
+    console.log(partnerId, partnerToken, Api.params({ partnerToken }));
     return fetch(url(`partners/${partnerId}/validations`), {
-      ...Api.params(),
+      ...Api.params({ partner_token: partnerToken }),
       method: 'POST',
     }).then(res => res.json()).then(b => b);
   }
@@ -48,7 +50,7 @@ class Api{
   static getSubscriptionDetails(){
     return fetch(url('subscription.json'), {
       ...Api.params(),
-    }).then((res) => res.json());
+    }).then((res) => res.json()).then(b => b);
   }
 
   // AUTH

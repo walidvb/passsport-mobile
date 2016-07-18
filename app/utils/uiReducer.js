@@ -35,6 +35,11 @@ export default function ui(state = {}, action){
             search: query
           }
         }
+    case 'PARTNER_VALIDATED_ERROR':
+      return {
+        ...state,
+        validationError: action.error
+      }
     default:
       return state;
   }

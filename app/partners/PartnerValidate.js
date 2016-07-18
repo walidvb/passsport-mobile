@@ -44,8 +44,10 @@ class PartnerValidate extends Component{
     )
   }
   renderOnline(){
+    const { ui } = this.props
+    const error = ui.validationError ? <VbText text={ui.validationError} styles={['error', 'centered']}/> : null
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <VbText
           text="Please ask the partner to input his code"
           uppercase
@@ -54,6 +56,7 @@ class PartnerValidate extends Component{
             marginBottom: 18*4,
           }}/>
         <VbText uppercase styles={['bold']} text="Partner's Code:" style={{marginBottom: 18*2}}/>
+        {error}
         <VbTextInput
           uppercase
           autofocus
@@ -69,7 +72,7 @@ class PartnerValidate extends Component{
             flex: 1
           }]}
           disabled={this.state.partnerToken.length}
-          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
+          onPress={this.props.validatePartner.bind(this, this.props.partner, this.state.partnerToken.toLowerCase())}>
           {"Validate"}
         </VbButton>
       </View>
@@ -86,6 +89,8 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 18*3,
     alignItems: 'center',
+    paddingLeft: 15,
+    paddingRight: 15,
   },
 })
 
