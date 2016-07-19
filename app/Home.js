@@ -1,5 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
+import Menu, { MenuContext } from 'react-native-menu';
+
 
 import {
   StyleSheet,
@@ -44,33 +46,35 @@ class Home extends Component{
   render() {
     const sub = new Subscription(this.props.subscription)
     return(
-      <Drawer
-        type="static"
-        content={<CategoriesList {...this.props} />}
-        openDrawerOffset={160}
-        closedDrawerOffset={0}
-        onOpen={() => this.props.toggleFilters(true)}
-        onClose={() => this.props.toggleFilters(false)}
-        styles={{
-          drawer:{
-            backgroundColor: 'white',
-            marginTop: 60,
-            overflow: 'hidden'
-          }
-        }}
-        open={this.props.ui.filters.drawerOpen}
-        tweenHandler={Drawer.tweenPresets.parallax}
-        tapToClose={true}
-      >
-        <MenuBar {...this.props} style={{paddingTop: 20}} />
-        <PartnerList partners={this.state.partners} style={{
-          flex: 1,
-          paddingLeft: 15,
-          paddingRight: 15,
-          marginBottom: sub.isValid() ? 0 : 60,
-        }}/>
-        <GetPass float/>
-      </Drawer>
+        <Drawer
+          type="static"
+          content={<CategoriesList {...this.props} />}
+          openDrawerOffset={160}
+          closedDrawerOffset={0}
+          onOpen={() => this.props.toggleFilters(true)}
+          onClose={() => this.props.toggleFilters(false)}
+          styles={{
+            drawer:{
+              backgroundColor: 'white',
+              marginTop: 60,
+              overflow: 'hidden'
+            }
+          }}
+          open={this.props.ui.filters.drawerOpen}
+          tweenHandler={Drawer.tweenPresets.parallax}
+          tapToClose={true}
+        >
+        <MenuContext style={{flex: 1}}>
+          <MenuBar {...this.props} style={{paddingTop: 20}} />
+          <PartnerList partners={this.state.partners} style={{
+            flex: 1,
+            paddingLeft: 15,
+            paddingRight: 15,
+            marginBottom: sub.isValid() ? 0 : 60,
+          }}/>
+          <GetPass float/>
+          </MenuContext>
+        </Drawer>
     )
   }
 };

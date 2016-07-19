@@ -13,6 +13,7 @@ import PartnerShow from './partners/PartnerShow';
 import PartnerValidate from './partners/PartnerValidate';
 import Auth from './auth/Auth';
 const MenuBar = require('./components/MenuBar')
+import VbWebView from './components/vbWebView'
 
 import colors from './colors'
 var baseStyles = require('./styles')
@@ -39,6 +40,15 @@ class Main extends Component{
               title='My Pass'
               {...this.props}
             />
+
+            <Scene
+              component={VbWebView}
+              key="vbWebView"
+              hideNavBar={false}
+              renderTitle={(a)=>(<Text>a+'test'</Text>)}
+              {...this.props}
+            />
+
             <Scene
               initial={true}
               hideNavBar={true}
@@ -73,7 +83,6 @@ const styles = StyleSheet.create({
     top: 0
   },
   routerScene: {
-    marginTop: 60,
     backgroundColor: colors.white
   },
 })

@@ -31,6 +31,13 @@ class Api{
     }
   }
 
+  // URIs
+  static about_url() {
+    return url('about?mobile=true')
+  }
+  static faqs_url() {
+    return url('faqs?mobile=true')
+  }
   // PARTNERS
   static getPartners() {
     return fetch(url('partners.json'), {
