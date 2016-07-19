@@ -37,17 +37,16 @@ class PartnerAbout extends Component{
     </View>)
 
     return (
-    	<ScrollView style={{flex: 1, flexDirection: 'column', flexWrap: 'wrap'}}>
+    	<ScrollView style={styles.container}>
         <View style={styles.contact}>
           {urlWithIcon('map-marker', partner.contact)}
-          {urlWithIcon('globe', partner.website)}
           {urlWithIcon('phone', partner.phone, "tel:"+partner.phone)}
+          {urlWithIcon('globe', partner.website)}
           {urlWithIcon('envelope', partner.email, "mailto:"+partner.email)}
 
         </View>
         {findUs}
         <View style={baseStyles.element}>
-          <VbText text='Presentation' uppercase styles={['bold']} style={baseStyles.title}/>
           <VbHTMLView value={partner.description} />
         </View>
         <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
@@ -57,6 +56,12 @@ class PartnerAbout extends Component{
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+    paddingTop: 18,
+  },
   contact: {
     borderBottomColor: colors.lightGray,
     borderBottomWidth: 1,

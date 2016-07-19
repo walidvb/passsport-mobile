@@ -6,6 +6,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Navigator,
 } from 'react-native';
 
 import Home from './Home';
@@ -23,7 +24,7 @@ class Main extends Component{
     return (
       <Router
         navigationBarStyle={styles.navBar}
-        sceneStyle={styles.routerScene}
+        sceneStyle={[styles.sceneStyle, {paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}
         >
 
         <Scene key="root" tabs={false}>
@@ -81,6 +82,9 @@ const styles = StyleSheet.create({
   navBar: {
     backgroundColor: colors.brand,
     top: 0
+  },
+  sceneStyle:{
+    backgroundColor: colors.white,
   },
   routerScene: {
     backgroundColor: colors.white

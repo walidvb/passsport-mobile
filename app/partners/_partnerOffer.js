@@ -15,7 +15,7 @@ class PartnerOffer extends Component{
         <View style={styles.discount}>
           <VbHTMLView value={partner.discount} stylesheet={discountStyles}/>
         </View>
-        <View style={[baseStyles.element, styles.categories]}>
+        <View style={[styles.categories]}>
           {partner.categories.map((cat) => {
             return (
               <VbText style={styles.cat} key={cat} text={cat} uppercase styles={['bold']}></VbText>
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingBottom: 27,
     paddingTop: 27,
+    marginRight: 18,
+    marginLeft: 18,
+    marginBottom: 18,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
@@ -45,10 +48,11 @@ const styles = StyleSheet.create({
     marginRight: 9,
   },
   discount: {
-    backgroundColor: colors.brand,
+    backgroundColor: colors.red,
     alignItems: 'center',
     paddingTop: 18,
     paddingBottom: 18,
+    marginTop: 18,
   }
 })
 
