@@ -8,6 +8,18 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
 
   function mapStateToProps(state){
     let mapping = {};
+    if(stateKeys.includes('partners')){
+      const validatedIds = state.subscription.validated_partner_ids
+      if(validatedIds && validatedIds.length){
+        let partners = []
+        for( const p of state.partners){
+          p.validated = validatedIds.includes(p.id)
+           partners.push(p)
+         }
+         mapping.partners = partners
+         delete stateKeys.partners
+       }
+    }
     stateKeys.forEach((key) => mapping[key] = state[key]);
     return mapping;
   }
