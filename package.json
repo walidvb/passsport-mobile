@@ -25,5 +25,8 @@
     "redux-thunk": "^2.1.0",
     "remote-redux-devtools": "^0.3.3",
     "tcomb-form-native": "^0.5.1"
+  },
+  "devDependencies": {
+    "react-native-network-boot": "^1.0.6"
   }
 }
