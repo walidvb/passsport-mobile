@@ -8,7 +8,8 @@ import colors from '../colors'
 class VbHTMLView extends Component{
   renderNode(node, index, list){
     if(node.name == 'hr'){
-      return (<View style={[{width: Dimensions.get('window').width/2}, styles.hr]}></View>)
+      return null
+      return (<Text style={[{width: Dimensions.get('window').width}, styles.hr]}>{"\n"}</Text>)
     }
   }
   render() {
@@ -29,12 +30,10 @@ const styles = StyleSheet.create({
     color: colors.brand,
   },
   hr: {
-    flex: 1,
     height: 1,
     marginLeft: 15,
     marginRight: 15,
     borderBottomColor: colors.white,
-
     borderBottomWidth: 1,
   }
 })

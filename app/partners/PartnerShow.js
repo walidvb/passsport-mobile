@@ -42,7 +42,7 @@ class PartnerShow extends Component{
     const { partner } = this.state;
     const validBanner = partner.validated ? <ValidBanner/> : null
 
-    function openValidate(){
+    const openValidate = () => {
       Actions.partnerValidate({partner: partner, id: partner.id})
     }
 

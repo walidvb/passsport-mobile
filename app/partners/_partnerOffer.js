@@ -9,7 +9,6 @@ const VbText = require('../helpers/vbText')
 class PartnerOffer extends Component{
   render() {
     const { partner } = this.props;
-    console.log(partner);
     return (
     	<ScrollView>
         <View style={styles.discount}>
@@ -33,6 +32,9 @@ class PartnerOffer extends Component{
 
 const styles = StyleSheet.create({
   categories: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     borderBottomColor: colors.lightGray,
     borderBottomWidth: 1,
     paddingBottom: 27,
@@ -40,9 +42,6 @@ const styles = StyleSheet.create({
     marginRight: 18,
     marginLeft: 18,
     marginBottom: 18,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
   },
   cat: {
     marginRight: 9,
@@ -60,13 +59,17 @@ const color = colors.white
 const discountStyles = StyleSheet.create({
   p: {
     color,
+    textAlign: 'center',
+    flex: 1,
   },
   strong: {
     color,
     fontWeight: 'bold',
+    textAlign: 'center',
     fontSize: 22.5
   },
   span: {
+    textAlign: 'center',
     color,
   },
 
