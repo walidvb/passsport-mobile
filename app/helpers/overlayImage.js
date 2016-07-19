@@ -29,9 +29,11 @@ const styles = StyleSheet.create({
   base: {
     alignItems: 'stretch',
     flex: 1,
-    height: 220
+    height: 220,
   },
   overlay: {
+    paddingLeft: 9,
+    paddingRight: 9,
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.2)',
     justifyContent: 'center',

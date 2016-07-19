@@ -11,11 +11,13 @@ const VbIcon = require('../helpers/vbIcon')
 
 function urlWithIcon(icon, text, url){
   if(!text){return null}
+  const isUrl = /https?:\/\/([^\/]+)/.exec(text)
+  const renderedTtext = isUrl ? isUrl[1] : text
   return (
     <View style={styles.contactRow}>
       <VbIcon style={styles.icon} name={icon}/>
-      <VbLink url={url || text} style={{flex: 1}}>
-        <VbText text={text} />
+      <VbLink url={url || text} style={{flex: 1, flexWrap: 'wrap', flexDirection: 'row'}}>
+        <VbText text={renderedTtext} />
       </VbLink>
     </View>
   )
