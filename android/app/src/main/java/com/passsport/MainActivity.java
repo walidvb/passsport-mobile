@@ -1,6 +1,7 @@
 package com.passsport;
 
 import com.facebook.react.ReactActivity;
+import com.smixx.fabric.FabricPackage;
 import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.AirMaps.AirPackage;
@@ -38,6 +39,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new FabricPackage(),
             new WebViewBridgePackage(),
             new VectorIconsPackage(),
             new AirPackage()
