@@ -12,7 +12,7 @@ class PartnerCell extends Component{
   render() {
     const { partner, noValidateBanner, smallCell } = this.props;
     const goToPartner = () => {
-      Actions.partnerShow({id: partner.id})
+      Actions.partnerShow({title: partner.name, id: partner.id})
     }
 
     const validBanner = noValidateBanner ? null : partner.validated ? <ValidBanner/> : null
