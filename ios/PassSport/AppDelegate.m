@@ -39,8 +39,8 @@
   //jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
   
   // https://github.com/jondot/react-native-network-boot#integration
-//  NSString *host = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RNHost"];
-//  jsCodeLocation = [NSURL URLWithString: [NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=true", host]];
+  NSString *host = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RNHost"];
+  jsCodeLocation = [NSURL URLWithString: [NSString stringWithFormat:@"http://%@:8081/index.ios.bundle?platform=ios&dev=true", host]];
   
   /**
    * OPTION 2
@@ -50,7 +50,7 @@
    * simulator in the "Release" build configuration.
    */
 
- jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+ //jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"PassSport"
