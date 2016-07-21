@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   base: {
     color: colors.black,
     textAlign: 'left',
+    fontFamily: 'Lato',
   },
   centered: {
     textAlign: 'center',
