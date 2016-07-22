@@ -34,6 +34,7 @@ class MenuBar extends Component {
     }
   }
   render() {
+    const loggedIn = this.props.auth.loggedIn
     return (
       <View style={[styles.container, this.props.style]}>
         <VbIcon
@@ -52,9 +53,9 @@ class MenuBar extends Component {
             <MenuOptions optionsContainerStyle={styles.menuContainer}>
               {MenuItem('About', 'about')}
               {MenuItem('FAQS', 'faqs')}
-              {MenuItem('My Pass', 'myPass', { borderBottomWidth: 1, borderBottomColor: colors.lightGray})}
+              {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
 
-              {MenuItem('Log Out', 'logOut')}
+              {!loggedIn ? MenuItem('Sign In', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
             </MenuOptions>
           </Menu>
       </View>
