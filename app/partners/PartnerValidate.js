@@ -20,6 +20,7 @@ class PartnerValidate extends Component{
     this.state = {
       partnerToken: ''
     }
+    console.log(props.partner.token);
   }
   renderOffline(){
     return (
@@ -78,8 +79,12 @@ class PartnerValidate extends Component{
       </View>
     )
   }
+  componentWillReceiveProps(props){
+    console.log('props', props);
+  }
   render() {
     const { partner } = this.props;
+    console.log('rerender', partner);
     return this.renderOnline()
 
   }

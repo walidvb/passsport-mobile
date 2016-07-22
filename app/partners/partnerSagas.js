@@ -35,6 +35,8 @@ export function* validatePartner(action){
       }
       else{
         yield put({ type: 'PARTNER_VALIDATED', validation })
+        // hopefully we're in a single view, so we can pop it back to the partner....
+        Actions.pop()
       }
     }catch(e){
       console.log('PARTNERS_VALIDATED failed', e);

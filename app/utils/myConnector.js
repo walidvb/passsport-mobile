@@ -26,7 +26,6 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
 
   function mapDispatchToProps(dispatch){
     let actions = {}
-    console.log(typeof(actionCreators), actionCreators);
     if(typeof actionCreators == 'Array'){
       for(let i = 0; i < actionCreators.length; i++){
         actions = Object.assign(actions, actionCreators[i])
