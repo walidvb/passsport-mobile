@@ -1,21 +1,11 @@
 APP:
-  - trash subscription on sign out
   - PartnerShow change title to partner name
   - center discount and bar on _partnerOffer
   - fix long addresses breaking lines
   - thank you for validating page
-  - rm use pass for FREE partners
-  - remove error on wrong token validation
   - check if offline to display correct validation screen
-
+  - only top categories
+  
 SERVER:
-  - store name
-  - checker que ça ajoute auto le token
   - 4 chiffres aléatoires pr le token
-  - venues not saving long/lat
-  - faire des partenaires non-payants
-  - turbolinks doesn't remove old styles -> header image
   - domain names..??
-  - modal: dispo dès septembre
-
-  - free partners
