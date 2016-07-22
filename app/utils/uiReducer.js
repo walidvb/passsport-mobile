@@ -38,8 +38,15 @@ export default function ui(state = {}, action){
     case 'PARTNER_VALIDATED_ERROR':
       return {
         ...state,
-        validationError: action.error
+        errors: {
+          validationError: action.error
+        }
       }
+    case 'CLEAR_ERRORS':
+    return {
+      ...state,
+      errors: {}
+    }
     default:
       return state;
   }

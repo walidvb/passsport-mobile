@@ -20,7 +20,7 @@ class PartnerValidate extends Component{
     this.state = {
       partnerToken: ''
     }
-    console.log(props.partner.token);
+    this.props.clearErrors()
   }
   renderOffline(){
     return (
@@ -45,8 +45,8 @@ class PartnerValidate extends Component{
     )
   }
   renderOnline(){
-    const { ui } = this.props
-    const error = ui.validationError ? <VbText text={ui.validationError} styles={['error', 'centered']}/> : null
+    const { errors } = this.props.ui
+    const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null
     return (
       <View style={[styles.container]}>
         <VbText
@@ -79,12 +79,8 @@ class PartnerValidate extends Component{
       </View>
     )
   }
-  componentWillReceiveProps(props){
-    console.log('props', props);
-  }
   render() {
     const { partner } = this.props;
-    console.log('rerender', partner);
     return this.renderOnline()
 
   }

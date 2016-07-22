@@ -19,7 +19,7 @@ const initialState = {
   },
   categories: [],
   subscription: {},
-  ui: { auth: {}, partners: {}, filters: {
+  ui: { auth: {}, partners: {}, errors: {}, filters: {
     search: '',
     categories: [],
     drawerOpen: false
