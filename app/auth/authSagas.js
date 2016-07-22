@@ -22,11 +22,7 @@ export function* watchGetUserDetails(){
 function* signOut(action){
   let { user } = action;
   const response = yield Api.signOut(user)
-  if(response){
-    yield put({ type: 'SIGNED_OUT'})
-  }else{
-    yield put({ type: 'SIGNED_OUT_FAILED'})
-  }
+  yield put({ type: 'SIGNED_OUT'})
 }
 export function* watchSignOut(){
   yield* takeEvery('SIGN_OUT', signOut)

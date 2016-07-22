@@ -12,7 +12,8 @@ export default function auth(state = [], action){
     case 'SIGNED_IN_SUCCESSFUL':
     case 'SIGNED_UP_SUCCESSFUL':
     case 'USER_FETCHED':
-      const { user } = action
+      console.log(action);
+      const user = action
       Crashlytics.setUserName(user.name);
       Crashlytics.setUserEmail(user.email);
       Crashlytics.setUserIdentifier(user.id);

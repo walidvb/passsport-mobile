@@ -10,6 +10,10 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
+
+
 var baseStyles = require('../styles')
 import colors from '../colors'
 const GetPass = require('../components/GetPass')
@@ -42,6 +46,7 @@ class Auth extends Component{
     this.setState({
       subscription: props.subscription
     })
+    // Actions.refresh()
   }
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
@@ -64,8 +69,7 @@ class Auth extends Component{
     else{
       const { user } = this.props.auth;
       const sub =  new Subscription(this.props.subscription);
-      console.log('this.props.partners', this.props.partners);
-      const validatedPartners = _.filter(this.props.partners || [], (p) => !sub.isAvailableFor(p))
+      const validatedPartners = _.filter(this.props.partners || [], (p) => p.validated)
 
       const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noValidateBanner/> : null
       return(
@@ -75,7 +79,7 @@ class Auth extends Component{
             {user.token ? row('Token:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
-            {row('Validated Partners:', this.state.subscription.validated_partner_ids.length)}
+            {sub.isValid() ? row('Validated Partners:', validatedPartners.length) : null}
           </View>
           {list}
         </ScrollView>

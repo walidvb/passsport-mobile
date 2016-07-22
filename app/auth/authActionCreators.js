@@ -32,8 +32,9 @@ export function userFetched(user, options = {}){
 }
 
 
-export function signOut(){
+export function signOut(user){
   return {
     type: 'SIGN_OUT',
+    user,
   }
 }

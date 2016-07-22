@@ -9,6 +9,7 @@ APP:
   - check if offline to display correct validation screen
 
 SERVER:
+  - store name
   - checker que ça ajoute auto le token
   - 4 chiffres aléatoires pr le token
   - venues not saving long/lat

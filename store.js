@@ -18,10 +18,7 @@ const initialState = {
     loggedIn: false,
   },
   categories: [],
-  subscription: {
-    isValid: () => false,
-    isValidFor: (partner) => false,
-  },
+  subscription: {},
   ui: { auth: {}, partners: {}, filters: {
     search: '',
     categories: [],
@@ -51,8 +48,10 @@ export default function configureStore(initialState) {
     blacklist: ['ui'],
   }, () => {
     store.dispatch({type: 'GET_PARTNERS'});
-    store.dispatch({type: 'GET_SUBSCRIPTION'})
-    store.dispatch({type: 'GET_USER_DETAILS'})
+    if(store.getState().auth.loggedIn){
+      store.dispatch({type: 'GET_SUBSCRIPTION'})
+      store.dispatch({type: 'GET_USER_DETAILS'})
+    }
   });
 
   return _store;

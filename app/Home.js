@@ -30,9 +30,6 @@ class Home extends Component{
     this.state = {
       partners: this.props.partners
     }
-    this.props.getPartners();
-    this.props.getSubscriptionDetails();
-    this.props.getUserDetails();
   }
   componentWillReceiveProps(props){
     const filteredPartners = filterPartners(props.partners, props.ui.filters)

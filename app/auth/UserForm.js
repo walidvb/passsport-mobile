@@ -6,7 +6,7 @@ import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
 import Api from '../Api'
 
-const injectScript = ``
+const injectScript = `if(sendMsg){sendMsg()}`
 
 class UserForm extends Component{
   constructor(props) {

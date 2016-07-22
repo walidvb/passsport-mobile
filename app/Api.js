@@ -2,8 +2,8 @@ import { delay } from 'redux-saga'
 
 
 const url = (endpoint) => {
-  //const host = 'http://localhost:3000/';
-  const host = 'https://passsport.herokuapp.com/';
+  const host = 'http://localhost:3000/';
+  // const host = 'https://passsport.herokuapp.com/';
   return host+endpoint;
 }
 
@@ -74,7 +74,7 @@ class Api{
     return url('subscriptions/new?mobile=1&authentication_token='+token)
   }
   static signOut(user){
-    return fetch(url('users/sign_out'),{
+    return fetch(url('users/sign_out?authentication_token=' + user.auth_token),{
       ...Api.params(),
       method: 'DELETE',
     }).then((res) => res.json()).catch(() => {status: 'error'});
