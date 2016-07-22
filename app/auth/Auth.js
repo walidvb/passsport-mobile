@@ -50,6 +50,7 @@ class Auth extends Component{
   }
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
+    console.log(sub);
     if(sub.isValid()){
       return row('Expiration Date:', sub.expires_at.toDateString())
     }
@@ -61,6 +62,7 @@ class Auth extends Component{
     }
   }
   render() {
+    console.log(this.state);
     if(!this.props.auth.loggedIn || this.state.showUserForm){
       return (
         <UserForm {...this.props}/>
@@ -79,7 +81,7 @@ class Auth extends Component{
             {user.token ? row('Token:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
-            {sub.isValid() ? row('Validated Partners:', validatedPartners.length) : null}
+            {validatedPartners.length ? row('Validated Partners:', validatedPartners.length) : null}
           </View>
           {list}
         </ScrollView>

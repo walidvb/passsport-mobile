@@ -1,6 +1,9 @@
 export default class Subscription{
   constructor(options = {validated_partner_ids: []}){
     this.validated_partner_ids = options.validated_partner_ids || []
+    if(options.expires_at){
+      this.expires_at = new Date(options.expires_at)
+    }
   }
   isValid(){
     if(!this.expires_at){ return false }
