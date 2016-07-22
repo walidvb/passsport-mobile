@@ -4,8 +4,8 @@ import devTools from 'remote-redux-devtools';
 import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger';
 
-var {persistStore, autoRehydrate} = require('redux-persist');
-var {AsyncStorage} = require('react-native');
+const {persistStore, autoRehydrate} = require('redux-persist');
+const {AsyncStorage} = require('react-native');
 
 import rootSaga from './app/utils/sagas'
 import rootReducer from './app/rootReducer';

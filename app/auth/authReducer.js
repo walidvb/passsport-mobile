@@ -1,11 +1,21 @@
 var ReactNative = require('react-native');
 var { AsyncStorage } = ReactNative;
 
+const Fabric = require('react-native-fabric');
+const { Crashlytics } = Fabric;
+
 import Api from '../Api'
 
 // a reducer takes in the action, and a copy of current state
 export default function auth(state = [], action){
   switch(action.type){
+    case 'SIGNED_IN_SUCCESSFUL':
+    case 'SIGNED_UP_SUCCESSFUL':
+    case 'USER_FETCHED':
+      const { user } = action
+      Crashlytics.setUserName(user.name);
+      Crashlytics.setUserEmail(user.email);
+      Crashlytics.setUserIdentifier(user.id);
     case 'USER_FETCHED':
       return {
         ...state,
