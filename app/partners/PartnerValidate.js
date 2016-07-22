@@ -20,6 +20,8 @@ class PartnerValidate extends Component{
     this.state = {
       partnerToken: ''
     }
+  }
+  componentWillUnmount(){
     this.props.clearErrors()
   }
   renderOffline(){
@@ -66,7 +68,7 @@ class PartnerValidate extends Component{
             textAlign: 'center',
           }} placeholder='XXXXX-XXXXX'
           ref='partnerToken'
-          onChangeText={(val) => this.setState({ partnerToken: val})}
+          onChangeText={this.onChangeText.bind(this)}
         />
         <VbButton
           style={[baseStyles.button, {
@@ -78,6 +80,9 @@ class PartnerValidate extends Component{
         </VbButton>
       </View>
     )
+  }
+  onChangeText(val){
+    this.setState({ partnerToken: val})
   }
   render() {
     const { partner } = this.props;

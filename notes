@@ -1,10 +1,10 @@
 APP:
+  - trash subscription on sign out
   - PartnerShow change title to partner name
   - center discount and bar on _partnerOffer
   - fix long addresses breaking lines
   - thank you for validating page
   - rm use pass for FREE partners
-  - trash subscription on sign out
   - remove error on wrong token validation
   - check if offline to display correct validation screen
 

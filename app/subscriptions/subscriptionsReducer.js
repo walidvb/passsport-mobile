@@ -17,6 +17,8 @@ export default function subscription(state = {}, action){
         ...state,
         validated_partner_ids: validated_partner_ids
       };
+    case 'SIGNED_OUT':
+      return {}
     default:
       return state;
   }
