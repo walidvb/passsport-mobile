@@ -7,10 +7,11 @@ export function getUserDetails(){
 
 // Sign in
 
-export function signIn(data){
+export function signIn(user, options){
   return {
-    type: 'SIGN_IN',
-    data
+    type: 'SIGNED_IN_SUCCESSFUL',
+    user,
+    options
   }
 }
 // Sign up

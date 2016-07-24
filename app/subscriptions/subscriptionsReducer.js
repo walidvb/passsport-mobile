@@ -6,6 +6,7 @@ export default function subscription(state = {}, action){
     case 'SUBSCRIPTION_FETCHED':
     case 'SUBSCRIPTION_CREATED':
     case 'SIGNED_UP_SUCCESSFUL':
+    case 'SIGNED_IN_SUCCESSFUL':
       let { subscription } = action;
       return {
         ...subscription

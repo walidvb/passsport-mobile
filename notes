@@ -5,6 +5,7 @@ APP:
   - thank you for validating page
   - check if offline to display correct validation screen
   - only top categories
+  - login
 
 SERVER:
   - 4 chiffres aléatoires pr le token

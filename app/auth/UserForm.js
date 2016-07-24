@@ -30,7 +30,7 @@ class UserForm extends Component{
   onBridgeMessage(message){
     const { webviewbridge } = this.refs;
     message = JSON.parse(message);
-    console.log('message', message, this.props);
+    console.log('message from webViewBridge', message, this.props);
     switch(message.type){
       case 'POP':
         Actions.pop();
@@ -39,6 +39,14 @@ class UserForm extends Component{
         this.props.signUp(message.data.user, {
           subscription: message.data.subscription,
         })
+        break;
+      case 'SIGNED_IN_SUCCESSFUL':
+        this.props.signIn(message.data.user, {
+          subscription: message.data.subscription,
+        })
+        if(message.data.subscription){
+          Actions.pop();
+        }
         break;
       case 'SUBSCRIPTION_CREATED':
         this.props.subscriptionFetched(message.data.subscription)
