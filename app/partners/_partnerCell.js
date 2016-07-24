@@ -10,31 +10,42 @@ import ValidBanner from './_partnerValidBanner'
 
 class PartnerCell extends Component{
   render() {
-    const { partner, noValidateBanner, smallCell } = this.props;
+    const { partner, smallCell } = this.props;
     const goToPartner = () => {
       Actions.partnerShow({title: partner.name, id: partner.id})
     }
 
-    const validBanner = noValidateBanner ? null : partner.validated ? <ValidBanner/> : null
+    const validBanner = partner.validated ? <ValidBanner/> : null
     const customStyles = this.props.smallCell ? { height: 18*7 } : {}
+
+    const catStyles = ['small', 'light']
+    const insideStyles = [styles.overlay, this.props.style]
+
+    const inside = (
+      <View style={insideStyles}>
+        <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
+        <View style={styles.partnerCategories}>
+          {partner.categories.map((cat) => {
+            return (<VbText style={{paddingRight: 15}} styles={catStyles} lowercase key={cat + partner.name} text={'#'+cat}/>)
+          })}
+        </View>
+      </View>
+    );
     return (
       <TouchableHighlight
-      style={[styles.partnerCell, , {flexDirection: 'row'}]}
+      style={[styles.partnerCell, {flexDirection: 'row'}, this.props.noImage ? styles.noImage : null]}
       onPress={goToPartner}
       underlayColor={colors.brand}
       activeOpacity={0.3}>
+      {!this.props.noImage ? (
         <OverlayImage
-          source={{uri: partner.tile_image}}
-          style={[this.props.style, customStyles]}
-          overlayStyle={[styles.overlay]}>
+        source={{uri: partner.tile_image}}
+        style={[this.props.style, customStyles]}
+        overlayStyle={[styles.overlay]}>
           {validBanner}
-          <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
-          <View style={styles.partnerCategories}>
-            {partner.categories.map((cat) => {
-              return (<VbText style={{paddingRight: 15}} styles={['light','small']} lowercase key={cat + partner.name} text={'#'+cat}/>)
-            })}
-          </View>
-        </OverlayImage>
+          {inside}
+        </OverlayImage>) :
+      inside}
       </TouchableHighlight>
     )
   }
@@ -62,10 +73,15 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
   partnerCategories: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 9,
   },
+  noImage: {
+    backgroundColor: colors.red,
+    paddingTop: 18*1.5,
+  }
 })
 
 module.exports = PartnerCell

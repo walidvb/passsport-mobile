@@ -5,7 +5,7 @@ APP:
   - thank you for validating page
   - check if offline to display correct validation screen
   - only top categories
-  
+
 SERVER:
   - 4 chiffres aléatoires pr le token
   - domain names..??

@@ -73,12 +73,12 @@ class Auth extends Component{
       const sub =  new Subscription(this.props.subscription);
       const validatedPartners = _.filter(this.props.partners || [], (p) => p.validated)
 
-      const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noValidateBanner/> : null
+      const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noImage/> : null
       return(
         <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15}}>
           <View style={styles.details}>
             {row('Name:', user.name)}
-            {user.token ? row('Token:', user.token.toUpperCase()) : null}
+            {user.token ? row('Your Token:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
             {validatedPartners.length ? row('Validated Partners:', validatedPartners.length) : null}
