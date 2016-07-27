@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Navigator } from 'react-native';
 var baseStyles = require('../styles');
 import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
@@ -19,11 +19,13 @@ class UserForm extends Component{
   }
   render() {
     return (
-      <WebViewBridge
-        ref="webviewbridge"
-        onBridgeMessage={this.onBridgeMessage.bind(this)}
-        injectedJavaScript={injectScript}
-        source={{uri: this.state.url}}/>
+      <View style={{flex: 1, paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}}>
+        <WebViewBridge
+          ref="webviewbridge"
+          onBridgeMessage={this.onBridgeMessage.bind(this)}
+          injectedJavaScript={injectScript}
+          source={{uri: this.state.url}}/>
+      </View>
     )
   }
 

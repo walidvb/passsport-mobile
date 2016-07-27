@@ -8,6 +8,7 @@ import {
   TextInput,
   View,
   Image,
+  Navigator,
 } from 'react-native';
 var baseStyles = require('../styles')
 const VbText = require('../helpers/vbText')
@@ -20,13 +21,14 @@ class PartnerValidate extends Component{
     this.state = {
       partnerToken: ''
     }
+    console.log(props.partner.token);
   }
   componentWillUnmount(){
     this.props.clearErrors()
   }
   renderOffline(){
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
         <VbText
           text="Please give this code to the partner"
           uppercase
@@ -50,7 +52,7 @@ class PartnerValidate extends Component{
     const { errors } = this.props.ui
     const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null
     return (
-      <View style={[styles.container]}>
+      <View style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
         <VbText
           text="Please ask the partner to input his code"
           uppercase

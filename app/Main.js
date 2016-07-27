@@ -20,58 +20,50 @@ import colors from './colors'
 var baseStyles = require('./styles')
 
 class Main extends Component{
+
   render() {
     return (
       <Router
         navigationBarStyle={styles.navBar}
-        sceneStyle={[styles.sceneStyle, {paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}
+        sceneStyle={[styles.sceneStyle]}
         >
 
-        <Scene key="root" tabs={false}>
-
+      <Scene key="root" tabs={false} hideNavBar={true}>
+          <Scene
+            component={Auth}
+            key="auth"
+            hideNavBar={false}
+            title='My Pass'
+            {...this.props}
+          />
 
           <Scene
-            key="partners"
+            component={VbWebView}
+            key="vbWebView"
+            hideNavBar={false}
+            {...this.props}
+          />
+
+          <Scene
             initial={true}
-          >
-            <Scene
-              component={Auth}
-              key="auth"
-              hideNavBar={false}
-              title='My Pass'
-              {...this.props}
-            />
-
-            <Scene
-              component={VbWebView}
-              key="vbWebView"
-              hideNavBar={false}
-              renderTitle={(a)=>(<Text>a+'test'</Text>)}
-              {...this.props}
-            />
-
-            <Scene
-              initial={true}
-              hideNavBar={true}
-              component={Home}
-              key="home"
-              {...this.props}
-            />
-            <Scene
-              component={PartnerShow}
-              key="partnerShow"
-              title="Show"
-              hideNavBar={false}
-              {...this.props}
-            />
-            <Modal
-              component={PartnerValidate}
-              key="partnerValidate"
-              title="Validate"
-              hideNavBar={false}
-              {...this.props}
-            />
-          </Scene>
+            component={Home}
+            key="home"
+            {...this.props}
+          />
+          <Scene
+            component={PartnerShow}
+            key="partnerShow"
+            title="Show"
+            hideNavBar={false}
+            {...this.props}
+          />
+          <Modal
+            component={PartnerValidate}
+            key="partnerValidate"
+            title="Validate"
+            hideNavBar={false}
+            {...this.props}
+          />
         </Scene>
       </Router>
     )
@@ -81,7 +73,6 @@ class Main extends Component{
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: colors.brand,
-    top: 0
   },
   sceneStyle:{
     backgroundColor: colors.white,

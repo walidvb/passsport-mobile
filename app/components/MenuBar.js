@@ -36,6 +36,7 @@ class MenuBar extends Component {
   }
   render() {
     const loggedIn = this.props.auth.loggedIn
+
     return (
       <View style={[styles.container, this.props.style]}>
         <VbIcon
@@ -96,5 +97,14 @@ const styles = StyleSheet.create({
 
   }
 });
+
+import myConnector from '../utils/myConnector'
+import * as authActions from '../auth/authActionCreators';
+import * as subscriptionsActions from '../subscriptions/subscriptionsActionCreators';
+import * as partnerActions from '../partners/partnersActionCreators';
+import * as categoriesActions from '../categories/categoriesActionCreators';
+
+MenuBar = myConnector(MenuBar, {...authActions, ...subscriptionsActions, ...partnerActions, ...categoriesActions}, ['auth', 'partners', 'subscription', 'categories']);
+
 
 module.exports = MenuBar

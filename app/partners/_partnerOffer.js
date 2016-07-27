@@ -17,7 +17,7 @@ class PartnerOffer extends Component{
         <View style={[styles.categories]}>
           {partner.categories.map((cat) => {
             return (
-              <VbText style={styles.cat} key={cat} text={cat} uppercase styles={['bold']}></VbText>
+              <VbText style={styles.cat} key={cat.name} text={cat.name} uppercase styles={['bold']}></VbText>
             )
           })}
         </View>

@@ -31,6 +31,10 @@ class Home extends Component{
       partners: this.props.partners
     }
   }
+  static renaderNavigationBar(props){
+    console.log(props, this);
+    return(<MenuBar {...props} style={{paddingTop: 20}} />)
+  }
   componentWillReceiveProps(props){
     const filteredPartners = filterPartners(props.partners, props.ui.filters)
     if(filteredPartners !== this.state.partners)

@@ -10,3 +10,15 @@ APP:
 SERVER:
   - 4 chiffres aléatoires pr le token
   - domain names..??
+
+BUGS:
+
+ - when signing in with a subscription, GET PASS doesn't disappear
+ - signing out doesn't rerender the partner validation
+ - When signed in and press "my pass" on the left menu the app shut down
+
+ - After validating a partner the app shut down when scrolling down the partner list (when getting close to the validated one) in the main page or when searching for a partner
+
+ - No confirmation email after creating an account
+
+ - When signing in with a account that has an activated pass already still ask to validate or buy the pass

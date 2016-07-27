@@ -9,6 +9,7 @@ import {
   TextInput,
   ScrollView,
   TouchableHighlight,
+  Navigator,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -75,7 +76,7 @@ class Auth extends Component{
 
       const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noImage/> : null
       return(
-        <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15}}>
+        <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15, paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight+18}}>
           <View style={styles.details}>
             {row('Name:', user.name)}
             {user.token ? row('Your Token:', user.token.toUpperCase()) : null}

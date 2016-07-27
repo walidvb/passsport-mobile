@@ -12,6 +12,7 @@ import {
   View,
   Image,
   StyleSheet,
+  Navigator,
 } from 'react-native';
 
 const PartnerAbout = require('./_partnerAbout')
@@ -50,7 +51,7 @@ class PartnerShow extends Component{
     const padding = partner.validated ? 0 : 50
     return(
       <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding}}>
-        <OverlayImage source={{uri: partner.tile_image}} style={{height: 50, flex: .25}}>
+        <OverlayImage source={{uri: partner.tile_image}} style={[{height: 50, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
           { validBanner }
           <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
         </OverlayImage>
