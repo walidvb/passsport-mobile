@@ -3,8 +3,8 @@ const removeDiacritics = require('diacritics').remove;
 const filter = (partners, query, activeCats) => {
   if(!query.length && !activeCats.length){ return partners; }
   return partners.filter((partner) => {
-    const partnerSearchables = partner.categories.map((c) => removeDiacritics(c).toLowerCase())
-    partnerSearchables.push(removeDiacritics(partner.name).toLowerCase());
+    const partnerSearchables = partner.categories.map((c) => c.name)
+    partnerSearchables.push(partner.name);
     return testPartner(partnerSearchables, query, activeCats)
   })
 }
@@ -13,7 +13,7 @@ function testPartner(partnerSearchables, search, filters){
   let truthSearch, truthFilters;
   if(search.length){
     for(var i = 0; i < partnerSearchables.length; i++){
-      if(fuzzysearch(search.toLowerCase(), partnerSearchables[i])){
+      if(fuzzysearch(removeDiacritics(search).toLowerCase(), removeDiacritics(partnerSearchables[i]).toLowerCase())){
         truthSearch = true;
         break;
       }

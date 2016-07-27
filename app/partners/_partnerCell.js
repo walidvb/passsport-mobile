@@ -26,7 +26,7 @@ class PartnerCell extends Component{
         <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
         <View style={styles.partnerCategories}>
           {partner.categories.map((cat) => {
-            return (<VbText style={{paddingRight: 15}} styles={catStyles} lowercase key={cat + partner.name} text={'#'+cat}/>)
+            return (<VbText style={{paddingRight: 15}} styles={catStyles} lowercase key={cat.slug + partner.name} text={'#'+cat.name}/>)
           })}
         </View>
       </View>

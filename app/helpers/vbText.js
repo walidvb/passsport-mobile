@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import colors from '../colors'
-class VbText extends Component{
 
+
+class VbText extends Component{
+  static propTypes = {
+    text: PropTypes.string,
+    style: PropTypes.object,
+  }
   render() {
     let p = this.props;
     let { text } = this.props;

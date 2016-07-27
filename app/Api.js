@@ -2,8 +2,8 @@ import { delay } from 'redux-saga'
 
 
 const url = (endpoint) => {
-  // const host = 'http://localhost:3000/';
-  const host = 'https://passsport.herokuapp.com/';
+  const host = 'http://localhost:3000/';
+  // const host = 'https://passsport.herokuapp.com/';
   return host+endpoint;
 }
 
@@ -53,6 +53,11 @@ class Api{
     }).then(res => res.json()).then(b => b);
   }
 
+  static getCategories(){
+    return fetch(url('categories'),  {
+      ...Api.params(),
+    }).then((res) => res.json()).then(b => b)
+  }
   // SUBSCRIPTION
   static getSubscriptionDetails(){
     return fetch(url('subscription.json'), {
