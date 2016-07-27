@@ -21,11 +21,10 @@ export default class CategoriesList extends Component {
     }
   }
   transformedCats(categories, selected){
-    console.log(categories, selected);
     return categories.map((cat) => {
       return {
-        name: cat.name,
-        active: selected.includes(cat.name),
+        name: cat,
+        active: selected.includes(cat),
       }
     })
   }
