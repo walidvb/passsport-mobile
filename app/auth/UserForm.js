@@ -19,13 +19,11 @@ class UserForm extends Component{
   }
   render() {
     return (
-      <View style={{flex: 1, paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}}>
-        <WebViewBridge
-          ref="webviewbridge"
-          onBridgeMessage={this.onBridgeMessage.bind(this)}
-          injectedJavaScript={injectScript}
-          source={{uri: this.state.url}}/>
-      </View>
+      <WebViewBridge
+        ref="webviewbridge"
+        onBridgeMessage={this.onBridgeMessage.bind(this)}
+        injectedJavaScript={injectScript}
+        source={{uri: this.state.url}}/>
     )
   }
 
@@ -69,5 +67,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   }
 })
+
+
+import myConnector from '../utils/myConnector'
+import * as authActions from '../auth/authActionCreators';
+import * as subscriptionsActions from '../subscriptions/subscriptionsActionCreators';
+
+UserForm = myConnector(UserForm, {...authActions, ...subscriptionsActions}, ['auth', 'subscription']);
 
 export default UserForm

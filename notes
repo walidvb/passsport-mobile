@@ -4,7 +4,7 @@ APP:
   - fix long addresses breaking lines
   - thank you for validating page
   - check if offline to display correct validation screen
-  - only top categories
+
   - login
 
 SERVER:
@@ -13,6 +13,7 @@ SERVER:
 
 BUGS:
 
+ - too many categories (salsa)
  - when signing in with a subscription, GET PASS doesn't disappear
  - signing out doesn't rerender the partner validation
  - When signed in and press "my pass" on the left menu the app shut down

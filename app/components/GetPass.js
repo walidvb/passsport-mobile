@@ -10,7 +10,7 @@ import Subscription  from '../subscriptions/Subscription';
 class GetPass extends Component{
 
   onPress(){
-    Actions.auth({action: 'get-pass'});
+    Actions.userForm({...this.props});
   }
   render() {
     console.log('rerendering with ', this.props);
@@ -23,7 +23,7 @@ class GetPass extends Component{
     }
     return (
       <VbButton
-      onPress={this.onPress}
+      onPress={this.onPress.bind(this)}
       {...this.props}>Get Pass</VbButton>
     );
   }
