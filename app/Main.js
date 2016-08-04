@@ -59,7 +59,7 @@ class Main extends Component{
           <Scene
             component={PartnerShow}
             key="partnerShow"
-            title="Show"
+            title="Partner"
             hideNavBar={false}
             {...this.props}
           />

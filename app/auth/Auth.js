@@ -51,7 +51,6 @@ class Auth extends Component{
   }
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
-    console.log(sub);
     if(sub.isValid()){
       return row('Expiration Date:', sub.expires_at.toDateString())
     }
@@ -63,7 +62,6 @@ class Auth extends Component{
     }
   }
   render() {
-    console.log(this.state);
     if(!this.props.auth.loggedIn || this.state.showUserForm){
       return (
         <UserForm {...this.props}/>
@@ -72,7 +70,7 @@ class Auth extends Component{
     else{
       const { user } = this.props.auth;
       const sub =  new Subscription(this.props.subscription);
-      const validatedPartners = _.filter(this.props.partners || [], (p) => p.validated)
+      const validatedPartners = !this.props.partners.length ? [] : this.props.partners.filter( (p) => p.validated)
 
       const list = validatedPartners.length ? <PartnerList partners={validatedPartners} style={styles.validatedList} smallCell noImage/> : null
       return(

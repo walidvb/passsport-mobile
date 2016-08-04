@@ -2,8 +2,8 @@ import { delay } from 'redux-saga'
 
 
 const url = (endpoint) => {
-  // const host = 'http://localhost:3000/';
-  const host = 'https://passsport.herokuapp.com/';
+  const host = 'http://localhost:3000/';
+  // const host = 'https://passsport.herokuapp.com/';
   return host+endpoint;
 }
 
@@ -46,7 +46,6 @@ class Api{
   }
 
   static validatePartner(partnerId, partnerToken){
-    console.log(partnerId, partnerToken, Api.params({ partnerToken }));
     return fetch(url(`partners/${partnerId}/validations`), {
       ...Api.params({ partner_token: partnerToken }),
       method: 'POST',

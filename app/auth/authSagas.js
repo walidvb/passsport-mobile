@@ -7,7 +7,6 @@ import Api from '../Api'
 function* getUserDetails(action){
   let { user } = action;
   const response = yield Api.getUser()
-  console.log(response);
   if(response){
     yield put({ type: 'USER_FETCHED', ...response })
   }else{

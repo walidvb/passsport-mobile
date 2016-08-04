@@ -4,10 +4,6 @@ import colors from '../colors'
 
 
 class VbText extends Component{
-  static propTypes = {
-    text: PropTypes.string,
-    style: PropTypes.object,
-  }
   render() {
     let p = this.props;
     let { text } = this.props;

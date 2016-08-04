@@ -13,7 +13,6 @@ class GetPass extends Component{
     Actions.userForm({...this.props});
   }
   render() {
-    console.log('rerendering with ', this.props);
     // If user has subscription and it's valid
     if(this.props.auth.loggedIn){
       const sub = new Subscription(this.props.subscription)

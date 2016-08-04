@@ -26,8 +26,10 @@ class MenuBar extends Component {
         Actions.vbWebView({uri: Api.faqs_url()})
         break
       case 'myPass':
-      case 'signIn':
         Actions.auth()
+        break
+      case 'signIn':
+        Actions.userForm()
         break
       case 'logOut':
         this.props.signOut(this.props.auth.user)

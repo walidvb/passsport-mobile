@@ -22,7 +22,7 @@ export function* watchFetchPartners(){
 export function* validatePartner(action){
   let { partner, partnerToken } = action;
   yield put({ type: 'VALIDATING_PARTNER' })
-  console.log('validating', partner, partnerToken);
+
   if(partner.token != partnerToken){
     yield put({ type: 'PARTNER_VALIDATED_ERROR', error: 'Oops, it seems you\'ve entered the wrong token. \n Please try again' })
   }

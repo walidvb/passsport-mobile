@@ -5,9 +5,11 @@ import {
   ListView,
   Text,
   StyleSheet,
+  View,
 } from 'react-native';
 import colors from '../colors'
 const VbText = require('../helpers/vbText')
+const VbIcon = require('../helpers/vbIcon')
 const VbTextInput = require('../helpers/vbTextInput')
 
 export default class CategoriesList extends Component {
@@ -63,13 +65,17 @@ export default class CategoriesList extends Component {
   }
   renderCategoryCell(category){
     const activeStyle = category.active ? ['bold', 'brand'] : []
+    const checkmark = category.active ? <VbIcon name="check" style={{color: colors.brand, marginRight: 4.5}} /> : null
     return (
-      <VbText
-        onPress={() => this.props.toggleCategory(category.name)}
-        uppercase
-        styles={activeStyle}
-        style={[styles.category]}
-        text={category.name} />
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        {checkmark}
+        <VbText
+          onPress={() => this.props.toggleCategory(category.name)}
+          uppercase
+          styles={activeStyle}
+          style={[styles.category]}
+          text={category.name} />
+      </View>
     )
   }
   renderHeader(){

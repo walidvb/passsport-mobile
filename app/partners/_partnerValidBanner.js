@@ -4,12 +4,10 @@ import React from 'react';
 import colors from '../colors'
 const VbIcon = require('../helpers/vbIcon')
 import {
-  View,
-  Text,
   StyleSheet,
 } from 'react-native';
 
-const ValidBanner = ({}) => (
+const ValidBanner = () => (
   <VbIcon name="check" style={styles.container} size={27}/>
 );
 
