@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
+import RequiresConnection from 'react-native-offline-mode';
 
-export default class VbWebView extends Component {
+class VbWebView extends Component {
 
   render() {
     return (
@@ -27,3 +28,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+export default  RequiresConnection(VbWebView, "Oops, it seems like you're not connected to the internet. Please try again later!")

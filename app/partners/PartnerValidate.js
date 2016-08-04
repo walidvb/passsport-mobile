@@ -1,6 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import _ from 'lodash';
+import RequiresConnection from 'react-native-offline-mode';
 
 import {
   StyleSheet,
@@ -15,7 +16,7 @@ const VbText = require('../helpers/vbText')
 const VbTextInput = require('../helpers/vbTextInput')
 const VbButton = require('../helpers/vbButton')
 
-class PartnerValidate extends Component{
+class PartnerValidateOnline extends Component{
   constructor(props) {
     super(props)
     this.state = {
@@ -26,29 +27,7 @@ class PartnerValidate extends Component{
   componentWillUnmount(){
     this.props.clearErrors()
   }
-  renderOffline(){
-    return (
-      <View style={[styles.container, {paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-        <VbText
-          text="Please give this code to the partner"
-          uppercase
-          styles={['bold']}
-          style={{
-            marginBottom: 18*4,
-          }}/>
-        <VbText uppercase styles={['bold']} text="Your Code:" style={{marginBottom: 18*2}}/>
-        <VbText uppercase text={this.props.auth.user.token} style={{marginBottom: 18*2}}/>
-        <VbButton
-          style={[baseStyles.button, {
-            flex: 1
-          }]}
-          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
-          {"Validate"}
-        </VbButton>
-      </View>
-    )
-  }
-  renderOnline(){
+  render(){
     const { errors } = this.props.ui
     const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null
     return (
@@ -86,10 +65,44 @@ class PartnerValidate extends Component{
   onChangeText(val){
     this.setState({ partnerToken: val})
   }
-  render() {
-    const { partner } = this.props;
-    return this.renderOnline()
+};
 
+class PartnerValidateOffline extends Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      partnerToken: ''
+    }
+    console.log(props.partner.token);
+  }
+  componentWillUnmount(){
+    this.props.clearErrors()
+  }
+  render(){
+    const { partner } = this.props;
+    return (
+      <View style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+        <VbText
+          text="Please give this code to the partner"
+          uppercase
+          styles={['bold']}
+          style={{
+            marginBottom: 18*4,
+          }}/>
+        <VbText uppercase styles={['bold']} text="Your Code:" style={{marginBottom: 18*2}}/>
+        <VbText uppercase text={this.props.auth.user.token} style={{marginBottom: 18*2}}/>
+        <VbButton
+          style={[baseStyles.button, {
+            flex: 1
+          }]}
+          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
+          {"Validate"}
+        </VbButton>
+      </View>
+    )
+  }
+  onChangeText(val){
+    this.setState({ partnerToken: val})
   }
 };
 
@@ -104,6 +117,8 @@ const styles = StyleSheet.create({
 
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
-PartnerValidate = myConnector(PartnerValidate, partnersActionCreators, ['partners', 'auth']);
 
-module.exports = PartnerValidate
+PartnerValidateOnline = myConnector(PartnerValidateOnline, partnersActionCreators, ['partners', 'auth']);
+PartnerValidateOffline = myConnector(PartnerValidateOffline, partnersActionCreators, ['partners', 'auth']);
+
+module.exports = RequiresConnection(PartnerValidateOnline, PartnerValidateOffline)

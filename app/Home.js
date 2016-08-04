@@ -32,7 +32,6 @@ class Home extends Component{
     }
   }
   static renaderNavigationBar(props){
-    console.log(props, this);
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
   }
   componentWillReceiveProps(props){
