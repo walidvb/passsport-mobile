@@ -57,21 +57,21 @@ class Home extends Component{
           styles={{
             drawer:{
               backgroundColor: 'white',
-              marginTop: 60,
-              paddingBottom: 60,
+              marginTop: 15,
+              paddingBottom: 15,
               overflow: 'hidden'
             }
           }}
           tweenHandler={Drawer.tweenPresets.parallax}
           tapToClose={true}
         >
-        <MenuContext style={{flex: 1}}>
+        <MenuContext style={{flex: 1, backgroundColor: 'white'}}>
           <MenuBar {...this.props} style={{paddingTop: 20}} />
           <PartnerList partners={this.state.partners} style={{
             flex: 1,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: sub.isValid() ? 0 : 60,
+            marginBottom: sub.isValid() ? 0 : 50,
           }}/>
           <GetPass float/>
           </MenuContext>

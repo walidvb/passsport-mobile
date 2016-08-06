@@ -26,7 +26,7 @@ class PartnerCell extends Component{
         <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
         <View style={styles.partnerCategories}>
           {partner.categories.map((cat) => {
-            return (<VbText style={{paddingRight: 15}} styles={catStyles} lowercase key={cat.slug + partner.name} text={'#'+cat.name}/>)
+            return (<VbText style={styles.categorySingle} styles={catStyles} lowercase key={cat.slug + partner.name} text={'#'+cat.name}/>)
           })}
         </View>
       </View>
@@ -56,18 +56,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     paddingLeft: 15,
-    paddingBottom: 25,
+    paddingBottom: 15,
   },
   categories: {
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
-    paddingBottom: 18,
     paddingTop: 18,
     paddingLeft: 15,
     paddingLeft: 15,
   },
-  cat: {
-
+  categorySingle: {
+    paddingRight: 15,
+    paddingBottom: 4.5,
   },
   partnerCell: {
     marginBottom: 18,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 9,
+    alignItems: 'flex-start'
   },
   noImage: {
     backgroundColor: colors.red,
