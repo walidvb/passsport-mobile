@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger';
 
 const {persistStore, autoRehydrate} = require('redux-persist');
-const {AsyncStorage} = require('react-native');
+const {AsyncStorage, NetInfo} = require('react-native');
 
 import rootSaga from './app/utils/sagas'
 import rootReducer from './app/rootReducer';
@@ -47,11 +47,14 @@ export default function configureStore(initialState) {
     storage: AsyncStorage,
     blacklist: ['ui'],
   }, () => {
-    store.dispatch({type: 'GET_PARTNERS'});
-    if(store.getState().auth.loggedIn){
-      store.dispatch({type: 'GET_SUBSCRIPTION'})
-      store.dispatch({type: 'GET_USER_DETAILS'})
-    }
+    NetInfo.isConnected.fetch().done((isConnected) => {
+      store.dispatch({type: 'GET_PARTNERS'});
+      if(store.getState().auth.loggedIn){
+        store.dispatch({type: 'GET_SUBSCRIPTION'})
+        store.dispatch({type: 'GET_USER_DETAILS'})
+      }
+    })
+
   });
 
   return _store;

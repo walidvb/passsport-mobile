@@ -7,8 +7,8 @@
   },
   "dependencies": {
     "diacritics": "^1.2.3",
-    "lodash": "^4.13.1",
-    "react": "15.2.1",
+    "lodash": "^4.14.1",
+    "react": "15.3.0",
     "react-native": "^0.30.0",
     "react-native-button": "^1.6.0",
     "react-native-drawer": "^2.2.6",
@@ -17,7 +17,7 @@
     "react-native-maps": "^0.7.1",
     "react-native-menu": "^0.20.1",
     "react-native-offline-mode": "^0.1.2",
-    "react-native-router-flux": "^3.31.2",
+    "react-native-router-flux": "^3.33.0",
     "react-native-vector-icons": "^2.0.3",
     "react-native-webview-bridge": "git+https://github.com/alinz/react-native-webview-bridge.git",
     "react-redux": "^4.4.5",
@@ -26,8 +26,8 @@
     "redux-persist": "^3.2.2",
     "redux-saga": "^0.11.0",
     "redux-thunk": "^2.1.0",
-    "remote-redux-devtools": "^0.3.4",
-    "tcomb-form-native": "^0.5.3"
+    "remote-redux-devtools": "^0.4.1",
+    "tcomb-form-native": "^0.6.0"
   },
   "devDependencies": {
     "react-native-network-boot": "^1.0.6"

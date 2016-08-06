@@ -121,4 +121,5 @@ import * as partnersActionCreators from './partnersActionCreators';
 PartnerValidateOnline = myConnector(PartnerValidateOnline, partnersActionCreators, ['partners', 'auth']);
 PartnerValidateOffline = myConnector(PartnerValidateOffline, partnersActionCreators, ['partners', 'auth']);
 
-module.exports = RequiresConnection(PartnerValidateOnline, PartnerValidateOffline)
+// module.exports = RequiresConnection(PartnerValidateOnline, PartnerValidateOffline)
+module.exports = RequiresConnection(PartnerValidateOnline, 'Please connect to the internet to validate this partner')
