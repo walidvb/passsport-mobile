@@ -2,9 +2,9 @@ import { delay } from 'redux-saga'
 
 
 const url = (endpoint) => {
-  const host = 'http://192.168.44.241:3000/'
+  // const host = 'http://192.168.44.241:3000/'
   // const host = 'http://localhost:3000/';
-  // const host = 'https://passsport.herokuapp.com/';
+  const host = 'https://passsport.herokuapp.com/';
   return host+endpoint;
 }
 

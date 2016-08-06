@@ -38,7 +38,9 @@ class PartnerShow extends Component{
   largeImgUrl(partner){
     return { uri: partner.logo }
   }
-
+  componentWillReceiveProps(props){
+    console.log('props received', this.props, props);
+  }
   render() {
     const { partner } = this.state;
     const validBanner = partner.validated ? <ValidBanner/> : null
