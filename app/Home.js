@@ -47,10 +47,10 @@ class Home extends Component{
     const sub = new Subscription(this.props.subscription)
     return(
         <Drawer
-          type="static"
+          type="overlay"
           content={<CategoriesList {...this.props} />}
-          openDrawerOffset={160}
-          closedDrawerOffset={0}
+          openDrawerOffset={170}
+          closedDrawerOffset={-30}
           onOpen={() => this.props.toggleFilters(true)}
           onClose={() => this.props.toggleFilters(false)}
           styles={{
