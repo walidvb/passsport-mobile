@@ -8,3 +8,5 @@
 
 app_identifier "com.walidvb.passsport" # The bundle identifier of your app
 username "walidvb@gmail.com" # your Apple ID user
+
+ipa "./ios/PassSport.ipa"
