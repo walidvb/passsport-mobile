@@ -47,20 +47,21 @@ class Home extends Component{
     const sub = new Subscription(this.props.subscription)
     return(
         <Drawer
-          type="overlay"
+          type="static"
+          open={this.props.ui.filters.drawerOpen}
           content={<CategoriesList {...this.props} />}
           openDrawerOffset={170}
-          closedDrawerOffset={-30}
+          closedDrawerOffset={0}
           onOpen={() => this.props.toggleFilters(true)}
           onClose={() => this.props.toggleFilters(false)}
           styles={{
             drawer:{
               backgroundColor: 'white',
               marginTop: 60,
+              paddingBottom: 60,
               overflow: 'hidden'
             }
           }}
-          open={this.props.ui.filters.drawerOpen}
           tweenHandler={Drawer.tweenPresets.parallax}
           tapToClose={true}
         >
