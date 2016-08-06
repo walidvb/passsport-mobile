@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
     borderBottomColor: colors.lightGray,
     borderBottomWidth: 1,
-    paddingBottom: 27,
+    paddingBottom: 18,
     paddingTop: 27,
     marginRight: 18,
     marginLeft: 18,
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
   },
   cat: {
     marginRight: 9,
+    marginBottom: 9,
   },
   discount: {
     backgroundColor: colors.red,
