@@ -12,8 +12,7 @@ class GetPass extends Component{
   onPress(){
     const props = this.props
     NetInfo.isConnected.fetch().done((isConnected) => {
-
-      isConnected ? Actions.userForm({...props}) : Alert.alert("Oops, you're offline", "Please connect to the internet and try again"+isConnected)
+      isConnected ? Actions.userForm({...props}) : Alert.alert("Oops, you're offline", "Please connect to the internet and try again")
     });
   }
   render() {
