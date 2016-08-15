@@ -45,6 +45,7 @@ class Home extends Component{
   }
   render() {
     const sub = new Subscription(this.props.subscription)
+    const marginBottom = sub.isValid() ? 0 : 50
     return(
       <MenuContext style={{flex: 1, backgroundColor: 'white'}}>
         <MenuBar {...this.props} toggleDrawer={this.toggleDrawer} style={{paddingTop: 20}} />
@@ -69,7 +70,7 @@ class Home extends Component{
             drawer:{
               backgroundColor: 'white',
               marginTop: 0,
-              paddingBottom: 15,
+              paddingBottom: marginBottom,
               overflow: 'hidden'
             }
           }}
@@ -80,7 +81,7 @@ class Home extends Component{
             flex: 1,
             paddingLeft: 15,
             paddingRight: 15,
-            marginBottom: sub.isValid() ? 0 : 50,
+            marginBottom: marginBottom,
             backgroundColor: 'white',
           }}/>
         </Drawer>
