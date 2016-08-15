@@ -22,7 +22,6 @@ class PartnerOffer extends Component{
           })}
         </View>
         <View style={baseStyles.element}>
-          <VbText text='Discount' uppercase styles={['bold']} style={baseStyles.title}/>
           <VbHTMLView value={partner.offer_details} />
         </View>
     	</ScrollView>

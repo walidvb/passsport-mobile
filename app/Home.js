@@ -41,23 +41,34 @@ class Home extends Component{
       ...this.state,
       partners: filteredPartners,
     })
-
+    console.debug('newProps.filters.drawerOpen', props.ui.filters.drawerOpen);
   }
   render() {
     const sub = new Subscription(this.props.subscription)
     return(
+      <MenuContext style={{flex: 1, backgroundColor: 'white'}}>
+        <MenuBar {...this.props} toggleDrawer={this.toggleDrawer} style={{paddingTop: 20}} />
         <Drawer
+          ref={(ref) => this._drawer = ref}
           type="static"
           open={this.props.ui.filters.drawerOpen}
           content={<CategoriesList {...this.props} />}
           openDrawerOffset={170}
           closedDrawerOffset={0}
-          onOpen={() => this.props.toggleFilters(true)}
-          onClose={() => this.props.toggleFilters(false)}
+          onOpenStart={() => {
+            if(!this.props.ui.filters.drawerOpen){
+              this.props.toggleFilters(true)
+            }
+          }}
+          onCloseStart={() => {
+            if(this.props.ui.filters.drawerOpen){
+              this.props.toggleFilters(false);
+            }
+          }}
           styles={{
             drawer:{
               backgroundColor: 'white',
-              marginTop: 15,
+              marginTop: 0,
               paddingBottom: 15,
               overflow: 'hidden'
             }
@@ -65,17 +76,16 @@ class Home extends Component{
           tweenHandler={Drawer.tweenPresets.parallax}
           tapToClose={true}
         >
-        <MenuContext style={{flex: 1, backgroundColor: 'white'}}>
-          <MenuBar {...this.props} style={{paddingTop: 20}} />
           <PartnerList partners={this.state.partners} style={{
             flex: 1,
             paddingLeft: 15,
             paddingRight: 15,
             marginBottom: sub.isValid() ? 0 : 50,
+            backgroundColor: 'white',
           }}/>
-          <GetPass float/>
-          </MenuContext>
         </Drawer>
+      <GetPass float/>
+      </MenuContext>
     )
   }
 };

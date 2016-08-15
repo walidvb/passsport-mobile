@@ -65,7 +65,7 @@ export default class CategoriesList extends Component {
   }
   renderCategoryCell(category){
     const activeStyle = category.active ? ['bold', 'brand'] : []
-    const checkmark = category.active ? <VbIcon name="check" style={{color: colors.brand, marginRight: 4.5}} /> : null
+    const checkmark = category.active ? <VbIcon name="check" style={styles.checkmark} /> : null
     return (
       <View style={{flex: 1, flexDirection: 'row'}}>
         {checkmark}
@@ -94,6 +94,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
 
+  },
+  checkmark: {
+    color: colors.brand,
+    marginRight: 4.5,
   },
   category: {
     paddingBottom: 10,

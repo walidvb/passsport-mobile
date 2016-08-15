@@ -46,15 +46,14 @@ class MenuBar extends Component {
     }
   }
   render() {
-    const loggedIn = this.props.auth.loggedIn
-
+    const loggedIn = this.props.auth.loggedIn;
     return (
       <View style={[styles.container, this.props.style]}>
         <VbIcon
           size={27}
-          style={[styles.icon, {color: colors.white}]}
+          style={[styles.icon, {color: colors.white, marginLeft: 5}]}
           name='bars'
-          onPress={this.props.toggleFilters}/>
+          onPress={() => this.props.toggleFilters()}/>
         <Image
           resizeMode='contain'
           style={{height: 40, flex: 1,}}

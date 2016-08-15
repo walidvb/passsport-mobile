@@ -3,6 +3,7 @@ export default function ui(state = {}, action){
   switch(action.type){
     case 'TOGGLE_FILTERS':
       const newState = action.toOpen || !state.filters.drawerOpen
+      console.log('drawerOpen: ', newState);
       return {
         ...state,
         filters: {
