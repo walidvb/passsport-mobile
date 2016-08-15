@@ -41,14 +41,13 @@ class Home extends Component{
       ...this.state,
       partners: filteredPartners,
     })
-    console.debug('newProps.filters.drawerOpen', props.ui.filters.drawerOpen);
   }
   render() {
     const sub = new Subscription(this.props.subscription)
     const marginBottom = sub.isValid() ? 0 : 50
     return(
       <MenuContext style={{flex: 1, backgroundColor: 'white'}}>
-        <MenuBar {...this.props} toggleDrawer={this.toggleDrawer} style={{paddingTop: 20}} />
+        <MenuBar {...this.props} style={{paddingTop: 20}} />
         <Drawer
           ref={(ref) => this._drawer = ref}
           type="static"

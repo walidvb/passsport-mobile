@@ -80,7 +80,15 @@ export default class CategoriesList extends Component {
   }
   renderHeader(){
      return(
-       <VbTextInput style={styles.search} ref='search' onChangeText={this.search.bind(this)} placeholder='SEARCH'/>
+       <VbTextInput
+        style={styles.search}
+        ref='search'
+        onChangeText={this.search.bind(this)}
+        onSubmitEditing={() => this.props.toggleFilters(false)}
+        placeholder='SEARCH'
+        returnKeyType='done'
+        clearButtonMode='always'
+      />
     )
   }
   search(query){
