@@ -12,31 +12,32 @@ const VbIcon = require('../helpers/vbIcon')
 function urlWithIcon(icon, text, url){
   if(!text){return null}
   const isUrl = /https?:\/\/([^\/]+)/.exec(text)
-  const renderedTtext = isUrl ? isUrl[1] : text
+  const renderedText = isUrl ? isUrl[1] : text
   return (
     <View style={styles.contactRow}>
       <VbIcon style={styles.icon} name={icon}/>
-      <VbLink url={url || text} style={{flex: 1, flexWrap: 'wrap', flexDirection: 'row'}}>
-        <VbText text={renderedTtext} />
+      <VbLink url={url || text} style={{flex: 1}}>
+        <VbText text={renderedText} />
       </VbLink>
     </View>
   )
 }
+function findUs(partner){
+  return (!partner.facebook && !partner.twitter) ? null : (<View style={[baseStyles.element, styles.findUs]}>
+    <VbText text="Find us on:" style={{
+      marginRight: 18
+    }}></VbText>
+    {(<VbLink url={partner.facebook}>
+      <VbIcon style={[styles.icon, {color: colors.black}]} name="facebook"/>
+    </VbLink>)}
+    {(<VbLink url={partner.twitter}>
+      <VbIcon style={[styles.icon, {color: colors.black}]} name="twitter"/>
+    </VbLink>)}
+  </View>)
+}
 class PartnerAbout extends Component{
   render() {
     const { partner } = this.props;
-
-    const findUs = (!partner.facebook && !partner.twitter) ? null : (<View style={[baseStyles.element, styles.findUs]}>
-      <VbText text="Find us on:" style={{
-        marginRight: 18
-      }}></VbText>
-      {(<VbLink url={partner.facebook}>
-        <VbIcon style={[styles.icon, {color: colors.black}]} name="facebook"/>
-      </VbLink>)}
-      {(<VbLink url={partner.twitter}>
-        <VbIcon style={[styles.icon, {color: colors.black}]} name="twitter"/>
-      </VbLink>)}
-    </View>)
 
     return (
     	<ScrollView style={styles.container}>
@@ -47,7 +48,7 @@ class PartnerAbout extends Component{
           {urlWithIcon('envelope', partner.email, "mailto:"+partner.email)}
 
         </View>
-        {findUs}
+        {findUs(partner)}
         <View style={baseStyles.element}>
           <VbHTMLView value={partner.description} />
         </View>
@@ -76,8 +77,8 @@ const styles = StyleSheet.create({
   },
   contactRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     marginBottom: 13.5,
+    flex: 1,
   },
   findUs: {
     flexDirection: 'row',

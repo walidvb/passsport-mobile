@@ -25,7 +25,7 @@ class VbLink extends Component{
     if(!this.props.url){ return null }
     return (
       <TouchableOpacity
-        onPress={this.handleClick.bind(this)}>
+        onPress={this.handleClick.bind(this)} {...this.props}>
         <View>
           {this.props.children}
         </View>

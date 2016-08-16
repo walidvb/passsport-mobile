@@ -5,26 +5,29 @@ import colors from '../colors'
 
 class VbText extends Component{
   render() {
-    let p = this.props;
-    let { text } = this.props;
+    let props = this.props;
+    let { text, numberOfLines } = this.props;
     text = text || '';
-    if(p.uppercase){
+    if(props.uppercase){
       text = text.toUpperCase()
     }
-    if(p.lowercase){
+    if(props.lowercase){
       text = text.toLowerCase()
     }
-    const fontWeight = p.bold ? 'bold' : 'normal';
-    let _styles = [styles.base, p.style]
-    if(p.styles){
-      for(let i = 0; i < p.styles.length; i++){
-        _styles.push(styles[p.styles[i]])
+    const fontWeight = props.bold ? 'bold' : 'normal';
+    let _styles = [styles.base, props.style]
+    if(props.styles){
+      for(let i = 0; i < props.styles.length; i++){
+        _styles.push(styles[props.styles[i]])
       }
     }
+    console.log(numberOfLines);
     return (
     	<Text
-        onPress={p.onPress}
-        style={_styles}>
+        onPress={props.onPress}
+        style={_styles}
+        numberOfLines={numberOfLines}
+      >
         {text}
       </Text>
     );
