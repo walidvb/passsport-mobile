@@ -21,7 +21,6 @@ class VbText extends Component{
         _styles.push(styles[props.styles[i]])
       }
     }
-    console.log(numberOfLines);
     return (
     	<Text
         onPress={props.onPress}

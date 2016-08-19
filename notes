@@ -1,11 +1,15 @@
 APP:
   - center discount and bar on _partnerOffer
-  - fix long addresses breaking lines
+  - search bar underline(as on https://projects.invisionapp.com/share/RN7M4UHK7#/screens/170025282/comments)
+  - remove keyboard when filters drawer is closed
+  - offline detected although online
+  - offline validation(and syncing)
   - thank you for validating page
 
 SERVER:
   - 4 chiffres aléatoires pr le token
-  - domain names..??
+  - sports gratuits: 3 colonnes
+  -
 
 BUGS:
 

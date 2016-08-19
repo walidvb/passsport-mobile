@@ -18,8 +18,8 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    
-    
+
+
   end
 
   desc "Runs all the tests"
@@ -27,16 +27,6 @@ platform :ios do
     scan
   end
 
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym # Build your app - more options available
-    pilot
-
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
-  end
 
   desc "Deploy a new version to the App Store"
   lane :appstore do
@@ -47,8 +37,19 @@ platform :ios do
     # frameit
   end
 
-  # You can define as many lanes as you want
-
+  desc "Submit a new Beta Build to Crashlytics"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    cert
+    sigh
+    gym
+    crashlytics(
+      api_token: "...",
+      build_secret: "...",
+      groups: "qa-team",
+      notes: "Automatic iOS Build"
+    )
+  end
   after_all do |lane|
     # This block is called, only if the executed lane was successful
 
