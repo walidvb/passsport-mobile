@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  dismissKeyboard,
 } from 'react-native';
 import colors from '../colors'
 const VbText = require('../helpers/vbText')
@@ -84,15 +85,13 @@ export default class CategoriesList extends Component {
   }
   renderHeader(){
      return(
-       <VbTextInput
-        style={styles.search}
-        ref='search'
-        onChangeText={this.search.bind(this)}
-        onSubmitEditing={() => this.props.toggleFilters(false)}
-        placeholder='SEARCH'
-        returnKeyType='done'
-        clearButtonMode='always'
-      />
+       <View style={styles.search}>
+         <VbTextInput
+          ref='search'
+          onChangeText={this.search.bind(this)}
+          onSubmitEditing={() => this.props.toggleFilters(false)}
+        />
+      </View>
     )
   }
   search(query){
@@ -106,6 +105,12 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
 
+  },
+  search: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
+    marginBottom: 10,
+    marginTop: 15,
   },
   checkmark: {
     color: colors.brand,
