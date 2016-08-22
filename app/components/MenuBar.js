@@ -52,7 +52,7 @@ class MenuBar extends Component {
           onPress={() => this.props.toggleFilters()}/>
         <Image
           resizeMode='contain'
-          style={{height: 40, flex: 1,}}
+          style={{height: 50, flex: 1,}}
           source={require('../resources/images/logo.png')}></Image>
           <Menu onSelect={this.menuClick.bind(this)}>
             <MenuTrigger>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: 60,
+    height: 75,
     backgroundColor: colors.brand,
     paddingBottom: 10,
     paddingTop: 10,

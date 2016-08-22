@@ -13,10 +13,10 @@ class VbHTMLView extends Component{
     }
   }
   render() {
-
+    const wrapper = `<div>${this.props.value}</div>`
     return (
       <HTMLView
-        value={this.props.value}
+        value={wrapper}
         stylesheet={this.props.stylesheet || styles}
         renderNode={this.renderNode}
       />

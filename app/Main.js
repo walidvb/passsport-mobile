@@ -79,6 +79,9 @@ class Main extends Component{
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: colors.brand,
+    height: 65,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   sceneStyle:{
     backgroundColor: colors.white,
