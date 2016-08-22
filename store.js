@@ -19,11 +19,17 @@ const initialState = {
   },
   categories: [],
   subscription: {},
-  ui: { auth: {}, partners: {}, errors: {}, filters: {
-    search: '',
-    categories: [],
-    drawerOpen: false
-  } }
+  ui: {
+    auth: {},
+    partners: {},
+    errors: {},
+    filters: {
+      search: '',
+      categories: [],
+      drawerOpen: false
+    },
+    online: false,
+  }
 }
 
 const sagaMiddleware = createSagaMiddleware()
@@ -47,6 +53,13 @@ export default function configureStore(initialState) {
     storage: AsyncStorage,
     blacklist: ['ui'],
   }, () => {
+    function handleFirstConnectivityChange(status) {
+      store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
+    }
+    NetInfo.isConnected.addEventListener(
+      'change',
+      handleFirstConnectivityChange
+    );
     NetInfo.isConnected.fetch().done((isConnected) => {
       store.dispatch({type: 'GET_PARTNERS'});
       if(store.getState().auth.loggedIn){

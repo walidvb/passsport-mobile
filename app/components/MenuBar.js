@@ -31,17 +31,13 @@ class MenuBar extends Component {
         Actions.auth()
         break
       case 'signIn':
-        NetInfo.isConnected.fetch().done((isConnected) => {
-          isConnected ? Actions.userForm() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
-        });
+        this.props.ui.online ? Actions.userForm() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
         break
       case 'logOut':
         const signOut = () => {
           this.props.signOut(this.props.auth.user)
         }
-        NetInfo.isConnected.fetch().done((isConnected) => {
-          isConnected ? signOut() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
-        });
+        this.props.ui.online ? signOut() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
         break
     }
   }

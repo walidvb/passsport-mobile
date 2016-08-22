@@ -1,6 +1,11 @@
 // a reducer takes in the action, and a copy of current state
 export default function ui(state = {}, action){
   switch(action.type){
+    case 'NETWORK_STATUS_CHANGE':
+    return {
+      ...state,
+      online: action.status
+    }
     case 'TOGGLE_FILTERS':
       const newState = action.toOpen || !state.filters.drawerOpen
       return {
