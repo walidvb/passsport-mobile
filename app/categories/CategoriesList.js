@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import colors from '../colors'
 const VbText = require('../helpers/vbText')
@@ -67,15 +68,18 @@ export default class CategoriesList extends Component {
     const activeStyle = category.active ? ['bold', 'brand'] : []
     const checkmark = category.active ? <VbIcon name="check" style={styles.checkmark} /> : null
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        {checkmark}
-        <VbText
-          onPress={() => this.props.toggleCategory(category.name)}
-          uppercase
-          styles={activeStyle}
-          style={[styles.category]}
-          text={category.name} />
-      </View>
+      <TouchableOpacity
+        onPress={() => this.props.toggleCategory(category.name)}
+      >
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          {checkmark}
+          <VbText
+            uppercase
+            styles={activeStyle}
+            style={[styles.category]}
+            text={category.name} />
+        </View>
+      </TouchableOpacity>
     )
   }
   renderHeader(){
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
   },
   category: {
     paddingBottom: 10,
-    marginBottom: 10,
+    paddingTop: 10,
   },
 
 });
