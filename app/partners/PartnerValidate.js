@@ -10,9 +10,9 @@ import {
   Image,
   Navigator,
 } from 'react-native';
+
 var baseStyles = require('../styles')
 const VbText = require('../helpers/vbText')
-const VbTextInput = require('../helpers/vbTextInput')
 const VbButton = require('../helpers/vbButton')
 
 class PartnerValidateOnline extends Component{
@@ -40,15 +40,18 @@ class PartnerValidateOnline extends Component{
           }}/>
         <VbText uppercase styles={['bold']} text="Partner's Code:" style={{marginBottom: 18*2}}/>
         {error}
-        <VbTextInput
-          uppercase
+
+        <TextInput
           autofocus
           style={{
             marginBottom: 18*2,
             textAlign: 'center',
-          }} placeholder='XXXXX-XXXXX'
+            height: 40,
+          }}
+          placeholder='XXXX'
           ref='partnerToken'
           onChangeText={this.onChangeText.bind(this)}
+          autoCapitalize={"characters"}
         />
         <VbButton
           style={[baseStyles.button, {
