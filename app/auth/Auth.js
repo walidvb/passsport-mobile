@@ -27,8 +27,8 @@ import UserForm from './UserForm'
 const row = (header, cell) => {
   return(
     <View style={styles.tableRow}>
-      <VbText style={styles.tableCell} uppercase styles={['bold']} text={header}/>
-      <VbText style={styles.tableCell} text={cell}/>
+      <VbText style={styles.tableCell, {flex: 4}} uppercase styles={['bold']} text={header}/>
+      <VbText style={styles.tableCell, {flex: 6}} text={cell}/>
     </View>
   )
 }
@@ -52,10 +52,10 @@ class Auth extends Component{
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
     if(sub.isValid()){
-      return row('Expiration Date:', sub.expires_at.toDateString())
+      return row('Expires on:', sub.expires_at.toDateString())
     }
     else if(sub.expires_at){
-      return row('Expiration Date:', 'Expired!')
+      return row('Expires on:', 'Expired!')
     }
     else{
       return (<GetPass/>)
@@ -80,7 +80,7 @@ class Auth extends Component{
             {user.token ? row('Your Token:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
-            {validatedPartners.length ? row('Validated Partners:', validatedPartners.length) : null}
+            {validatedPartners.length ? row('Visits:', validatedPartners.length) : null}
           </View>
           {list}
         </ScrollView>
