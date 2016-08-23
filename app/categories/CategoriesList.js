@@ -106,7 +106,7 @@ export default class CategoriesList extends Component {
       reset = (<VbIcon name={'times'} style={{color: colors.lightGray}} onPress={() => this.props.toggleCategory(false)}/>)
     }
     return (
-      <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: colors.lightGray, paddingBottom: 5}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
         <VbText uppercase style={[styles.category, {color: colors.lightGray}]} text={categoryCount}/>
         {reset}
       </View>
