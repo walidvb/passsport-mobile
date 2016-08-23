@@ -18,7 +18,10 @@ export default function ui(state = {}, action){
     case 'TOGGLE_CATEGORY':
       let { categories } = state.filters
       const { category } = action
-      if(categories.includes(category)){
+      if(category == false){
+        categories = []
+      }
+      else if(categories.includes(category)){
         categories.splice(categories.indexOf(category), 1)
       }
       else{

@@ -85,12 +85,30 @@ export default class CategoriesList extends Component {
   }
   renderHeader(){
      return(
-       <View style={styles.search}>
-         <VbTextInput
-          ref='search'
-          onChangeText={this.search.bind(this)}
-          onSubmitEditing={() => this.props.toggleFilters(false)}
-        />
+       <View>
+         <View style={styles.search}>
+           <VbTextInput
+            ref='search'
+            onChangeText={this.search.bind(this)}
+            onSubmitEditing={() => this.props.toggleFilters(false)}
+          />
+        </View>
+        {this.categoriesCount()}
+      </View>
+    )
+  }
+  categoriesCount(){
+    const catCount = this.props.ui.filters.categories.length
+    let categoryCount = "Categories"
+    let reset
+    if(catCount){
+      categoryCount += `   (${catCount})`
+      reset = (<VbIcon name={'times'} style={{color: colors.lightGray}} onPress={() => this.props.toggleCategory(false)}/>)
+    }
+    return (
+      <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: colors.lightGray, paddingBottom: 5}}>
+        <VbText uppercase style={[styles.category, {color: colors.lightGray}]} text={categoryCount}/>
+        {reset}
       </View>
     )
   }
