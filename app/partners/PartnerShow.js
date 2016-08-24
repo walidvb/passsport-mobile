@@ -39,7 +39,6 @@ class PartnerShow extends Component{
     return { uri: partner.logo }
   }
   componentWillReceiveProps(props){
-    console.log('props received', this.props, props);
   }
   render() {
     const { partner } = this.state;
