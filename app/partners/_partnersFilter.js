@@ -10,7 +10,8 @@ const filter = (partners, query, activeCats) => {
 }
 
 function testPartner(partnerSearchables, search, filters){
-  let truthSearch, truthFilters;
+  let truthSearch = false,
+    truthFilters = false;
   if(search.length){
     for(var i = 0; i < partnerSearchables.length; i++){
       if(fuzzysearch(removeDiacritics(search).toLowerCase(), removeDiacritics(partnerSearchables[i]).toLowerCase())){

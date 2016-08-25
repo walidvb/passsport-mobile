@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     paddingRight: 25,
   },
   menuContainer: {
-    marginTop: 38,
+    marginTop: 46,
     paddingTop: 18,
     paddingRight: 18,
     paddingLeft: 18,

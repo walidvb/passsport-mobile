@@ -10,7 +10,7 @@ export default function(component, actionCreators, stateKeys = ['partners', 'aut
     let mapping = {};
     if(stateKeys.includes('partners')){
       const validatedIds = state.subscription.validated_partner_ids
-      if(validatedIds && validatedIds.length){
+      if(validatedIds){
         let partners = []
         for( const p of state.partners){
           p.validated = validatedIds.includes(p.id)

@@ -24,6 +24,9 @@ import CategoriesList from './categories/CategoriesList'
 import Subscription from './subscriptions/Subscription'
 import filterPartners from './partners/_partnersFilter'
 
+const names = (ps) => ps.map((p) => `${p.name}: ${p.validated}`)
+
+
 class Home extends Component{
   constructor(props){
     super(props);
@@ -31,12 +34,14 @@ class Home extends Component{
       partners: this.props.partners
     }
   }
-  static renaderNavigationBar(props){
+  static renderNavigationBar(props){
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
   }
   componentWillReceiveProps(props){
     const filteredPartners = filterPartners(props.partners, props.ui.filters)
-    if(filteredPartners !== this.state.partners)
+    //if(filteredPartners !== this.state.partners)
+     const difference = (arr1, arr2) => arr1.filter(x => arr2.indexOf(x) == -1)
+    // console.log('new partners', names(this.state.partners), names(filteredPartners), difference(names(this.state.partners), names(props.partners)));
     this.setState({
       ...this.state,
       partners: filteredPartners,
