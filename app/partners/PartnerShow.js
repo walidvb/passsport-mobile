@@ -59,7 +59,8 @@ class PartnerShow extends Component{
         <ScrollableTabView
           tabBarUnderlineColor={colors.brand}
           tabBarActiveTextColor={colors.brand}
-          tabBarTextStyle={{fontWeight: 'bold'}}
+          tabBarInactiveTextColor={colors.black}
+          tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
           style={{flex: .75}}
           >
           <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
