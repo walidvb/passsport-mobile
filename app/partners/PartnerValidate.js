@@ -51,6 +51,7 @@ class PartnerValidateOnline extends Component{
           placeholder='XXXX'
           ref='partnerToken'
           onChangeText={this.onChangeText.bind(this)}
+          keyboardType='numeric'
           autoCapitalize={"characters"}
         />
         <VbButton
