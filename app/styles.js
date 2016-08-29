@@ -26,6 +26,9 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 18,
     marginBottom: 18,
+  },
+  text:{
+    fontFamily: 'Lato',
   }
 });
 

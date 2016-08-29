@@ -27,6 +27,8 @@ class Main extends Component{
       <Router
         navigationBarStyle={styles.navBar}
         sceneStyle={[styles.sceneStyle]}
+        titleStyle={[baseStyles.text, {color: colors.white}]}
+        backButtonImage={require('./resources/images/back_chevron.png')}
         >
 
       <Scene key="root" tabs={false} hideNavBar={true}>
@@ -36,12 +38,14 @@ class Main extends Component{
             hideNavBar={false}
             title='My Pass'
             {...this.props}
+            direction="leftToRight"
           />
           <Scene
             component={UserForm}
             key="userForm"
             hideNavBar={true}
             {...this.props}
+            direction="vertical"
           />
           <Scene
             component={VbWebView}
