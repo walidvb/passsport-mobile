@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import RequiresConnection from 'react-native-offline-mode';
 
+import KeyboardSpacer from 'react-native-keyboard-spacer';
+
 import {
   StyleSheet,
   Text,
@@ -9,10 +11,13 @@ import {
   View,
   Image,
   Navigator,
+  KeyboardAvoidingView
 } from 'react-native';
 
 var baseStyles = require('../styles')
+import colors from '../colors'
 const VbText = require('../helpers/vbText')
+const VbTextInput = require('../helpers/vbTextInput')
 const VbButton = require('../helpers/vbButton')
 
 class PartnerValidateOnline extends Component{
@@ -30,39 +35,37 @@ class PartnerValidateOnline extends Component{
     const { errors } = this.props.ui
     const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null
     return (
-      <View style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-        <VbText
-          text="Please ask the partner to input his code"
-          uppercase
-          styles={['bold']}
-          style={{
-            marginBottom: 18*4,
-          }}/>
-        <VbText uppercase styles={['bold']} text="Partner's Code:" style={{marginBottom: 18*2}}/>
-        {error}
-
-        <TextInput
-          autofocus
-          style={{
-            marginBottom: 18*2,
-            textAlign: 'center',
-            height: 40,
-          }}
-          placeholder='XXXX'
-          ref='partnerToken'
-          onChangeText={this.onChangeText.bind(this)}
-          keyboardType='numeric'
-          autoCapitalize={"characters"}
-        />
-        <VbButton
-          style={[baseStyles.button, {
-            flex: 1
-          }]}
-          disabled={this.state.partnerToken.length}
-          onPress={this.props.validatePartner.bind(this, this.props.partner, this.state.partnerToken.toLowerCase())}>
-          {"Validate"}
-        </VbButton>
-      </View>
+      <KeyboardAvoidingView behavior='padding' style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+          <VbText
+            text={`Please ask the partner to \n input his code:`}
+            uppercase
+            styles={['bold']}
+            style={{
+              textAlign: 'center',
+            }}/>
+          {error}
+          <View style={{borderBottomColor: colors.lightGray, borderBottomWidth: 1, alignSelf: 'stretch', marginBottom: 18,}}>
+            <TextInput
+              autofocus
+              style={{
+                textAlign: 'center',
+                height: 40,
+                fontFamily: 'Lato',
+                fontWeight: 'bold',
+              }}
+              placeholder='XXXX'
+              ref='partnerToken'
+              onChangeText={this.onChangeText.bind(this)}
+              keyboardType='numeric'
+              autoCapitalize={"characters"}
+            />
+          </View>
+          <VbButton
+            disabled={this.state.partnerToken.length}
+            onPress={this.props.validatePartner.bind(this, this.props.partner, this.state.partnerToken.toLowerCase())}>
+            {"Validate"}
+          </VbButton>
+      </KeyboardAvoidingView>
     )
   }
   onChangeText(val){
@@ -111,10 +114,12 @@ class PartnerValidateOffline extends Component{
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 18*3,
+    paddingTop: 18,
     alignItems: 'center',
+    justifyContent: 'space-around',
     paddingLeft: 15,
     paddingRight: 15,
+    flex: 1,
   },
 })
 

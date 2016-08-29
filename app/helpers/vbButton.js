@@ -34,7 +34,7 @@ VbButton.defaultProps = {
 
 const styles = StyleSheet.create({
   button: {
-    flex: 1,
+    alignSelf: 'stretch',
     height: 50,
     borderWidth: 1,
     justifyContent: 'center',
