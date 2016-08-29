@@ -46,12 +46,15 @@ class Main extends Component{
             hideNavBar={true}
             {...this.props}
             direction="vertical"
+            panHandlers={null}
           />
           <Scene
             component={VbWebView}
             key="vbWebView"
             hideNavBar={false}
             {...this.props}
+            direction="vertical"
+            panHandlers={null}
           />
 
           <Scene
@@ -73,6 +76,7 @@ class Main extends Component{
             title="Validate"
             hideNavBar={false}
             {...this.props}
+            direction="vertical"
           />
         </Scene>
       </Router>

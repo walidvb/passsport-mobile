@@ -29,6 +29,7 @@ class UserForm extends Component{
 
   onBridgeMessage(message){
     const { webviewbridge } = this.refs;
+    console.log('message from webViewBridge', message);
     message = JSON.parse(message);
     console.log('message from webViewBridge', message, this.props);
     switch(message.type){
@@ -52,6 +53,9 @@ class UserForm extends Component{
         this.props.subscriptionFetched(message.data.subscription)
         Actions.pop()
         break;
+      case 'TERMS':
+      Actions.vbWebView({title: 'Terms', uri: Api.terms_url()})
+
       default:
         break;
     }

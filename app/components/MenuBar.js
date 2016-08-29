@@ -83,7 +83,7 @@ class MenuBar extends Component {
               {MenuItem('FAQS', 'faqs')}
               {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
 
-              {!loggedIn ? MenuItem('Sign In', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
+              {!loggedIn ? MenuItem('Sign Up', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
             </MenuOptions>
           </Menu>
       </View>

@@ -39,6 +39,9 @@ class Api{
   static faqs_url() {
     return url('faqs?mobile=true')
   }
+  static terms_url() {
+    return url('terms?mobile=true')
+  }
   // PARTNERS
   static getPartners() {
     return fetch(url('partners.json'), {
