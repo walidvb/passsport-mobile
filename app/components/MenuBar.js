@@ -12,6 +12,9 @@ import {
   NetInfo,
   Alert,
 } from 'react-native';
+
+import IconBadge from 'react-native-icon-badge';
+
 const VbIcon = require('../helpers/vbIcon')
 const VbText = require('../helpers/vbText')
 import Api from '../Api'
@@ -43,13 +46,30 @@ class MenuBar extends Component {
   }
   render() {
     const loggedIn = this.props.auth.loggedIn;
+    const activeFiltersCount = this.props.ui.filters.categories.length;
+
+    const catIcon = <VbIcon
+      size={27}
+      style={[styles.icon, {color: colors.white, marginLeft: 5}]}
+      name='bars'
+      onPress={() => this.props.toggleFilters()}/>
+    const catBadge = activeFiltersCount ? (<VbText styles={['light']}  text={activeFiltersCount}/>) : (this.props.ui.filters.search ? (<VbIcon name='search' style={{color: colors.white}} size={11}/>) : null)
     return (
       <View style={[styles.container, this.props.style]}>
-        <VbIcon
-          size={27}
-          style={[styles.icon, {color: colors.white, marginLeft: 5}]}
-          name='bars'
-          onPress={() => this.props.toggleFilters()}/>
+        <View>
+          <IconBadge
+            MainElement={catIcon}
+            BadgeElement={catBadge}
+            IconBadgeStyle={
+              {width:23,
+              height:23,
+              right: 12,
+              top: -5,
+              backgroundColor: catBadge ? colors.red : 'transparent',
+            }
+            }
+            />
+        </View>
         <Image
           resizeMode='contain'
           style={{height: 50, flex: 1,}}
@@ -101,6 +121,15 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
     marginRight: 18,
 
+  },
+  countBubble: {
+    position: 'absolute',
+    top: -10,
+    right: 10,
+    width: 25,
+    height: 25,
+    backgroundColor: colors.red,
+    borderRadius: 12.5,
   }
 });
 

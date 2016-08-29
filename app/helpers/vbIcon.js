@@ -5,10 +5,11 @@ import colors from '../colors'
 class VbIcon extends Component{
 
   render() {
+    const style = this.props.style || {}
     return (
     	<Icon {...this.props}
         size={this.props.size || 16}
-        color={this.props.style.color || colors.lightGray}
+        color={style.color || colors.lightGray}
         />
     );
   }

@@ -28,7 +28,6 @@ export function* validatePartner(action){
   else{
     try{
       const validation = yield call(Api.validatePartner, partner.id, partnerToken)
-      console.log(validation, 'validation');
       if(validation.errors){
         yield put({ type: 'PARTNER_VALIDATED_ERROR', validation })
       }
@@ -38,7 +37,7 @@ export function* validatePartner(action){
         Actions.pop()
       }
     }catch(e){
-      console.log('PARTNERS_VALIDATED failed', e);
+      console.log('PARTNER_VALIDATED failed', e);
       yield put({ type: 'PARTNERS_VALIDATED', status: 'failed'})
       yield Actions.pop()
     }
