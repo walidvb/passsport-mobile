@@ -23,6 +23,9 @@ class ValidateButton extends Component{
         return ( <GetPass {...this.props}/> );
       }
     }
+    if(!sub.isValid()){
+      return ( <GetPass {...this.props}/> );
+    }
     if(!partner.free && !partner.validated){
       return (
         <VbButton
