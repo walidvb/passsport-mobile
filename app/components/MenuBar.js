@@ -11,6 +11,8 @@ import {
   Image,
   NetInfo,
   Alert,
+  TouchableOpacity,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import IconBadge from 'react-native-icon-badge';
@@ -44,48 +46,62 @@ class MenuBar extends Component {
         break
     }
   }
-  render() {
-    const loggedIn = this.props.auth.loggedIn;
+  renderFilterToggle(){
     const activeFiltersCount = this.props.ui.filters.categories.length;
-
-    const catIcon = <VbIcon
+    const catIcon = (<VbIcon
       size={27}
       style={[styles.icon, {color: colors.white, marginLeft: 5}]}
       name='bars'
-      onPress={() => this.props.toggleFilters()}/>
-    const catBadge = activeFiltersCount ? (<VbText styles={['light']}  text={activeFiltersCount}/>) : (this.props.ui.filters.search ? (<VbIcon name='search' style={{color: colors.white}} size={11}/>) : null)
+      onPress={() => this.props.toggleFilters()}
+      />
+    )
+    const catBadge = activeFiltersCount ? (<VbText styles={['light']}  style={{fontSize: 10}} text={activeFiltersCount} onPress={() => this.props.toggleFilters()} />) :
+      (this.props.ui.filters.search ? (<VbIcon name='search' style={{color: colors.white}} size={11} onPress={() => this.props.toggleFilters()} />) :
+        null)
+    return(
+      <IconBadge
+        MainElement={catIcon}
+        BadgeElement={catBadge}
+        IconBadgeStyle={{
+          width: 18,
+          height: 18,
+          right: 15,
+          top: 5,
+          backgroundColor: catBadge ? colors.red : 'transparent',
+        }}
+      />
+    )
+  }
+  renderLogo(){
+    return (<Image
+      resizeMode='contain'
+      style={{height: 50, flex: 1, zIndex: -1}}
+      source={require('../resources/images/logo.png')}/>);
+  }
+  renderMenuDropdown(){
+    const loggedIn = this.props.auth.loggedIn;
+    return (
+      <Menu onSelect={this.menuClick.bind(this)}>
+        <TouchableOpacity>
+          <MenuTrigger>
+            <VbIcon size={27} style={[styles.icon, {color: colors.white, marginRight: 15}]} name='ellipsis-v'/>
+          </MenuTrigger>
+        </TouchableOpacity>
+        <MenuOptions optionsContainerStyle={styles.menuContainer}>
+          {MenuItem('About', 'about')}
+          {MenuItem('FAQS', 'faqs')}
+          {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
+
+          {!loggedIn ? MenuItem('Sign Up', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
+        </MenuOptions>
+      </Menu>)
+  }
+  render() {
     return (
       <View style={[styles.container, this.props.style]}>
-        <View>
-          <IconBadge
-            MainElement={catIcon}
-            BadgeElement={catBadge}
-            IconBadgeStyle={
-              {width:23,
-              height:23,
-              right: 12,
-              top: -5,
-              backgroundColor: catBadge ? colors.red : 'transparent',
-            }
-            }
-            />
-        </View>
-        <Image
-          resizeMode='contain'
-          style={{height: 50, flex: 1,}}
-          source={require('../resources/images/logo.png')}></Image>
-          <Menu onSelect={this.menuClick.bind(this)}>
-            <MenuTrigger>
-              <VbIcon size={27} style={[styles.icon, {color: colors.white, marginRight: 15}]} name='ellipsis-v'/>
-            </MenuTrigger>
-            <MenuOptions optionsContainerStyle={styles.menuContainer}>
-              {MenuItem('About', 'about')}
-              {MenuItem('FAQS', 'faqs')}
-              {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
-
-              {!loggedIn ? MenuItem('Sign Up', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
-            </MenuOptions>
-          </Menu>
+        {this.renderFilterToggle()}
+        {this.renderLogo()}
+        {this.renderMenuDropdown()}
       </View>
     );
   }
@@ -109,6 +125,8 @@ const styles = StyleSheet.create({
   icon: {
     paddingLeft: 25,
     paddingRight: 25,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
   menuContainer: {
     marginTop: 46,
