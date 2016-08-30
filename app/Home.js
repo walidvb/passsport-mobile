@@ -22,30 +22,12 @@ const MenuBar = require('./components/MenuBar')
 import CategoriesList from './categories/CategoriesList'
 
 import Subscription from './subscriptions/Subscription'
-import filterPartners from './partners/_partnersFilter'
 
-const names = (ps) => ps.map((p) => `${p.name}: ${p.validated}`)
 
 
 class Home extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      partners: this.props.partners
-    }
-  }
   static renderNavigationBar(props){
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
-  }
-  componentWillReceiveProps(props){
-    const filteredPartners = filterPartners(props.partners, props.ui.filters)
-    //if(filteredPartners !== this.state.partners)
-     const difference = (arr1, arr2) => arr1.filter(x => arr2.indexOf(x) == -1)
-    // console.log('new partners', names(this.state.partners), names(filteredPartners), difference(names(this.state.partners), names(props.partners)));
-    this.setState({
-      ...this.state,
-      partners: filteredPartners,
-    })
   }
   render() {
     const sub = new Subscription(this.props.subscription)
@@ -81,7 +63,7 @@ class Home extends Component{
           tweenHandler={Drawer.tweenPresets.parallax}
           tapToClose={true}
         >
-          <PartnerList partners={this.state.partners} style={{
+          <PartnerList {...this.props} style={{
             flex: 1,
             paddingLeft: 15,
             paddingRight: 15,

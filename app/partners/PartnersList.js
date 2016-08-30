@@ -11,8 +11,10 @@ import {
 } from 'react-native'
 
 const VbText = require('../helpers/vbText')
-
 var baseStyles = require('../styles');
+
+import filterPartners from './_partnersFilter'
+
 const PartnerCell = require('../partners/_partnerCell')
 import partnerValidBanner from './_partnerValidBanner'
 import Subscription from '../subscriptions/Subscription'
@@ -20,6 +22,7 @@ import Subscription from '../subscriptions/Subscription'
 class PartnersList extends Component{
   constructor(props) {
     super(props);
+
   }
   componentWillMount() {
     this.state = {
@@ -35,16 +38,20 @@ class PartnersList extends Component{
      this.setState({
        ...this.state,
        partners: this.props.partners,
+       filteredPartners: this.props.partners,
        dataSource: this.state.dataSource.cloneWithRows(this.props.partners)
      })
   }
   componentWillReceiveProps(props){
-    if(this.state.partners !== props.partners){
-      this.setState({
-        ...this.state,
-        partners: props.partners,
-        dataSource: this.state.dataSource.cloneWithRows(props.partners),
-      });
+    const filteredPartners = filterPartners(props.partners, props.ui.filters)
+    this.setState({
+      ...this.state,
+      filteredPartners,
+      partners: props.partners,
+      dataSource: this.state.dataSource.cloneWithRows(filteredPartners),
+    })
+    console.debug(props.partners, filteredPartners.length, this.state.filteredPartners);
+    if(true || filteredPartners !== this.state.filteredPartners){
     }
   }
 
