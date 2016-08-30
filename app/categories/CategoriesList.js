@@ -8,11 +8,14 @@ import {
   View,
   TouchableOpacity,
   dismissKeyboard,
+  ActivityIndicator,
 } from 'react-native';
 import colors from '../colors'
 const VbText = require('../helpers/vbText')
 const VbIcon = require('../helpers/vbIcon')
 const VbTextInput = require('../helpers/vbTextInput')
+
+import Subscription from '../subscriptions/Subscription'
 
 export default class CategoriesList extends Component {
   componentWillMount() {
@@ -51,12 +54,14 @@ export default class CategoriesList extends Component {
     }
   }
   render() {
+    const sub = new Subscription(this.props.subscription)
+    const paddingBottom = sub.isValid() ? 0 : 50
     if(!this.state.categories.length){
-      return <VbText>LOADING</VbText>
+      return <ActivityIndicator style={{flex: 1, paddingBottom}}/>
     }
     return (
       <ListView
-        style={[this.props.style, styles.container]}
+        style={[this.props.style, styles.container, {marginBottom: paddingBottom}]}
         automaticallyAdjustContentInsets={true}
         dataSource={this.state.dataSource}
         renderRow={this.renderCategoryCell.bind(this)}

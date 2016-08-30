@@ -42,6 +42,7 @@ class Home extends Component{
           content={<CategoriesList {...this.props} />}
           openDrawerOffset={170}
           closedDrawerOffset={0}
+          panOpenMask={200}
           onOpenStart={() => {
             if(!this.props.ui.filters.drawerOpen){
               this.props.toggleFilters(true)
@@ -56,7 +57,6 @@ class Home extends Component{
             drawer:{
               backgroundColor: 'white',
               marginTop: 0,
-              paddingBottom: marginBottom,
               overflow: 'hidden'
             }
           }}
