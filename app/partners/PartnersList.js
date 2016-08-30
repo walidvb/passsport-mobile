@@ -7,7 +7,7 @@ import {
   ListView,
   View,
   Image,
-  TouchableHighlight,
+  ActivityIndicator,
 } from 'react-native'
 
 const VbText = require('../helpers/vbText')
@@ -65,9 +65,10 @@ class PartnersList extends Component{
             </View>)
   }
   renderLoading(){
-    return (<View style={baseStyles.container}>
-              <VbText text="Loading partners..."/>
-            </View>)
+    return (<View style={[baseStyles.container, {flexDirection: 'column', backgroundColor: 'white'}]}>
+      <VbText style={[baseStyles.centered, { marginBottom: 18 }]} text={"Chargement des partenaires"}/>
+      <ActivityIndicator/>
+    </View>)
   }
   render() {
       if(!this.state.partners.length){
