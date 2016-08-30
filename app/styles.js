@@ -29,7 +29,10 @@ const Styles = StyleSheet.create({
   },
   text:{
     fontFamily: 'Lato',
-  }
+  },
+  centered: {
+    textAlign: 'center',
+  },
 });
 
 module.exports = Styles;

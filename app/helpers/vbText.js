@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
   },
   error: {
     color: colors.error,
+  },
+  underlined: {
+    textDecorationLine: 'underline',
   }
 })
 

@@ -90,6 +90,7 @@ export default class CategoriesList extends Component {
            <VbTextInput
             ref='search'
             onChangeText={this.search.bind(this)}
+            text={this.props.ui.filters.search}
             onSubmitEditing={() => this.props.toggleFilters(false)}
           />
         </View>

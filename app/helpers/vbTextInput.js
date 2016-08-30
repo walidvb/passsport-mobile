@@ -5,7 +5,11 @@ import colors from '../colors'
 const VbIcon = require('./vbIcon')
 
 class VbTextInput extends Component{
-
+  componentWillReceiveProps(props){
+    if(!props.text.length){
+      this.refs.search.clear(0);
+    }
+  }
   render() {
     return (
       <View style={styles.search}>
