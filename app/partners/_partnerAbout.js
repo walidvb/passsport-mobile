@@ -40,7 +40,7 @@ class PartnerAbout extends Component{
     const { partner } = this.props;
 
     return (
-    	<ScrollView style={styles.container}>
+    	<View style={styles.container}>
         <View style={styles.contact}>
           {urlWithIcon('map-marker', partner.contact)}
           {urlWithIcon('phone', partner.phone, "tel:"+partner.phone)}
@@ -53,7 +53,7 @@ class PartnerAbout extends Component{
           <VbHTMLView value={partner.description} />
         </View>
         <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
-    	</ScrollView>
+    	</View>
     );
   }
 };

@@ -10,7 +10,7 @@ class PartnerOffer extends Component{
   render() {
     const { partner } = this.props;
     return (
-    	<ScrollView>
+    	<View>
         <View style={styles.discount}>
           <VbHTMLView value={partner.discount} stylesheet={discountStyles}/>
         </View>
@@ -24,7 +24,7 @@ class PartnerOffer extends Component{
         <View style={baseStyles.element}>
           <VbHTMLView value={partner.offer_details} />
         </View>
-    	</ScrollView>
+    	</View>
     );
   }
 };

@@ -67,8 +67,8 @@ class Main extends Component{
             component={PartnerShow}
             key="partnerShow"
             title="Partner"
-            hideNavBar={false}
             {...this.props}
+            hideNavBar={false}
           />
           <Modal
             component={PartnerValidate}
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
   },
   sceneStyle:{
     backgroundColor: colors.white,
+    flex: 1
   },
   routerScene: {
     backgroundColor: colors.white

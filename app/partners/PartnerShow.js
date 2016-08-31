@@ -42,61 +42,50 @@ class PartnerShow extends Component{
   }
   componentWillReceiveProps(props){
   }
-  render() {
-    const { partner } = this.state;
+  renderHeader(partner){
     const validBanner = partner.validated ? <ValidBanner/> : null
-
-    const openValidate = () => {
-      Actions.partnerValidate({partner: partner, id: partner.id})
-    }
-
-    const validator = <ValidateButton float partner={partner} />
-    const padding = partner.validated ? 0 : 50
-    return( <View style={{paddingTop: 0}}>
-      <ParallaxScrollView
-      backgroundColor="transparent"
-
-      parallaxHeaderHeight={300}
-      renderBackground={() => (
-       <OverlayImage source={{uri: partner.tile_image}} style={[{height: 300, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-       { validBanner }
-       </OverlayImage>
-      )}
-       renderForeground={() => ( <View style={{flex: 1, paddingTop: 150}}>
-
-         <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
-         </View>
-       )}
-      >
+    return (
+      <View>
+        <OverlayImage source={{uri: partner.tile_image}} style={[{height: 300, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+          { validBanner }
+        </OverlayImage>
+      </View>
+    )
+  }
+  renderTabs(partner){
+    return(
       <ScrollableTabView
         tabBarUnderlineColor={colors.brand}
         tabBarActiveTextColor={colors.brand}
         tabBarInactiveTextColor={colors.black}
         tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
-        style={{flex: .75}}
         >
-        <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
-        <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
+        <PartnerOffer tabLabel="OFFER" partner={partner} stayle={{flex:1}}/>
+        <PartnerAbout tabLabel="ABOUT" partner={partner} stayle={{flex:1}}/>
       </ScrollableTabView>
-    </ParallaxScrollView>
-    {validator}
-  </View>)
-    return(
-      <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding}}>
-
-        <ScrollableTabView
-          tabBarUnderlineColor={colors.brand}
-          tabBarActiveTextColor={colors.brand}
-          tabBarInactiveTextColor={colors.black}
-          tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
-          style={{flex: .75}}
-          >
-          <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
-          <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
-        </ScrollableTabView>
-        {validator}
-      </View>
     )
+  }
+  render() {
+    const { partner } = this.state;
+
+    const validator = <ValidateButton float partner={partner} />
+    const padding = partner.validated ? 0 : 50
+
+    return (<View style={{flex: 1, paddingBottom: padding}}>{validator}
+      <ParallaxScrollView
+        backgroundSpeed={25}
+        parallaxHeaderHeight={300}
+        renderBackground={this.renderHeader.bind(this, partner)}
+        renderForeground={() => (
+          <View style={{flex: 1, justifyContent: 'center', paddingTop: 65, paddingLeft: 15, paddingRight: 15}}>
+            <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
+          </View>
+        )}
+      >
+      {this.renderTabs(partner)}
+      </ParallaxScrollView>
+      {validator}
+    </View>)
   }
 };
 
