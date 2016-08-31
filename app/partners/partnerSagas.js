@@ -23,7 +23,7 @@ export function* validatePartner(action){
   yield put({ type: 'VALIDATING_PARTNER' })
 
   if(partner.token != partnerToken){
-    yield put({ type: 'PARTNER_VALIDATED_ERROR', error: 'Oops, it seems you\'ve entered the wrong token. \n Please try again' })
+    yield put({ type: 'PARTNER_VALIDATED_ERROR', error: 'Oops, le code ne semble pas être correct. \n Essayez à nouveau' })
   }
   else{
     try{

@@ -27,22 +27,22 @@ class MenuBar extends Component {
   menuClick(value){
     switch(value){
       case 'about':
-        Actions.vbWebView({title: 'About', uri: Api.about_url()})
+        Actions.vbWebView({title: 'À propos', uri: Api.about_url()})
         break
       case 'faqs':
-        Actions.vbWebView({title: 'FAQs', uri: Api.faqs_url()})
+        Actions.vbWebView({title: 'FAQ', uri: Api.faqs_url()})
         break
       case 'myPass':
         Actions.auth()
         break
       case 'signIn':
-        this.props.ui.online ? Actions.userForm() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
+        this.props.ui.online ? Actions.userForm() : Alert.alert("Oops, vous n'êtes pas connecté", "Merci de réessayez une fois que vous serez en ligne")
         break
       case 'logOut':
         const signOut = () => {
           this.props.signOut(this.props.auth.user)
         }
-        this.props.ui.online ? signOut() : Alert.alert("Oops, you're offline.", "Please connect to the internet and try again")
+        this.props.ui.online ? signOut() : Alert.alert("Oops, vous n'êtes pas connecté", "Merci de réessayez une fois que vous serez en ligne")
         break
     }
   }
@@ -88,11 +88,11 @@ class MenuBar extends Component {
           </MenuTrigger>
         </TouchableOpacity>
         <MenuOptions optionsContainerStyle={styles.menuContainer}>
-          {MenuItem('About', 'about')}
+          {MenuItem('À Propos', 'about')}
           {MenuItem('FAQ', 'faqs')}
-          {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
+          {!loggedIn ? <View/> : MenuItem('Mon Pass', 'myPass', )}
 
-          {!loggedIn ? MenuItem('Sign Up', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
+          {!loggedIn ? MenuItem('S\'inscrire', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Déconnection', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
         </MenuOptions>
       </Menu>)
   }

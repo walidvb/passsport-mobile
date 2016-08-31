@@ -37,7 +37,7 @@ class PartnerValidateOnline extends Component{
     return (
       <KeyboardAvoidingView behavior='padding' style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
           <VbText
-            text={`Please ask the partner to \n input his code:`}
+            text={`Demandez au partenaire d\'entrer son code:`}
             uppercase
             styles={['bold']}
             style={{
@@ -63,7 +63,7 @@ class PartnerValidateOnline extends Component{
           <VbButton
             disabled={this.state.partnerToken.length}
             onPress={this.props.validatePartner.bind(this, this.props.partner, this.state.partnerToken.toLowerCase())}>
-            {"Validate"}
+            {"Valider"}
           </VbButton>
       </KeyboardAvoidingView>
     )

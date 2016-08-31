@@ -24,7 +24,7 @@ function urlWithIcon(icon, text, url){
 }
 function findUs(partner){
   return (!partner.facebook && !partner.twitter) ? null : (<View style={[baseStyles.element, styles.findUs]}>
-    <VbText text="Find us on:" style={{
+    <VbText text="Trouvez-nous sur:" style={{
       marginRight: 18
     }}></VbText>
     {(<VbLink url={partner.facebook}>

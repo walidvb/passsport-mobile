@@ -25,6 +25,9 @@ import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
 
 const row = (header, cell) => {
+  if(!cell || !cell.length){
+    return null
+  }
   return(
     <View style={styles.tableRow}>
       <VbText style={styles.tableCell, {flex: 4}} uppercase styles={['bold']} text={header}/>
@@ -52,10 +55,10 @@ class Auth extends Component{
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
     if(sub.isValid()){
-      return row('Expires on:', sub.expires_at.toDateString())
+      return row('Expire le:', sub.expires_at.toDateString())
     }
     else if(sub.expires_at){
-      return row('Expires on:', 'Expired!')
+      return row('Expire le:', 'Expiré!')
     }
     else{
       return (<GetPass/>)
@@ -76,11 +79,11 @@ class Auth extends Component{
       return(
         <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15, paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight+18}}>
           <View style={styles.details}>
-            {row('Name:', user.name)}
-            {user.token ? row('Your Token:', user.token.toUpperCase()) : null}
+            {row('Nom:', user.name)}
+            {user.token ? row('Votre Code:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
             {this.renderSubscriptionStatus()}
-            {validatedPartners.length ? row('Visits:', validatedPartners.length) : null}
+            {validatedPartners.length ? row('Visites:', validatedPartners.length) : null}
           </View>
           {list}
         </ScrollView>

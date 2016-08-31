@@ -21,7 +21,7 @@ class VbTextInput extends Component{
          <TextInput
           {...this.props}
           ref='search'
-          placeholder='SEARCH'
+          placeholder='RECHERCHER'
           returnKeyType='done'
           clearButtonMode='always'
         style={[styles.underline, this.props.style]} autoCapitalize={'characters'} />

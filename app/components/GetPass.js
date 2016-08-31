@@ -12,7 +12,7 @@ class GetPass extends Component{
   onPress(){
     const props = this.props
     console.log(props);
-    props.ui.online ? Actions.userForm({...props}) : Alert.alert("Oops, you're offline", "Please connect to the internet and try again")
+    props.ui.online ? Actions.userForm({...props}) : Alert.alert("Oops, vous n'êtes pas connecté", "Merci de réessayez une fois que vous serez en ligne")
 
   }
   render() {
@@ -26,7 +26,7 @@ class GetPass extends Component{
     return (
       <VbButton
       onPress={this.onPress.bind(this)}
-      {...this.props}>Get Pass</VbButton>
+      {...this.props}>Obtenir le Pass</VbButton>
     );
   }
 };
