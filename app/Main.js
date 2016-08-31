@@ -36,7 +36,7 @@ class Main extends Component{
             component={Auth}
             key="auth"
             hideNavBar={false}
-            title='My Pass'
+            title='MON PASS'
             {...this.props}
             direction="leftToRight"
           />
@@ -66,14 +66,14 @@ class Main extends Component{
           <Scene
             component={PartnerShow}
             key="partnerShow"
-            title="Partner"
+            title="PARTENAIRE"
             {...this.props}
             hideNavBar={false}
           />
           <Modal
             component={PartnerValidate}
             key="partnerValidate"
-            title="Validate"
+            title="VALIDATION"
             hideNavBar={false}
             {...this.props}
             direction="vertical"
