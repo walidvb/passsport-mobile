@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
 import Subscription from '../subscriptions/Subscription'
 
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
 const ScrollableTabView = require('react-native-scrollable-tab-view');
 const VbText = require('../helpers/vbText')
 const OverlayImage = require('../helpers/overlayImage');
@@ -13,6 +14,7 @@ import {
   Image,
   StyleSheet,
   Navigator,
+  Text,
 } from 'react-native';
 
 const PartnerAbout = require('./_partnerAbout')
@@ -50,12 +52,38 @@ class PartnerShow extends Component{
 
     const validator = <ValidateButton float partner={partner} />
     const padding = partner.validated ? 0 : 50
+    return( <View style={{paddingTop: 0}}>
+      <ParallaxScrollView
+      backgroundColor="transparent"
+
+      parallaxHeaderHeight={300}
+      renderBackground={() => (
+       <OverlayImage source={{uri: partner.tile_image}} style={[{height: 300, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+       { validBanner }
+       </OverlayImage>
+      )}
+       renderForeground={() => ( <View style={{flex: 1, paddingTop: 150}}>
+
+         <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
+         </View>
+       )}
+      >
+      <ScrollableTabView
+        tabBarUnderlineColor={colors.brand}
+        tabBarActiveTextColor={colors.brand}
+        tabBarInactiveTextColor={colors.black}
+        tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
+        style={{flex: .75}}
+        >
+        <PartnerOffer tabLabel="OFFER" partner={partner} style={{flex:1}}/>
+        <PartnerAbout tabLabel="ABOUT" partner={partner} style={{flex:1}}/>
+      </ScrollableTabView>
+    </ParallaxScrollView>
+    {validator}
+  </View>)
     return(
       <View style={{flex:1, alignItems: 'stretch', paddingBottom: padding}}>
-        <OverlayImage source={{uri: partner.tile_image}} style={[{height: 50, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-          { validBanner }
-          <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
-        </OverlayImage>
+
         <ScrollableTabView
           tabBarUnderlineColor={colors.brand}
           tabBarActiveTextColor={colors.brand}
