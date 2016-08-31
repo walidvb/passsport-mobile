@@ -89,7 +89,7 @@ class MenuBar extends Component {
         </TouchableOpacity>
         <MenuOptions optionsContainerStyle={styles.menuContainer}>
           {MenuItem('About', 'about')}
-          {MenuItem('FAQS', 'faqs')}
+          {MenuItem('FAQ', 'faqs')}
           {!loggedIn ? <View/> : MenuItem('My Pass', 'myPass', )}
 
           {!loggedIn ? MenuItem('Sign Up', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Log Out', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   menuContainer: {
-    marginTop: 46,
+    marginTop: 55,
     paddingTop: 18,
     paddingRight: 18,
     paddingLeft: 18,
