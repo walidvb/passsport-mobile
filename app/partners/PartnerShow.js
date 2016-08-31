@@ -59,6 +59,7 @@ class PartnerShow extends Component{
         tabBarActiveTextColor={colors.brand}
         tabBarInactiveTextColor={colors.black}
         tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
+        prerenderingSiblingsNumber={2}
         >
         <PartnerOffer tabLabel="OFFER" partner={partner} stayle={{flex:1}}/>
         <PartnerAbout tabLabel="ABOUT" partner={partner} stayle={{flex:1}}/>
