@@ -1,4 +1,7 @@
 'use strict';
+var Fabric = require('react-native-fabric');
+var { Answers } = Fabric;
+
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Actions } from 'react-native-router-flux';
@@ -35,6 +38,7 @@ class PartnerShow extends Component{
     this.state = {
       partner,
     }
+    Answers.logContentView('Partner Show', 'Partner', partner.name, { ...this.props.auth.user });
 
   }
   largeImgUrl(partner){
@@ -105,6 +109,6 @@ const styles = StyleSheet.create({
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
 
-PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['partners', 'subscription']);
+PartnerShow = myConnector(PartnerShow, partnersActionCreators, ['auth', 'partners', 'subscription']);
 
 module.exports = PartnerShow

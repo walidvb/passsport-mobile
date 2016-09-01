@@ -1,7 +1,11 @@
 import { Actions } from 'react-native-router-flux';
+var Fabric = require('react-native-fabric');
+var { Answers } = Fabric;
 
 export default function subscription(state = {}, action){
   switch(action.type){
+    case 'SUBSCRIPTION_CREATED':
+      Answers.logPurchase(85,'CHF',true, 'Year', 'Subscription', action.subscription.id);
     case 'USER_FETCHED':
     case 'SUBSCRIPTION_FETCHED':
     case 'SUBSCRIPTION_CREATED':
@@ -12,8 +16,10 @@ export default function subscription(state = {}, action){
         ...subscription
       }
     case 'PARTNER_VALIDATED':
+      console.log(state);
       validated_partner_ids = state.validated_partner_ids
       validated_partner_ids.push(action.validation.partner_id)
+      Answers.logCustom('Validated Partner', { ...action.validation})
       return {
         ...state,
         validated_partner_ids: validated_partner_ids

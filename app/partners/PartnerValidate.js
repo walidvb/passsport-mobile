@@ -1,4 +1,7 @@
 'use strict';
+var Fabric = require('react-native-fabric');
+var { Answers } = Fabric;
+
 import React, { Component } from 'react';
 import RequiresConnection from 'react-native-offline-mode';
 
@@ -27,9 +30,12 @@ class PartnerValidateOnline extends Component{
       partnerToken: ''
     }
     console.log(props.partner.token);
+    Answers.logContentView('Partner Validate Online', 'Partner', props.partner.name, { ...this.props.auth.user });
+
   }
   componentWillUnmount(){
     this.props.clearErrors()
+
   }
   render(){
     const { errors } = this.props.ui
@@ -80,6 +86,8 @@ class PartnerValidateOffline extends Component{
       partnerToken: ''
     }
     console.log(props.partner.token);
+    Answers.logContentView('Partner Validate Offline', 'Partner', partner.name, { ...this.props.auth.user });
+
   }
   componentWillUnmount(){
     this.props.clearErrors()

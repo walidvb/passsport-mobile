@@ -3,6 +3,7 @@ var { AsyncStorage } = ReactNative;
 
 const Fabric = require('react-native-fabric');
 const { Crashlytics } = Fabric;
+var { Answers } = Fabric;
 
 import Api from '../Api'
 
@@ -16,6 +17,10 @@ export default function auth(state = [], action){
       Crashlytics.setUserName(user.name);
       Crashlytics.setUserEmail(user.email);
       Crashlytics.setUserIdentifier(user.id);
+    case 'SIGNED_IN_SUCCESSFUL':
+      Answers.logLogin('EMAIL', true);
+    case 'SIGNED_UP_SUCCESSFUL':
+      Answers.logSignUp('EMAIL', true);
     case 'USER_FETCHED':
       return {
         ...state,

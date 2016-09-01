@@ -1,4 +1,7 @@
 'use strict';
+var Fabric = require('react-native-fabric');
+var { Answers } = Fabric;
+
 import React, { Component } from 'react';
 
 import {
@@ -44,6 +47,15 @@ class Auth extends Component{
       showUserForm: this.props.action == 'get-pass',
       subscription: props.subscription
     };
+  }
+  componentWillMount(){
+    if(this.props.auth.loggedIn){
+      Answers.logContentView('MY PASS', 'Auth', this.props.auth.user.email, { ...this.props.auth.user });
+    }
+    else{
+        Answers.logContentView('SIGN IN/UP', 'Auth', 'anonymous');
+    }
+
   }
   componentWillReceiveProps(props){
     this.subscription = new Subscription(props.subscription)
