@@ -52,7 +52,7 @@ class PartnerAbout extends Component{
         <View style={baseStyles.element}>
           <VbHTMLView value={partner.description} />
         </View>
-        <Map locations={partner.venues} style={{ flex: 1, height: 150 }}/>
+        <Map locations={partner.venues} style={{ flex: 1, height: 350 }}/>
     	</View>
     );
   }
