@@ -29,7 +29,7 @@ class PartnersList extends Component{
     this.state = {
       ...this.props,
       dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
+        rowHasChanged: (row1, row2) => true || row1 !== row2 || row1.validated != row2.validated,
       }),
       partners: [],
       loaded: this.props.loaded,
