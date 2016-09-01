@@ -26,6 +26,14 @@ class VbHTMLView extends Component{
 
 
 const styles = StyleSheet.create({
+  p: {
+    fontFamily: 'Lato',
+    color: colors.black,
+  },
+  li: {
+    fontFamily: 'Lato',
+    color: colors.black,
+  },
   a: {
     color: colors.brand,
   },
@@ -35,6 +43,11 @@ const styles = StyleSheet.create({
     marginRight: 15,
     borderBottomColor: colors.white,
     borderBottomWidth: 1,
+  },
+  em: {
+    fontFamily: 'Lato',
+    fontStyle: 'italic',
+    color: colors.black,
   }
 })
 module.exports = VbHTMLView
