@@ -27,7 +27,7 @@ class MenuBar extends Component {
   menuClick(value){
     switch(value){
       case 'about':
-        Actions.vbWebView({title: 'À propos', uri: Api.about_url()})
+        Actions.vbWebView({title: 'À PROPOS', uri: Api.about_url()})
         break
       case 'faqs':
         Actions.vbWebView({title: 'FAQ', uri: Api.faqs_url()})
