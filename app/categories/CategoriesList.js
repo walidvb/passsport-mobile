@@ -89,11 +89,13 @@ export default class CategoriesList extends Component {
     )
   }
   renderHeader(){
+    const query = this.props.ui.filters.search;
      return(
        <View>
-         <View style={styles.search}>
+         <View style={[styles.search, {borderBottomColor: query.length ? colors.brand : colors.lightGray}]}>
            <VbTextInput
             ref='search'
+            active={query.length > 0}
             onChangeText={this.search.bind(this)}
             text={this.props.ui.filters.search}
             onSubmitEditing={() => this.props.toggleFilters(false)}

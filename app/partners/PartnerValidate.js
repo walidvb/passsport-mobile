@@ -2,6 +2,9 @@
 var Fabric = require('react-native-fabric');
 var { Answers } = Fabric;
 
+import { Actions } from 'react-native-router-flux';
+
+
 import React, { Component } from 'react';
 import RequiresConnection from 'react-native-offline-mode';
 
@@ -85,8 +88,7 @@ class PartnerValidateOffline extends Component{
     this.state = {
       partnerToken: ''
     }
-    console.log(props.partner.token);
-    Answers.logContentView('Partner Validate Offline', 'Partner', partner.name, { ...this.props.auth.user });
+    Answers.logContentView('Partner Validate Offline', 'Partner', props.partner.name, { ...props.auth.user });
 
   }
   componentWillUnmount(){
@@ -108,7 +110,7 @@ class PartnerValidateOffline extends Component{
           style={[baseStyles.button, {
             flex: 1
           }]}
-          onPress={this.props.validatePartner.bind(this, this.props.partner)}>
+          onPress={Actions.pop}>
           {"OK"}
         </VbButton>
       </View>

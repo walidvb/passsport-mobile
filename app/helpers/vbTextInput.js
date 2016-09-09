@@ -14,7 +14,7 @@ class VbTextInput extends Component{
     return (
       <View style={styles.search}>
         <VbIcon name='search' style={{
-          color: colors.lightGray,
+          color: this.props.active ? colors.brand : colors.lightGray,
           marginRight: 5,
           paddingBottom: 4
         }}/>
