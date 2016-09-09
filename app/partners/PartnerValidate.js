@@ -97,20 +97,19 @@ class PartnerValidateOffline extends Component{
     return (
       <View style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
         <VbText
-          text="Please give this code to the partner"
+          text="Transmettez votre code au partenaire"
           uppercase
           styles={['bold']}
           style={{
             marginBottom: 18*4,
           }}/>
-        <VbText uppercase styles={['bold']} text="Your Code:" style={{marginBottom: 18*2}}/>
         <VbText uppercase text={this.props.auth.user.token} style={{marginBottom: 18*2}}/>
         <VbButton
           style={[baseStyles.button, {
             flex: 1
           }]}
           onPress={this.props.validatePartner.bind(this, this.props.partner)}>
-          {"Validate"}
+          {"OK"}
         </VbButton>
       </View>
     )
