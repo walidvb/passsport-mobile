@@ -77,12 +77,11 @@ export default class CategoriesList extends Component {
       <TouchableOpacity
         onPress={() => this.props.toggleCategory(category.name)}
       >
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+        <View style={styles.category}>
           {checkmark}
           <VbText
             uppercase
             styles={activeStyle}
-            style={[styles.category]}
             text={category.name} />
         </View>
       </TouchableOpacity>
@@ -145,6 +144,9 @@ const styles = StyleSheet.create({
   category: {
     paddingBottom: 10,
     paddingTop: 10,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
 
 });

@@ -21,6 +21,9 @@
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        <meta-data
+          android:name="io.fabric.ApiKey"
+          android:value="7380105360d5e5f177dbf3fb7fe58694b202ae1b"/>
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

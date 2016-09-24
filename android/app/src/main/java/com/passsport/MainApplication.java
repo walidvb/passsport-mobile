@@ -11,11 +11,18 @@ import com.facebook.react.shell.MainReactPackage;
 
 import com.airbnb.android.react.maps.MapsPackage;
 import com.smixx.fabric.FabricPackage;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    Fabric.with(this, new Crashlytics());
+  }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -26,15 +33,15 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-              new MapsPackage(),
-              new FabricPackage()
+      new MapsPackage(),
+      new FabricPackage(),
+      new MainReactPackage()
       );
     }
   };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
-      return mReactNativeHost;
+    return mReactNativeHost;
   }
 }
