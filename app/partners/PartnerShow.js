@@ -75,7 +75,7 @@ class PartnerShow extends Component{
 
     const validator = <ValidateButton float partner={partner} />
     const padding = partner.validated ? 0 : 50
-
+    
     return (<View style={{flex: 1, paddingBottom: padding}}>{validator}
       <ParallaxScrollView
         backgroundSpeed={25}
