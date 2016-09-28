@@ -130,13 +130,12 @@ repositories {
 }
 
 dependencies {
-    compile project(':react-native-maps')
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile 'com.airbnb.android:react-native-maps:0.7.1'
     compile project(':react-native-webview-bridge')
     compile project(':react-native-vector-icons')
     compile project(':react-native-fabric')
+    compile project(':react-native-maps')
     compile fileTree(dir: "libs", include: ["*.jar"])
 }
 

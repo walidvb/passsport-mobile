@@ -4,11 +4,6 @@ import com.facebook.react.ReactActivity;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
-import com.smixx.fabric.FabricPackage;
-import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.smixx.fabric.FabricPackage;
 
 public class MainActivity extends ReactActivity {
