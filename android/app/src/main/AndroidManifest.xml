@@ -21,7 +21,10 @@
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
-        <meta-data
+          <meta-data
+              android:name="com.google.android.geo.API_KEY"
+              android:value=" AIzaSyA-6vkkkdTIDFbshWIeOZZpkOU2ZUC47pM b"/>
+          <meta-data
           android:name="io.fabric.ApiKey"
           android:value="7380105360d5e5f177dbf3fb7fe58694b202ae1b"/>
         <intent-filter>
