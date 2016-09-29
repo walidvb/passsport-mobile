@@ -59,12 +59,12 @@ class PartnerShow extends Component{
   renderTabs(partner){
     return(
       <ScrollableTabView
+        forceScrollView={true}
         tabBarUnderlineStyle={{backgroundColor: colors.brand, height: 2}}
         tabBarActiveTextColor={colors.brand}
         tabBarInactiveTextColor={colors.black}
         tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
         prerenderingSiblingsNumber={2}
-        style={{borderBottomWidth: 1}}
         >
         <PartnerOffer tabLabel="OFFRE" partner={partner}/>
         <PartnerAbout tabLabel="À PROPOS" partner={partner}/>
@@ -79,7 +79,9 @@ class PartnerShow extends Component{
 
     return (<View style={{flex: 1, paddingBottom: padding}}>{validator}
       <ParallaxScrollView
+        contentContainerStyle={{flex: 1}}
         backgroundSpeed={25}
+        backgroundColor={colors.brandColor}
         parallaxHeaderHeight={300}
         renderBackground={this.renderHeader.bind(this, partner)}
         renderForeground={() => (
