@@ -24,7 +24,8 @@ class VbTextInput extends Component{
           placeholder='RECHERCHER'
           returnKeyType='done'
           clearButtonMode='always'
-        style={[styles.underline, this.props.style]} autoCapitalize={'characters'} />
+          underlineColorAndroid='transparent'
+          style={[styles.underline, this.props.style]} autoCapitalize={'characters'} />
       </View>
     );
   }
