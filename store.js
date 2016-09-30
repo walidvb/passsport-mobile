@@ -42,7 +42,7 @@ export default function configureStore(initialState) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      logger,
+      //logger,
     ),
     autoRehydrate(),
     devTools(),
@@ -54,6 +54,7 @@ export default function configureStore(initialState) {
     blacklist: ['ui'],
   }, () => {
     function handleFirstConnectivityChange(status) {
+      console.log('status change', status);
       store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
     }
     NetInfo.isConnected.addEventListener(
@@ -61,6 +62,7 @@ export default function configureStore(initialState) {
       handleFirstConnectivityChange
     );
     NetInfo.isConnected.fetch().done((isConnected) => {
+      handleFirstConnectivityChange(isConnected);
       store.dispatch({type: 'GET_PARTNERS'});
       if(store.getState().auth.loggedIn){
         store.dispatch({type: 'GET_SUBSCRIPTION'})

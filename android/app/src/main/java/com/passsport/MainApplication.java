@@ -13,6 +13,8 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.smixx.fabric.FabricPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
+import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
       new MapsPackage(),
       new FabricPackage(),
+      new WebViewBridgePackage(),
       new MainReactPackage()
       );
     }

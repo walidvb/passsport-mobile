@@ -13,10 +13,14 @@ export default function auth(state = [], action){
     case 'SIGNED_IN_SUCCESSFUL':
     case 'SIGNED_UP_SUCCESSFUL':
     case 'USER_FETCHED':
-      const user = action
-      Crashlytics.setUserName(user.name);
-      Crashlytics.setUserEmail(user.email);
-      Crashlytics.setUserIdentifier(user.id);
+      try{
+        const user = action
+        Crashlytics.setUserName(user.name ? user.name : 'No Name');
+        Crashlytics.setUserEmail(user.email);
+        Crashlytics.setUserIdentifier(user.id);
+      } catch(e){
+        console.log('Error Crashalyticising: ', e);
+      }
     case 'SIGNED_IN_SUCCESSFUL':
       Answers.logLogin('EMAIL', true);
     case 'SIGNED_UP_SUCCESSFUL':
