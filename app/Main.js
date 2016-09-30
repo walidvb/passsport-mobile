@@ -13,6 +13,7 @@ import Home from './Home';
 import PartnerShow from './partners/PartnerShow';
 import PartnerValidate from './partners/PartnerValidate';
 import Auth from './auth/Auth';
+import Introduction from './components/Introduction';
 import UserForm from './auth/UserForm';
 const MenuBar = require('./components/MenuBar')
 import VbWebView from './components/vbWebView'
@@ -32,6 +33,15 @@ class Main extends Component{
         >
 
       <Scene key="root" tabs={false} hideNavBar={true}>
+        <Scene
+          component={Introduction}
+          key="intro"
+          hideNavBar={true}
+          title='MON PASS'
+          {...this.props}
+          direction="vertical"
+          initial={true}
+        />
           <Scene
             component={Auth}
             key="auth"
@@ -58,7 +68,6 @@ class Main extends Component{
           />
 
           <Scene
-            initial={true}
             component={Home}
             key="home"
             {...this.props}
