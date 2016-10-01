@@ -1,24 +1,23 @@
+
 /* @flow */
 
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux'
+
 import {
   View,
   Image,
   StyleSheet,
   Dimensions,
+  Async,
 } from 'react-native';
+
+const VbIcon = require('../helpers/vbIcon')
 
 import Swiper from 'react-native-swiper';
 
 import colors from '../colors'
 var {height, width} = Dimensions.get('window');
-
-const Page = (props) => (
-  <Image
-    resizeMode='contain'
-    style={{height: height, width: width, flex: 1, zIndex: -1}}
-    source={require(src)}/>
-);
 
 export default class Introduction extends Component {
   componentWillMount(){
@@ -28,6 +27,30 @@ export default class Introduction extends Component {
         require('../resources/images/intro/how-to-2.png'),
         require('../resources/images/intro/how-to-3.png'),
       ],
+      seenLast: false,
+    }
+  }
+  renderCloseIcon(){
+    if(this.state.seenLast)
+    {
+      const close = () => {
+        Actions.pop();
+        this.props.dismissIntro();
+      }
+      return (<VbIcon
+        size={25}
+        style={[{color: colors.white, right: 35, position: 'absolute', top: 46, backgroundColor: 'transparent'}]}
+        name='thumbs-up'
+        onPress={close}
+      />)
+    }
+  }
+  checkLast(e, state, context){
+    if(!this.state.seenLast){
+      this.setState({
+        ...this.state,
+        seenLast: this.state.seenLast || state.index == state.total-1,
+      });
     }
   }
   render() {
@@ -35,25 +58,29 @@ export default class Introduction extends Component {
     const dot = <View style={{backgroundColor: '#DADBDD', ...dotProps}} />
     const activeDot = <View style={{backgroundColor: colors.brand, ...dotProps}} />
     return (
-      <Swiper
-        style={styles.wrapper}
-        dot={dot}
-        activeDot={activeDot}
-        loop={false}
-         >
-        {this.state.screens.map(src => <Image
-          key={src}
-          resizeMode='contain'
-          style={{height: height, width: width, flex: 1, zIndex: -1}}
-          source={src}/>)
-        }
-      </Swiper>
+      <View style={{backgroundColor: colors.brand}}>
+        <Swiper
+          dot={dot}
+          activeDot={activeDot}
+          loop={false}
+          bounces={true}
+          onMomentumScrollEnd={this.checkLast.bind(this)}
+        >
+          {this.state.screens.map(src => <Image
+            key={src}
+            resizeMode='contain'
+            style={{height: height, width: width, flex: 1, zIndex: -1}}
+            source={src}/>)
+          }
+        </Swiper>
+        {this.renderCloseIcon(this)}
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+import myConnector from '../utils/myConnector'
+import * as authActions from '../auth/authActionCreators';
+Introduction = myConnector(Introduction, authActions);
+
+module.exports = Introduction

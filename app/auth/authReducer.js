@@ -45,6 +45,13 @@ export default function auth(state = [], action){
         loggedIn: false,
         user: null
       }
+    // shouldn't be here, but oh well..
+    case 'DISMISSED_INTRO':
+      console.log('DISMISSED PORRA!');
+      return {
+        ...state,
+        sawIntro: true,
+      }
     default:
       return state;
   }

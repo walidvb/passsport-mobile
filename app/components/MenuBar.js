@@ -35,6 +35,9 @@ class MenuBar extends Component {
       case 'myPass':
         Actions.auth()
         break
+      case 'intro':
+        Actions.intro();
+        break;
       case 'signIn':
         this.props.ui.online ? Actions.userForm() : Alert.alert("Oops, vous n'êtes pas connecté", "Merci de réessayez une fois que vous serez en ligne")
         break
@@ -90,6 +93,7 @@ class MenuBar extends Component {
         <MenuOptions optionsContainerStyle={styles.menuContainer}>
           {MenuItem('À Propos', 'about')}
           {MenuItem('FAQ', 'faqs')}
+          {MenuItem('Aide', 'intro')}
           {!loggedIn ? <View/> : MenuItem('Mon Pass', 'myPass', )}
 
           {!loggedIn ? MenuItem('S\'inscrire', 'signIn', { borderTopWidth: 1, borderTopColor: colors.lightGray}) : MenuItem('Déconnection', 'logOut', { borderTopWidth: 1, borderTopColor: colors.lightGray})}

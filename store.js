@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger';
+import { Actions } from 'react-native-router-flux'
 
 const {persistStore, autoRehydrate} = require('redux-persist');
 const {AsyncStorage, NetInfo} = require('react-native');
@@ -14,6 +15,7 @@ import rootReducer from './app/rootReducer';
 const initialState = {
   partners: [],
   auth: {
+    sawIntro: false,
     user: null,
     loggedIn: false,
   },
@@ -42,7 +44,7 @@ export default function configureStore(initialState) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      //logger,
+      logger,
     ),
     autoRehydrate(),
     devTools(),
@@ -52,28 +54,29 @@ export default function configureStore(initialState) {
   persistStore(_store, {
     storage: AsyncStorage,
     blacklist: ['ui'],
-  }, () => {
-    function handleFirstConnectivityChange(status) {
-      console.log('status change', status);
-      store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
-    }
-    NetInfo.isConnected.addEventListener(
-      'change',
-      handleFirstConnectivityChange
-    );
-    NetInfo.isConnected.fetch().done((isConnected) => {
-      handleFirstConnectivityChange(isConnected);
-      store.dispatch({type: 'GET_PARTNERS'});
-      if(store.getState().auth.loggedIn){
-        store.dispatch({type: 'GET_SUBSCRIPTION'})
-        store.dispatch({type: 'GET_USER_DETAILS'})
-      }
-    })
-
-  });
+  }, storePersisted)
 
   return _store;
 }
+
+const storePersisted = () => {
+  if(!store.getState().auth.sawIntro){Actions.intro();}
+  function handleFirstConnectivityChange(status) {
+    store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
+  }
+  NetInfo.isConnected.addEventListener(
+    'change',
+    handleFirstConnectivityChange
+  );
+  NetInfo.isConnected.fetch().done((isConnected) => {
+    handleFirstConnectivityChange(isConnected);
+    store.dispatch({type: 'GET_PARTNERS'});
+    if(store.getState().auth.loggedIn){
+      store.dispatch({type: 'GET_SUBSCRIPTION'})
+      store.dispatch({type: 'GET_USER_DETAILS'})
+    }
+  });
+};
 
 const store = configureStore(initialState);
 store.runSaga = sagaMiddleware.run(rootSaga)

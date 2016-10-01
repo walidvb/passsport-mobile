@@ -40,7 +40,6 @@ class Main extends Component{
           title='MON PASS'
           {...this.props}
           direction="vertical"
-          initial={true}
         />
           <Scene
             component={Auth}
@@ -71,6 +70,7 @@ class Main extends Component{
             component={Home}
             key="home"
             {...this.props}
+            initial={true}
           />
           <Scene
             component={PartnerShow}
