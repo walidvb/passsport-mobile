@@ -68,7 +68,7 @@ export default class Introduction extends Component {
         >
           {this.state.screens.map(src => <Image
             key={src}
-            resizeMode='contain'
+            resizeMode='cover'
             style={{height: height, width: width, flex: 1, zIndex: -1}}
             source={src}/>)
           }
