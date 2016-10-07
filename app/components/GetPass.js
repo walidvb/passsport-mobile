@@ -11,7 +11,6 @@ class GetPass extends Component{
 
   onPress(){
     const props = this.props
-    console.log(props);
     props.ui.online ? Actions.userForm({...props}) : Alert.alert("Oops, vous n'êtes pas connecté", "Merci de réessayez une fois que vous serez en ligne")
 
   }

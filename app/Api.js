@@ -46,7 +46,7 @@ class Api{
   static getPartners() {
     return fetch(url('partners.json'), {
       ...Api.params(),
-    }).then(res => res.json()).then(r => {console.log(r);return r});
+    }).then(res => res.json()).then(r => r);
   }
 
   static validatePartner(partnerId, partnerToken){

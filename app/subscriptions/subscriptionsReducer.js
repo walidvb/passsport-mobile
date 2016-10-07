@@ -16,7 +16,6 @@ export default function subscription(state = {}, action){
         ...subscription
       }
     case 'PARTNER_VALIDATED':
-      console.log(state);
       validated_partner_ids = state.validated_partner_ids
       validated_partner_ids.push(action.validation.partner_id)
       Answers.logCustom('Validated Partner', { ...action.validation})

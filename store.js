@@ -44,10 +44,10 @@ export default function configureStore(initialState) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      logger,
+      //logger,
     ),
     autoRehydrate(),
-    devTools(),
+    //devTools(),
   );
 
   const _store = createStore(rootReducer, initialState, enhancer);
@@ -61,7 +61,7 @@ export default function configureStore(initialState) {
 
 const storePersisted = () => {
   if(!store.getState().auth.sawIntro){Actions.intro();}
-  function handleFirstConnectivityChange(status) {
+  const handleFirstConnectivityChange(status) => {
     store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
   }
   NetInfo.isConnected.addEventListener(
