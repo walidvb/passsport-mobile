@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import colors from '../colors'
 var baseStyles = require('../styles')
@@ -8,8 +9,12 @@ const Map = require('../components/Map')
 const VbText = require('../helpers/vbText')
 class PartnerOffer extends Component{
   renderCategory(cat){
+    const onPress = () => {
+      Actions.pop();
+      this.props.toggleCategory(cat.name, true);
+    }
     return (
-      <VbText style={styles.cat} key={cat.name} text={cat.name} uppercase styles={['bold']}></VbText>
+      <VbText onPress={onPress.bind(this)} style={styles.cat} key={cat.name} text={cat.name} uppercase styles={['bold']}></VbText>
     )
   }
   render() {

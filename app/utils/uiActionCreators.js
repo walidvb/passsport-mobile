@@ -11,10 +11,11 @@ export function toggleFilters(toOpen){
   }
 }
 
-export function toggleCategory(category){
+export function toggleCategory(category, single = false){
   return {
     type: 'TOGGLE_CATEGORY',
-    category
+    category,
+    single,
   }
 }
 

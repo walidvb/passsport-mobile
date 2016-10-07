@@ -66,8 +66,8 @@ class PartnerShow extends Component{
         tabBarTextStyle={[baseStyles.text, {fontWeight: 'bold',}]}
         prerenderingSiblingsNumber={2}
         >
-        <PartnerOffer tabLabel="OFFRE" partner={partner}/>
-        <PartnerAbout tabLabel="À PROPOS" partner={partner}/>
+        <PartnerOffer {...this.props} tabLabel="OFFRE" partner={partner}/>
+        <PartnerAbout {...this.props} tabLabel="À PROPOS" partner={partner}/>
       </ScrollableTabView>
     )
   }

@@ -1,7 +1,8 @@
 
-export function categoryClicked(cat){
+export function categoryClicked(cat, single = false){
   return {
     type: 'CATEGORY_CLICKED',
-    cat: cat
+    cat,
+    single
   }
 }
