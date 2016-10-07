@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Actions, ActionConst } from 'react-native-router-flux';
 
 import colors from '../colors'
 var baseStyles = require('../styles')
@@ -10,7 +10,7 @@ const VbText = require('../helpers/vbText')
 class PartnerOffer extends Component{
   renderCategory(cat){
     const onPress = () => {
-      Actions.pop();
+      Actions.home({type: ActionConst.RESET});
       this.props.toggleCategory(cat.name, true);
     }
     return (

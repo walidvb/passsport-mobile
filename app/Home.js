@@ -11,6 +11,7 @@ import {
   TextInput,
   ScrollView,
   TouchableHighlight,
+  AsyncStorage,
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 
@@ -29,8 +30,8 @@ class Home extends Component{
   static renderNavigationBar(props){
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
   }
-  componentWillReceiveNewProps(){
-    if(!this.props.auth.sawIntro){Actions.intro();}
+  componentDidMount(){
+    const value = AsyncStorage.getItem('@Static:sawIntro').then(sawIntro => {sawIntro == '1' ? null : Actions.intro()})
   }
   render() {
     const sub = new Subscription(this.props.subscription)

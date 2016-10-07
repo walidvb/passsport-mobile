@@ -39,9 +39,3 @@ export function signOut(user){
     user,
   }
 }
-
-export function dismissIntro(toOpen){
-  return {
-    type: 'DISMISSED_INTRO',
-  }
-}

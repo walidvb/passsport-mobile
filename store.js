@@ -14,7 +14,6 @@ import rootReducer from './app/rootReducer';
 const initialState = {
   partners: [],
   auth: {
-    sawIntro: false,
     user: null,
     loggedIn: false,
   },
@@ -35,7 +34,9 @@ const initialState = {
 
 const sagaMiddleware = createSagaMiddleware()
 const logger = createLogger({
-  collapsed: true
+  collapsed: true,
+  level: 'error',
+
 });
 
 export default function configureStore(initialState) {
@@ -43,10 +44,10 @@ export default function configureStore(initialState) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      logger,
+      //logger,
     ),
     autoRehydrate(),
-    devTools(),
+    //devTools(),
   );
 
   const _store = createStore(rootReducer, initialState, enhancer);

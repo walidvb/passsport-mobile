@@ -62,7 +62,6 @@ class Auth extends Component{
     this.setState({
       subscription: props.subscription
     })
-    // Actions.refresh()
   }
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
@@ -92,8 +91,8 @@ class Auth extends Component{
         <ScrollView style={baseStyles.container, {flexDirection: 'column', paddingLeft: 15, paddingRight:15, paddingTop: Navigator.NavigationBar.Styles.General.TotalNavHeight+18}}>
           <View style={styles.details}>
             {row('Nom:', user.name)}
-            {user.token ? row('Votre Code:', user.token.toUpperCase()) : null}
             {row('Email:', user.email)}
+            {user.token.length ? row('Votre Code:', user.token.toUpperCase()) : null}
             {this.renderSubscriptionStatus()}
             {validatedPartners.length ? row('Visites:', validatedPartners.length) : null}
           </View>

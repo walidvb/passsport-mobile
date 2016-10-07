@@ -30,7 +30,6 @@ export default function ui(state = {}, action){
       else{
         categories.push(category)
       }
-      console.log(categories, category);
       return {
         ...state,
         filters: {

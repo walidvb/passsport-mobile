@@ -9,7 +9,7 @@ import {
   Image,
   StyleSheet,
   Dimensions,
-  Async,
+  AsyncStorage,
 } from 'react-native';
 
 const VbIcon = require('../helpers/vbIcon')
@@ -35,7 +35,7 @@ export default class Introduction extends Component {
     {
       const close = () => {
         Actions.pop();
-        this.props.dismissIntro();
+        AsyncStorage.setItem('@Static:sawIntro', '1');
       }
       return (<VbIcon
         size={25}
