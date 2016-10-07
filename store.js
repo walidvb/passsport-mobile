@@ -43,10 +43,10 @@ export default function configureStore(initialState) {
     applyMiddleware(
       thunk,
       sagaMiddleware,
-      //logger,
+      logger,
     ),
     autoRehydrate(),
-    //devTools(),
+    devTools(),
   );
 
   const _store = createStore(rootReducer, initialState, enhancer);

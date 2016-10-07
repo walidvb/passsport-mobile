@@ -53,8 +53,10 @@ class PartnerCell extends Component{
 
 const styles = StyleSheet.create({
   overlay: {
+    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
+    flexWrap: 'wrap',
     paddingLeft: 15,
     paddingBottom: 15,
   },

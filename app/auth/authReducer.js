@@ -25,6 +25,8 @@ export default function auth(state = [], action){
       Answers.logLogin('EMAIL', true);
     case 'SIGNED_UP_SUCCESSFUL':
       Answers.logSignUp('EMAIL', true);
+
+
     case 'USER_FETCHED':
       return {
         ...state,

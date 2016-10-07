@@ -29,7 +29,7 @@ class Home extends Component{
   static renderNavigationBar(props){
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
   }
-  componentWillMount(){
+  componentWillReceiveNewProps(){
     if(!this.props.auth.sawIntro){Actions.intro();}
   }
   render() {
