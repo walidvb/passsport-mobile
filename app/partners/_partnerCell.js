@@ -16,13 +16,13 @@ class PartnerCell extends Component{
     }
 
     const validBanner = partner.validated ? <ValidBanner/> : null
-    const customStyles = this.props.smallCell ? { height: 18*7 } : {}
+    const customStyles = this.props.smallCell ? { height: 18*7} : { flex: 1 }
 
     const catStyles = ['small', 'light']
     const insideStyles = [styles.overlay, this.props.style]
 
     const inside = (
-      <View style={insideStyles}>
+      <View style={[insideStyles, {flex: this.props.smallCell ? 1 : 0}]}>
         <VbText styles={['large', 'light', 'bold']} uppercase text={partner.name}/>
         <View style={styles.partnerCategories}>
           {partner.categories.map((cat) => {
@@ -53,7 +53,6 @@ class PartnerCell extends Component{
 
 const styles = StyleSheet.create({
   overlay: {
-    flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     flexWrap: 'wrap',

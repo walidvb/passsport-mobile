@@ -7,6 +7,11 @@ const VbHTMLView = require('../helpers/vbHTMLView')
 const Map = require('../components/Map')
 const VbText = require('../helpers/vbText')
 class PartnerOffer extends Component{
+  renderCategory(cat){
+    return (
+      <VbText style={styles.cat} key={cat.name} text={cat.name} uppercase styles={['bold']}></VbText>
+    )
+  }
   render() {
     const { partner } = this.props;
     return (
@@ -15,11 +20,7 @@ class PartnerOffer extends Component{
           <VbHTMLView value={partner.discount} stylesheet={discountStyles}/>
         </View>
         <View style={[styles.categories]}>
-          {partner.categories.map((cat) => {
-            return (
-              <VbText style={styles.cat} key={cat.name} text={cat.name} uppercase styles={['bold']}></VbText>
-            )
-          })}
+          {partner.categories.map(cat => this.renderCategory(cat))}
         </View>
         <View style={baseStyles.element}>
           <VbHTMLView value={partner.offer_details} />
