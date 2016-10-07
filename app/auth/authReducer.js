@@ -19,7 +19,7 @@ export default function auth(state = [], action){
         Crashlytics.setUserEmail(user.email);
         Crashlytics.setUserIdentifier(user.id);
       } catch(e){
-        #console.log('Error Crashalyticising: ', e);
+        console.log('Error Crashalyticising: ', e);
       }
     case 'SIGNED_IN_SUCCESSFUL':
       Answers.logLogin('EMAIL', true);

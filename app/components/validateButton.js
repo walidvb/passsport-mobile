@@ -30,7 +30,7 @@ class ValidateButton extends Component{
       return (
         <VbButton
         onPress={this.onPress.bind(this)}
-        {...this.props}>Valider</VbButton>
+        {...this.props}>UTILISER L'OFFRE</VbButton>
       );
     }
     else{

@@ -37,8 +37,6 @@ class Main extends Component{
           component={Introduction}
           key="intro"
           hideNavBar={true}
-          title='MON PASS'
-          {...this.props}
           direction="vertical"
         />
           <Scene

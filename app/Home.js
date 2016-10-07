@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import Menu, { MenuContext } from 'react-native-menu';
-
+import { Actions } from 'react-native-router-flux'
 
 import {
   StyleSheet,
@@ -28,6 +28,9 @@ import Subscription from './subscriptions/Subscription'
 class Home extends Component{
   static renderNavigationBar(props){
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
+  }
+  componentWillMount(){
+    if(!this.props.auth.sawIntro){Actions.intro();}
   }
   render() {
     const sub = new Subscription(this.props.subscription)

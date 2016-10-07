@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import devTools from 'remote-redux-devtools';
 import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger';
-import { Actions } from 'react-native-router-flux'
 
 const {persistStore, autoRehydrate} = require('redux-persist');
 const {AsyncStorage, NetInfo} = require('react-native');
@@ -60,8 +59,7 @@ export default function configureStore(initialState) {
 }
 
 const storePersisted = () => {
-  if(!store.getState().auth.sawIntro){Actions.intro();}
-  const handleFirstConnectivityChange(status) => {
+  const handleFirstConnectivityChange = (status) => {
     store.dispatch({type: 'NETWORK_STATUS_CHANGE', status: status});
   }
   NetInfo.isConnected.addEventListener(
