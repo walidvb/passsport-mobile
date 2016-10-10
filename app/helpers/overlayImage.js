@@ -25,7 +25,7 @@ class OverlayImage extends Component{
   }
 };
 
-const height = Dimensions.get('window').width <= 480 ? 18*9 : 18*17
+const height = Dimensions.get('window').width <= 400 ? 18*9 : 18*20
 
 const styles = StyleSheet.create({
   base: {

@@ -31,7 +31,7 @@ class Home extends Component{
     return(<MenuBar {...props} style={{paddingTop: 20}} />)
   }
   componentDidMount(){
-    setTimeout(() => AsyncStorage.getItem('@Static:sawIntro').then(sawIntro => {sawIntro == '1' ? null : Actions.intro()}), 0)
+    setTimeout(() => AsyncStorage.getItem('@Static:sawIntro').then(sawIntro => {sawIntro == '1' ? null : Actions.intro()}), 50)
   }
   render() {
     const sub = new Subscription(this.props.subscription)
