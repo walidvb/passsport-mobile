@@ -29,9 +29,8 @@ class UserForm extends Component{
 
   onBridgeMessage(message){
     const { webviewbridge } = this.refs;
-    console.log('message from webViewBridge', message);
     message = JSON.parse(message);
-    console.log('message from webViewBridge', message, this.props);
+    console.log('message from webViewBridge', message);
     switch(message.type){
       case 'POP':
         Actions.pop();

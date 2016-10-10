@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import Menu, { MenuContext } from 'react-native-menu';
 import { Actions } from 'react-native-router-flux'
+const Fabric = require('react-native-fabric');
+const { Crashlytics } = Fabric;
 
 import {
   StyleSheet,
@@ -34,6 +36,8 @@ class Home extends Component{
     setTimeout(() => AsyncStorage.getItem('@Static:sawIntro').then(sawIntro => {sawIntro == '1' ? null : Actions.intro()}), 50)
   }
   render() {
+
+    Crashlytics.setUserIdentifier('1234');
     const sub = new Subscription(this.props.subscription)
     const marginBottom = sub.isValid() ? 0 : 50
     return(
