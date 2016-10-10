@@ -20,7 +20,6 @@ platform :ios do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     ENV['GYM_EXPORT_TEAM_ID'] = "Walid van Boetzelaer"
     ENV['GYM_WORKSPACE'] = './ios/PassSport.xcworkspace/'
-
   end
 
   desc "Runs all the tests"
@@ -30,12 +29,13 @@ platform :ios do
 
 
   desc "Deploy a new version to the App Store"
-  lane :appstore do
+  lane :deploy_appstore do
     # match(type: "appstore")
     # snapshot
     gym(
-      # => project: "./ios/Passsport.xcodeproj",
-
+       # project: "./ios/Passsport.xcodeproj",
+       use_legacy_build_api: true,
+       export_method: 'app-store',
     ) # Build your app - more options available
     deliver(
       force: true,

@@ -44,7 +44,7 @@ class Home extends Component{
           type="static"
           open={this.props.ui.filters.drawerOpen}
           content={<CategoriesList {...this.props} />}
-          openDrawerOffset={170}
+          openDrawerOffset={190}
           closedDrawerOffset={0}
           panOpenMask={200}
           onOpenStart={() => {
