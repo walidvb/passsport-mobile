@@ -44,6 +44,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brand,
     borderColor: colors.brand,
   },
+  secondary: {
+    borderColor: colors.white,
+    borderWidth: 2,
+  },
   buttonInner: {
     color: 'white',
     textAlign: 'center',

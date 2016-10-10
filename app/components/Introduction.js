@@ -12,12 +12,14 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-const VbIcon = require('../helpers/vbIcon')
+const VbButton = require('../helpers/vbButton')
+const baseStyles = require('../styles')
 
 import Swiper from 'react-native-swiper';
 
 import colors from '../colors'
-var {height, width} = Dimensions.get('window');
+
+const {height, width} = Dimensions.get('window');
 
 export default class Introduction extends Component {
   componentWillMount(){
@@ -27,31 +29,21 @@ export default class Introduction extends Component {
         require('../resources/images/intro/how-to-2.png'),
         require('../resources/images/intro/how-to-3.png'),
       ],
-      seenLast: false,
     }
   }
-  renderCloseIcon(){
-    if(this.state.seenLast)
-    {
-      const close = () => {
-        Actions.pop();
-        AsyncStorage.setItem('@Static:sawIntro', '1');
-      }
-      return (<VbIcon
-        size={25}
-        style={[{color: colors.white, right: 35, position: 'absolute', top: 46, backgroundColor: 'transparent'}]}
-        name='thumbs-up'
-        onPress={close}
-      />)
+  renderLastPage(){
+    const close = () => {
+      Actions.pop();
+      AsyncStorage.setItem('@Static:sawIntro', '1');
     }
-  }
-  checkLast(e, state, context){
-    if(!this.state.seenLast){
-      this.setState({
-        ...this.state,
-        seenLast: this.state.seenLast || state.index == state.total-1,
-      });
-    }
+    return (<View style={styles.lastPage} key="last">
+      <Image
+        resizeMode='contain'
+        style={{height: 120, zIndex: -1, marginBottom: 9}}
+        source={require('../resources/images/logo.png')}/>
+        <VbButton type={'secondary'} onPress={close}>Découvrir les offres!</VbButton>
+      </View>
+    )
   }
   render() {
     const dotProps = {width: 9.5, height: 9.5, borderRadius: 5, marginLeft: 6, marginRight: 6, marginTop: 6, marginBottom: 6,}
@@ -64,20 +56,30 @@ export default class Introduction extends Component {
           activeDot={activeDot}
           loop={false}
           bounces={true}
-          onMomentumScrollEnd={this.checkLast.bind(this)}
         >
-          {this.state.screens.map(src => <Image
-            key={src}
+          <Image
             resizeMode='cover'
-            style={{height: height, width: width, flex: 1, zIndex: -1}}
-            source={src}/>)
-          }
+            style={styles.image}
+            source={require('../resources/images/intro/how-to-1.png')}/>
+          <Image
+            resizeMode='cover'
+            style={styles.image}
+            source={require('../resources/images/intro/how-to-2.png')}/>
+          <Image
+            resizeMode='cover'
+            style={styles.image}
+            source={require('../resources/images/intro/how-to-3.png')}/>
+          {this.renderLastPage()}
         </Swiper>
-        {this.renderCloseIcon(this)}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  image: {height: height, width: width, flex: 1, zIndex: -1},
+  lastPage: {flex: 1, justifyContent: 'center', alignItems: 'center', padding: 18}
+});
 
 import myConnector from '../utils/myConnector'
 import * as authActions from '../auth/authActionCreators';

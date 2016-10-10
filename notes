@@ -1,21 +1,20 @@
+ - crash when scroll too fast iOS 9.3, iPhone5
+ - format date dans my pass
+ - verify you can open menu
+ - open address in maps?
+
+ - last intro screen: logo+bouton'Découvrir les offres'
+ - add link to user subscription in admin
+ - change color and email header
 APP:
   - center discount and bar on _partnerOffer
-  - search bar underline(as on https://projects.invisionapp.com/share/RN7M4UHK7#/screens/170025282/comments)
   - remove keyboard when filters drawer is closed
-  - offline detected although online
   - offline validation(and syncing)
   - thank you for validating page
 
 SERVER:
-  - 4 chiffres aléatoires pr le token
-  - sports gratuits: 3 colonnes
   -
 
 BUGS:
 
- - when signing in with a subscription, GET PASS doesn't disappear
  - signing out doesn't rerender the partner validation
-
- - No confirmation email after creating an account
-
- - When signing in with a account that has an activated pass already still ask to validate or buy the pass
