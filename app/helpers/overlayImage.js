@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Dimensions, View, Image, StyleSheet } from 'react-native';
 
 class OverlayImage extends Component{
   setNativeProps(nativeProps) {
@@ -25,11 +25,13 @@ class OverlayImage extends Component{
   }
 };
 
+const height = Dimensions.get('window').width <= 480 ? 18*9 : 18*17
+
 const styles = StyleSheet.create({
   base: {
     alignItems: 'stretch',
     flex: 1,
-    height: 220,
+    height,
   },
   overlay: {
     paddingLeft: 9,

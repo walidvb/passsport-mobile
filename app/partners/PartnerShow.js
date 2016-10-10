@@ -18,6 +18,7 @@ import {
   StyleSheet,
   Navigator,
   Text,
+  Dimensions,
 } from 'react-native';
 
 const PartnerAbout = require('./_partnerAbout')
@@ -27,6 +28,8 @@ import ValidBanner from './_partnerValidBanner'
 
 const baseStyles = require('../styles')
 import colors from '../colors'
+
+const headerHeight = Dimensions.get('window').width <= 480 ? 18*13 : 18*17
 
 
 class PartnerShow extends Component{
@@ -50,7 +53,7 @@ class PartnerShow extends Component{
     const validBanner = partner.validated ? <ValidBanner/> : null
     return (
       <View>
-        <OverlayImage source={{uri: partner.tile_image}} style={[{height: 300, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+        <OverlayImage source={{uri: partner.tile_image}} style={[{height: headerHeight*0.85, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
           { validBanner }
         </OverlayImage>
       </View>
@@ -80,9 +83,9 @@ class PartnerShow extends Component{
     return (<View style={{flex: 1, paddingBottom: padding}}>{validator}
       <ParallaxScrollView
         contentContainerStyle={{flex: 1}}
-        backgroundSpeed={25}
+        backgroundSpeed={55}
         backgroundColor={colors.brandColor}
-        parallaxHeaderHeight={300}
+        parallaxHeaderHeight={headerHeight}
         renderBackground={this.renderHeader.bind(this, partner)}
         renderForeground={() => (
           <View style={{flex: 1, justifyContent: 'center', paddingTop: 65, paddingLeft: 15, paddingRight: 15}}>
