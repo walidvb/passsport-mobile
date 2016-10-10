@@ -20,6 +20,8 @@ import { Actions } from 'react-native-router-flux';
 
 var baseStyles = require('../styles')
 import colors from '../colors'
+
+import dateToString from '../helpers/dateFormatter'
 const GetPass = require('../components/GetPass')
 const VbText = require('../helpers/vbText')
 const VbButton = require('../helpers/vbButton')
@@ -28,7 +30,8 @@ import Subscription from '../subscriptions/Subscription'
 import UserForm from './UserForm'
 
 const row = (header, cell) => {
-  if(!cell || !cell.length){
+  console.log(cell, !cell || !cell.length);
+  if( !cell || (typeof cell == 'String' && !cell.length)){
     return null
   }
   return(
@@ -66,7 +69,7 @@ class Auth extends Component{
   renderSubscriptionStatus(){
     let sub =  new Subscription(this.state.subscription);
     if(sub.isValid()){
-      return row('Expire le:', sub.expires_at.toDateString())
+      return row('Expire le:', dateToString(sub.expires_at))
     }
     else if(sub.expires_at){
       return row('Expire le:', 'Expiré!')
@@ -94,7 +97,7 @@ class Auth extends Component{
             {row('Email:', user.email)}
             {user.token.length ? row('Votre Code:', user.token.toUpperCase()) : null}
             {this.renderSubscriptionStatus()}
-            {validatedPartners.length ? row('Visites:', validatedPartners.length) : null}
+            {row('Visites:', `${validatedPartners.length} / ${this.props.partners.length}`)}
           </View>
           {list}
         </ScrollView>
