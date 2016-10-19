@@ -39,7 +39,7 @@ export default class Introduction extends Component {
     return (<View style={styles.lastPage} key="last">
       <Image
         resizeMode='contain'
-        style={{height: 120, zIndex: -1, position: 'absolute', top: height/4-60, left: 0}}
+        style={styles.logo}
         source={require('../resources/images/logo.png')}/>
         <VbButton type={'secondary'} onPress={close}>Découvrir les offres!</VbButton>
       </View>
@@ -85,9 +85,18 @@ const styles = StyleSheet.create({
   },
   lastPage: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
-    padding: 18}
+    padding: 18,
+  },
+  logo: {
+    height: 120,
+    zIndex: -1,
+    position: 'absolute',
+    top: height/4-60,
+    width: width,
+    left: 0,
+  }
 });
 
 import myConnector from '../utils/myConnector'
