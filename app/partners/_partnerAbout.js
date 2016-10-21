@@ -12,10 +12,20 @@ const VbIcon = require('../helpers/vbIcon')
 function urlWithIcon(icon, text, url){
   if(!text){return null}
   const isUrl = /https?:\/\/([^\/]+)/.exec(text)
-  const renderedText = isUrl ? isUrl[1] : text
+  const renderedText = isUrl ? isUrl[1] : text;
+  let textNode;
+  if(url){
+    textNode = <VbLink url={url || text} style={{flex: 1}}>
+      <VbText text={renderedText} />
+    </VbLink>
+  }
+  else{
+    textNode = <VbText text={renderedText} />
+  }
   return (
     <View style={styles.contactRow}>
       <VbIcon style={styles.icon} name={icon}/>
+
       <VbLink url={url || text} style={{flex: 1}}>
         <VbText text={renderedText} />
       </VbLink>
@@ -42,9 +52,9 @@ class PartnerAbout extends Component{
     return (
     	<View style={styles.container}>
         <View style={styles.contact}>
-          {urlWithIcon('map-marker', partner.contact)}
+          {urlWithIcon('map-marker', partner.contact, `http://maps.google.com/?q=your+query${partner.contact}`)}
           {urlWithIcon('phone', partner.phone, "tel:"+partner.phone)}
-          {urlWithIcon('globe', partner.website)}
+          {urlWithIcon('globe', partner.website, partner.website)}
           {urlWithIcon('envelope', partner.email, "mailto:"+partner.email)}
 
         </View>
