@@ -14,6 +14,7 @@ import {
   ScrollView,
   TouchableHighlight,
   AsyncStorage,
+  Dimensions,
 } from 'react-native';
 import Drawer from 'react-native-drawer';
 
@@ -48,7 +49,7 @@ class Home extends Component{
           type="static"
           open={this.props.ui.filters.drawerOpen}
           content={<CategoriesList {...this.props} />}
-          openDrawerOffset={190}
+          openDrawerOffset={Dimensions.get('window').width - 200}
           closedDrawerOffset={0}
           panOpenMask={200}
           onOpenStart={() => {
