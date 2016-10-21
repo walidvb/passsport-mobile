@@ -17,7 +17,8 @@ import {
   View,
   Image,
   Navigator,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 var baseStyles = require('../styles')
@@ -40,42 +41,54 @@ class PartnerValidateOnline extends Component{
     this.props.clearErrors()
 
   }
+  submit(){
+    console.log('hey');
+    this.props.validatePartner(this.props.partner, this.state.partnerToken.toLowerCase());
+  }
   render(){
     const { errors } = this.props.ui
-    const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null
-    return (
-      <KeyboardAvoidingView behavior='padding' style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-          <VbText
-            text={`Demandez au partenaire d\'entrer son code:`}
-            uppercase
-            styles={['bold']}
+    const error = errors.validationError ? <VbText text={errors.validationError} styles={['error', 'centered']}/> : null;
+    let result = (
+      <View style={[{flex: 1, marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}, styles.wrapper]}>
+        <VbText
+          text={`Demandez au partenaire \n d\'entrer son code:`}
+          uppercase
+          numberOfLines={2}
+          styles={['bold']}
+          style={[{
+            textAlign: 'center',
+          }], styles.title}/>
+        {error}
+        <View style={{borderBottomColor: colors.lightGray, borderBottomWidth: 1, alignSelf: 'stretch', marginBottom: 18,}}>
+          <TextInput
+            autofocus={true}
             style={{
               textAlign: 'center',
-            }}/>
-          {error}
-          <View style={{borderBottomColor: colors.lightGray, borderBottomWidth: 1, alignSelf: 'stretch', marginBottom: 18,}}>
-            <TextInput
-              autofocus
-              style={{
-                textAlign: 'center',
-                height: 40,
-                fontFamily: 'Lato',
-                fontWeight: 'bold',
-              }}
-              placeholder='XXXX'
-              ref='partnerToken'
-              onChangeText={this.onChangeText.bind(this)}
-              keyboardType='numeric'
-              autoCapitalize={"characters"}
-            />
-          </View>
-          <VbButton
-            disabled={this.state.partnerToken.length}
-            onPress={this.props.validatePartner.bind(this, this.props.partner, this.state.partnerToken.toLowerCase())}>
-            {"Valider"}
-          </VbButton>
-      </KeyboardAvoidingView>
-    )
+              height: 40,
+              fontFamily: 'Lato',
+              fontWeight: 'bold',
+            }}
+            underlineColorAndroid='transparent'
+            placeholder='XXXX'
+            ref='partnerToken'
+            onChangeText={this.onChangeText.bind(this)}
+            onSubmitEditing={this.submit.bind(this)}
+            keyboardType='numeric'
+            autoCapitalize={"characters"}
+          />
+        </View>
+        <VbButton
+          disabled={this.state.partnerToken.length}
+          onPress={this.submit.bind(this)}>
+          {"Valider"}
+        </VbButton>
+      </View>)
+    if(Platform.OS === 'ios'){
+      result = (<KeyboardAvoidingView behavior='padding' style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
+        {result}
+      </KeyboardAvoidingView>);
+    }
+    return result;
   }
   onChangeText(val){
     this.setState({ partnerToken: val})
@@ -130,7 +143,22 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     flex: 1,
   },
-})
+  title: {
+    textAlign: 'center',
+  },
+  ...Platform.select({
+    ios: {},
+    android: {
+      wrapper: {
+        paddingTop: 18,
+        paddingLeft: 15,
+        paddingRight: 15,
+        justifyContent: 'center',
+      },
+
+    }
+  })
+});
 
 import myConnector from '../utils/myConnector'
 import * as partnersActionCreators from './partnersActionCreators';
