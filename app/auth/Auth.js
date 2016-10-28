@@ -97,7 +97,7 @@ class Auth extends Component{
             {row('Email:', user.email)}
             {user.token.length ? row('Votre Code:', user.token.toUpperCase()) : null}
             {this.renderSubscriptionStatus()}
-            {row('Visites:', `${validatedPartners.length} / ${this.props.partners.length}`)}
+            {sub.expires_at ? row('Visites:', `${validatedPartners.length} / ${this.props.partners.length}`) : null}
           </View>
           {list}
         </ScrollView>
