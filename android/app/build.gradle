@@ -105,8 +105,8 @@ android {
         applicationId "com.passsport"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 103
+        versionName "1.0.3"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
