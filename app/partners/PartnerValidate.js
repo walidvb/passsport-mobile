@@ -42,7 +42,7 @@ class PartnerValidateOnline extends Component{
 
   }
   submit(){
-    console.log('hey');
+
     this.props.validatePartner(this.props.partner, this.state.partnerToken.toLowerCase());
   }
   render(){
@@ -147,7 +147,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   ...Platform.select({
-    ios: {},
+    ios: {
+      wrapper: {
+        alignItems: 'center',
+        justifyContent: 'space-around',
+      },
+    },
     android: {
       wrapper: {
         paddingTop: 18,
