@@ -5,6 +5,7 @@ var baseStyles = require('../styles');
 import WebViewBridge from 'react-native-webview-bridge';
 import { Actions } from 'react-native-router-flux';
 import Api from '../Api'
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 const injectScript = `if(sendMsg){sendMsg()}`
 
@@ -19,11 +20,14 @@ class UserForm extends Component{
   }
   render() {
     return (
-      <WebViewBridge
-        ref="webviewbridge"
-        onBridgeMessage={this.onBridgeMessage.bind(this)}
-        injectedJavaScript={injectScript}
-        source={{uri: this.state.url}}/>
+      <View style={{flex: 1}}>
+        <WebViewBridge
+          ref="webviewbridge"
+          onBridgeMessage={this.onBridgeMessage.bind(this)}
+          injectedJavaScript={injectScript}
+          source={{uri: this.state.url}}/>
+        <KeyboardSpacer/>
+      </View>
     )
   }
 
