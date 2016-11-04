@@ -29,7 +29,6 @@ ios/certificates
 .idea
 .gradle
 local.properties
-*.keystore
 
 # node.js
 #
