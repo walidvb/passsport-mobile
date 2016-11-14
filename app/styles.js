@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Platform,
 } from 'react-native';
 
 import colors from './colors'
@@ -24,11 +25,12 @@ const Styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+    fontFamily: 'LatoBold',
     fontSize: 18,
     marginBottom: 18,
   },
   text:{
-    fontFamily: 'Lato',
+    fontFamily: 'Times',
   },
   centered: {
     textAlign: 'center',

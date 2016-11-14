@@ -23,6 +23,7 @@ class PartnerOffer extends Component{
     	<View>
         <View style={styles.discount}>
           <VbHTMLView value={partner.discount} stylesheet={discountStyles}/>
+
         </View>
         <View style={[styles.categories]}>
           {partner.categories.map(cat => this.renderCategory(cat))}
@@ -68,15 +69,17 @@ const discountStyles = StyleSheet.create({
     color,
     textAlign: 'center',
     flex: 1,
+    fontFamily: 'Lato',
   },
   strong: {
     color,
-    fontWeight: 'bold',
+    fontFamily: 'LatoBold',
     textAlign: 'center',
     fontSize: 22.5
   },
   span: {
     textAlign: 'center',
+    fontFamily: 'Lato',
     color,
   },
 

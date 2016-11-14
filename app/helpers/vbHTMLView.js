@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 const HTMLView = require('react-native-htmlview')
 var baseStyles = require('../styles')
 var VbText = require('./vbText')
@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   em: {
-    fontFamily: 'Lato',
-    fontStyle: 'italic',
+
+    fontFamily: 'LatoItalic',
     color: colors.black,
   }
 })

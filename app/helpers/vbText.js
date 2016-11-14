@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Platform } from 'react-native';
 import colors from '../colors'
 
 
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   light: {
-    color: colors.white
+    color: colors.white,
   },
   brand: {
     color: colors.brand
   },
   bold:{
-    fontWeight: 'bold'
+    fontFamily: 'LatoBold',
   },
   large: {
     fontSize: 23,

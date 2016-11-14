@@ -58,7 +58,7 @@ class PartnersList extends Component{
   renderNoResult(){
     return (<View style={[baseStyles.container, {flexDirection: 'column', backgroundColor: 'white'}]}>
               <VbText style={baseStyles.centered}text={"Pas de partenaires correspondants. \n 😓"} styles={['large']}/>
-              <VbText style={baseStyles.centered}onPress={() => {
+              <VbText style={baseStyles.centered} onPress={() => {
                 this.props.toggleCategory(false);
                 this.props.searchPartners('');
               }} styles={['underlined']} text="Recommencer à zéro?"/>
