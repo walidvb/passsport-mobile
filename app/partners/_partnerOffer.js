@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, Platform } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
 import colors from '../colors'
@@ -73,7 +73,7 @@ const discountStyles = StyleSheet.create({
   },
   strong: {
     color,
-    fontFamily: 'LatoBold',
+    fontFamily: Platform.OS==='android' ? 'LatoBold' : 'Lato-Bold',
     textAlign: 'center',
     fontSize: 22.5
   },

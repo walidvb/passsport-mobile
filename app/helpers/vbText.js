@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, StyleSheet, Platform } from 'react-native';
 import colors from '../colors'
+import baseStyles from '../styles'
 
 
 class VbText extends Component{
@@ -14,7 +15,6 @@ class VbText extends Component{
     if(props.lowercase){
       text = text.toLowerCase()
     }
-    const fontWeight = props.bold ? 'bold' : 'normal';
     let _styles = [styles.base, props.style]
     if(props.styles){
       for(let i = 0; i < props.styles.length; i++){
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   brand: {
     color: colors.brand
   },
-  bold:{
-    fontFamily: 'LatoBold',
+  bold: {
+    fontFamily: Platform.OS==='android' ? 'LatoBold' : 'Lato-Bold'
   },
   large: {
     fontSize: 23,

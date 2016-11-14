@@ -83,11 +83,9 @@ class PartnerValidateOnline extends Component{
           {"Valider"}
         </VbButton>
       </View>)
-    if(Platform.OS === 'ios'){
       result = (<KeyboardAvoidingView behavior='padding' style={[styles.container, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
         {result}
       </KeyboardAvoidingView>);
-    }
     return result;
   }
   onChangeText(val){

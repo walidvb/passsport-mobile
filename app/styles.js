@@ -24,13 +24,17 @@ const Styles = StyleSheet.create({
     paddingRight: 15,
   },
   title: {
+    fontFamily: Platform.OS==='android' ? 'LatoBold' : 'Lato-Bold',
     fontWeight: 'bold',
-    fontFamily: 'LatoBold',
+    color: 'red',
     fontSize: 18,
     marginBottom: 18,
   },
   text:{
-    fontFamily: 'Times',
+    fontFamily: 'Lato',
+  },
+  bold: {
+    fontFamily: Platform.OS==='android' ? 'LatoBold' : 'Lato-Bold',
   },
   centered: {
     textAlign: 'center',

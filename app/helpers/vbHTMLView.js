@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   em: {
-
-    fontFamily: 'LatoItalic',
+    fontFamily: Platform.OS==='android' ? 'LatoItalic' : 'Lato-Italic',
     color: colors.black,
   }
 })
