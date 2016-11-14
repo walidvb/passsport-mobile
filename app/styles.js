@@ -25,8 +25,7 @@ const Styles = StyleSheet.create({
   },
   title: {
     fontFamily: Platform.OS==='android' ? 'LatoBold' : 'Lato-Bold',
-    fontWeight: 'bold',
-    color: 'red',
+    color: 'white',
     fontSize: 18,
     marginBottom: 18,
   },
