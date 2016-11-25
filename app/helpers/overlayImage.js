@@ -16,9 +16,9 @@ class OverlayImage extends Component{
           style={{flex: 1}}
           resizeMode="cover"
         >
-          <View style={[styles.overlay, this.props.overlayStyle]}>
-            {this.props.children}
-          </View>
+        <View style={[styles.overlay, this.props.overlayStyle]}>
+          {this.props.children}
+        </View>
         </Image>
       </View>
     );
@@ -30,13 +30,12 @@ const height = Dimensions.get('window').width <= 460 ? 18*11 : 18*20
 const styles = StyleSheet.create({
   base: {
     alignItems: 'stretch',
-    flex: 1,
     height,
   },
   overlay: {
     paddingLeft: 9,
     paddingRight: 9,
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: 'rgba(0,0,0,0.2)',
     justifyContent: 'center',
     alignItems: 'center',

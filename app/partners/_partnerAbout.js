@@ -52,7 +52,7 @@ class PartnerAbout extends Component{
     return (
     	<View style={styles.container}>
         <View style={styles.contact}>
-          {urlWithIcon('map-marker', partner.contact, `http://maps.google.com/?q=your+query${partner.contact}`)}
+          {urlWithIcon('map-marker', partner.contact, `http://maps.google.com/?q=${partner.contact}`)}
           {urlWithIcon('phone', partner.phone, "tel:"+partner.phone)}
           {urlWithIcon('globe', partner.website, partner.website)}
           {urlWithIcon('envelope', partner.email, "mailto:"+partner.email)}

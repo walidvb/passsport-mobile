@@ -93,7 +93,7 @@ class PartnersList extends Component{
       );
   }
   renderPartnerCell(partner){
-    return (<PartnerCell {...this.props} style={styles.overlay} partner={partner}/>)
+    return (<PartnerCell {...this.props} partner={partner}/>)
   }
 };
 

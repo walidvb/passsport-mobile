@@ -53,9 +53,15 @@ class PartnerShow extends Component{
     const validBanner = partner.validated ? <ValidBanner/> : null
     return (
       <View>
-        <OverlayImage source={{uri: partner.tile_image}} style={[{height: headerHeight*0.85, flex: .25}, {marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight}]}>
-          { validBanner }
-        </OverlayImage>
+      <OverlayImage source={{uri: partner.tile_image}} style={[{
+        height: headerHeight*0.75,
+        marginTop: Navigator.NavigationBar.Styles.General.TotalNavHeight,
+        justifyContent: 'center'}]}>
+        { validBanner }
+        <View style={{flex: 1, justifyContent: 'center', paddingLeft: 15, paddingRight: 15}}>
+          <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
+        </View>
+      </OverlayImage>
       </View>
     )
   }
@@ -82,16 +88,11 @@ class PartnerShow extends Component{
 
     return (<View style={{flex: 1, paddingBottom: padding}}>{validator}
       <ParallaxScrollView
-        contentContainerStyle={{flex: 1}}
+        contentContainerStyle={{}}
         backgroundSpeed={55}
         backgroundColor={colors.brandColor}
         parallaxHeaderHeight={headerHeight}
         renderBackground={this.renderHeader.bind(this, partner)}
-        renderForeground={() => (
-          <View style={{flex: 1, justifyContent: 'center', paddingTop: 65, paddingLeft: 15, paddingRight: 15}}>
-            <VbText styles={['light', 'xlarge', 'bold', 'centered']} uppercase style={styles.partnerName} text={partner.name}/>
-          </View>
-        )}
       >
       {this.renderTabs(partner)}
       </ParallaxScrollView>
